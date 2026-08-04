@@ -118,7 +118,9 @@
     min-height:230px; border-radius:22px; padding:34px 28px; display:grid; place-items:center;
     background:var(--card); border:1px solid var(--card-border); backdrop-filter:blur(12px);
     font-size:1.15rem; line-height:1.6; cursor:pointer; box-shadow:0 10px 40px rgba(0,0,0,.4);
+    white-space:pre-line; text-align:left;
   }
+  .fc-card>div{max-height:56vh; overflow-y:auto}
   .fc-card .hint{font-size:.75rem; color:var(--muted); margin-top:16px}
   .fc-grades{display:flex; gap:10px; justify-content:center; margin-top:18px}
   .fc-grades .btn.again{border-color:var(--red); color:var(--red)}
@@ -177,6 +179,7 @@
   <nav>
     <button class="on" data-v="lib">📚 Biblioteca</button>
     <button data-v="fc">🃏 Flashcards <span id="fc-badge"></span></button>
+    <button data-v="plan">🗓️ Planner</button>
     <button data-v="stats">📊 Estatísticas</button>
   </nav>
 
@@ -232,6 +235,24 @@
     </div>
   </div>
 
+  <!-- ═══ PLANNER ═══ -->
+  <div class="view" id="v-plan">
+    <div class="actions" style="align-items:center">
+      <button class="btn" id="pl-prev">←</button>
+      <b id="pl-title" style="min-width:220px; text-align:center"></b>
+      <button class="btn" id="pl-next">→</button>
+      <button class="btn" id="pl-today">Hoje</button>
+    </div>
+    <div class="fc-form" style="max-width:none; margin:14px 0">
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <input id="pl-meta" placeholder="Nova meta da semana — ex.: Ler LINDB arts. 1º a 6º + 20 flashcards" style="flex:1; min-width:240px">
+        <select id="pl-mat" style="max-width:280px"></select>
+        <button class="btn primary" id="pl-add">＋ Adicionar</button>
+      </div>
+    </div>
+    <div id="pl-list" class="grid" style="grid-template-columns:1fr"></div>
+  </div>
+
   <!-- ═══ ESTATÍSTICAS ═══ -->
   <div class="view" id="v-stats">
     <div class="statgrid">
@@ -244,11 +265,19 @@
     <div class="sec"><h2>🗓️ Constância (últimas 20 semanas)</h2><span class="line"></span></div>
     <div class="heat" id="heat"></div>
     <p class="legend">Cada quadrado é um dia — quanto mais brilhante, mais atividade (materiais abertos + sessões de foco + cards revisados).</p>
+    <div class="sec"><h2>💾 Backup do progresso</h2><span class="line"></span></div>
+    <div class="actions">
+      <button class="btn" id="bk-export">⬇ Exportar progresso</button>
+      <button class="btn" id="bk-import">⬆ Importar progresso</button>
+      <input type="file" id="bk-file" accept=".json" style="display:none">
+    </div>
+    <p class="legend">Exporte num aparelho e importe no outro para levar status, flashcards, planner e estatísticas junto.</p>
   </div>
 
   <footer>Progresso salvo neste navegador · <a href="https://github.com/lanabiatriz2001-ai/apostilas">repositório</a></footer>
 </div>
 
+<script src="seed-decks.js"></script>
 <script>
 /* ═══════════ DADOS ═══════════ */
 const A = [
@@ -322,6 +351,15 @@ try{(JSON.parse(localStorage.getItem("apostilas-done")||"[]")).forEach(f=>{if(!(
 let act=JSON.parse(localStorage.getItem(K.act)||"{}");
 let cards=JSON.parse(localStorage.getItem(K.cards)||"null");
 if(!cards){cards=SEED_CARDS.map((c,i)=>({id:"seed"+i, deck:c[0], q:c[1], a:c[2], due:null, ivl:0}));}
+/* mescla decks gerados automaticamente (seed-decks.js) sem duplicar nem perder progresso */
+if(typeof SEED_DECKS!=="undefined"){
+  const have=new Set(cards.map(c=>c.id));
+  Object.entries(SEED_DECKS).forEach(([deck,list])=>list.forEach((c,i)=>{
+    const id="auto-"+deck.replace(/\W+/g,"")+"-"+i;
+    if(!have.has(id))cards.push({id, deck, q:c.q, a:c.a, due:null, ivl:0});
+  }));
+}
+let plan=JSON.parse(localStorage.getItem("nexus-plan")||"{}");
 const save=k=>{
   if(k==="st")localStorage.setItem(K.st,JSON.stringify(status));
   if(k==="act")localStorage.setItem(K.act,JSON.stringify(act));
@@ -352,7 +390,49 @@ document.querySelector("nav").addEventListener("click",e=>{
   document.getElementById("v-"+b.dataset.v).classList.add("on");
   if(b.dataset.v==="stats")renderStats();
   if(b.dataset.v==="fc")renderDecks();
+  if(b.dataset.v==="plan")renderPlan();
 });
+
+/* ═══════════ PLANNER SEMANAL ═══════════ */
+let plOff=0; // deslocamento em semanas a partir da atual
+function weekKey(off){
+  const d=new Date(); d.setDate(d.getDate()+off*7);
+  const day=(d.getDay()+6)%7; d.setDate(d.getDate()-day); // segunda-feira
+  return d.toISOString().slice(0,10);
+}
+function weekLabel(off){
+  const ini=new Date(weekKey(off)+"T12:00:00");
+  const fim=new Date(ini); fim.setDate(ini.getDate()+6);
+  const f=x=>x.toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"});
+  return `Semana de ${f(ini)} a ${f(fim)}`;
+}
+function renderPlan(){
+  const wk=weekKey(plOff), metas=plan[wk]||[];
+  document.getElementById("pl-title").textContent=weekLabel(plOff)+(plOff===0?" · atual":"");
+  const sel=document.getElementById("pl-mat");
+  if(!sel.options.length)
+    sel.innerHTML=`<option value="">(sem material vinculado)</option>`+A.map(a=>`<option value="${a.f}">${a.e} ${a.t}</option>`).join("");
+  document.getElementById("pl-list").innerHTML = metas.length ? metas.map((m,i)=>`
+    <div class="card" style="flex-direction:row; align-items:center; gap:14px">
+      <button class="status" data-s="${m.ok?2:0}" onclick="plToggle(${i})">${m.ok?"Feita ✓":"Pendente"}</button>
+      <span style="flex:1; ${m.ok?"opacity:.55; text-decoration:line-through":""}">${m.txt}</span>
+      ${m.mat?`<a class="btn" style="padding:6px 12px; font-size:.78rem" href="#" onclick="event.preventDefault();abrir('${m.mat}')">abrir material</a>`:""}
+      <button class="btn" style="padding:6px 10px; font-size:.78rem; border-color:var(--red); color:var(--red)" onclick="plDel(${i})">✕</button>
+    </div>`).join("") : `<p class="vazio">Nenhuma meta nesta semana — defina suas metas de leitura, quizzes e flashcards! ✍️</p>`;
+}
+function plToggle(i){const wk=weekKey(plOff); plan[wk][i].ok=!plan[wk][i].ok;
+  localStorage.setItem("nexus-plan",JSON.stringify(plan)); if(plan[wk][i].ok)bump("opens",0); renderPlan()}
+function plDel(i){const wk=weekKey(plOff); plan[wk].splice(i,1);
+  localStorage.setItem("nexus-plan",JSON.stringify(plan)); renderPlan()}
+document.getElementById("pl-add").onclick=()=>{
+  const txt=document.getElementById("pl-meta").value.trim(); if(!txt)return;
+  const wk=weekKey(plOff); (plan[wk]=plan[wk]||[]).push({txt, mat:document.getElementById("pl-mat").value, ok:false});
+  localStorage.setItem("nexus-plan",JSON.stringify(plan));
+  document.getElementById("pl-meta").value=""; renderPlan();
+};
+document.getElementById("pl-prev").onclick=()=>{plOff--;renderPlan()};
+document.getElementById("pl-next").onclick=()=>{plOff++;renderPlan()};
+document.getElementById("pl-today").onclick=()=>{plOff=0;renderPlan()};
 
 /* ═══════════ BIBLIOTECA ═══════════ */
 let fTipo="Todos", fCat="Todas", termo="";
@@ -518,6 +598,26 @@ function renderStats(){
   }
   document.getElementById("heat").innerHTML=cells.join("");
 }
+
+/* ═══════════ BACKUP ═══════════ */
+document.getElementById("bk-export").onclick=()=>{
+  const blob=new Blob([JSON.stringify({status,act,cards,plan},null,1)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+  a.download="nexus-backup-"+hoje()+".json"; a.click();
+};
+document.getElementById("bk-import").onclick=()=>document.getElementById("bk-file").click();
+document.getElementById("bk-file").onchange=e=>{
+  const f=e.target.files[0]; if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{
+    const d=JSON.parse(r.result);
+    if(d.status){status=d.status;save("st")} if(d.act){act=d.act;save("act")}
+    if(d.cards){cards=d.cards;save("cards")}
+    if(d.plan){plan=d.plan;localStorage.setItem("nexus-plan",JSON.stringify(plan))}
+    alert("✅ Progresso importado!"); renderLib(); renderStats();
+  }catch(err){alert("Arquivo inválido: "+err.message)}};
+  r.readAsText(f);
+};
 
 renderLib(); renderHUD();
 </script>
