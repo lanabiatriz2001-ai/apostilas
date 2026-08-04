@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Código de Cores — Leitura Ativa</title>
+<style>
+  :root{
+    --azul:#2563eb;     --azul-bg:#eef3fe;
+    --verde:#16a34a;    --verde-bg:#eef8f1;
+    --laranja:#ea580c;  --laranja-bg:#fdf1e9;
+    --rosa:#db2777;     --rosa-bg:#fdedf5;
+    --amarelo:#a16207;  --amarelo-bg:#fdf6e3;
+    --roxo:#9333ea;     --roxo-bg:#f6eefd;
+    --vermelho:#dc2626; --vermelho-bg:#fdedec;
+    --ink:#1f2430;
+    --muted:#5b6270;
+    --paper:#fbfaf7;
+    --line:#e4e1d8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:36px 20px 60px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Source Serif Pro",serif;
+    display:flex;
+    justify-content:center;
+  }
+  .sheet{
+    width:100%;
+    max-width:760px;
+  }
+  header{
+    text-align:center;
+    margin-bottom:28px;
+  }
+  header .eyebrow{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  header h1{
+    font-size:26px;
+    margin:0 0 6px;
+    font-weight:600;
+  }
+  header p{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13px;
+    color:var(--muted);
+    margin:0;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:26px;
+  }
+  .card{
+    border:1px solid var(--line);
+    border-left:6px solid var(--c);
+    background:var(--bg);
+    border-radius:6px;
+    padding:14px 16px;
+  }
+  .card .head{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    margin-bottom:6px;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+  }
+  .card .dot{
+    width:11px;height:11px;border-radius:50%;
+    background:var(--c);
+    flex:none;
+  }
+  .card .color-name{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--c);
+    font-weight:700;
+  }
+  .card .label{
+    font-size:17px;
+    font-weight:600;
+    margin:0 0 4px;
+  }
+  .card .def{
+    font-size:13.5px;
+    line-height:1.45;
+    color:var(--ink);
+    margin:0 0 6px;
+  }
+  .card .ex{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11.5px;
+    color:var(--muted);
+    font-style:italic;
+    line-height:1.4;
+  }
+  .rules{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:18px 20px;
+    margin-bottom:22px;
+  }
+  .rules h2{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--muted);
+    margin:0 0 12px;
+  }
+  .rule{
+    display:flex;
+    gap:12px;
+    padding:9px 0;
+    border-top:1px solid var(--line);
+    align-items:flex-start;
+  }
+  .rule:first-of-type{border-top:none;}
+  .rule .badge{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11px;
+    font-weight:700;
+    white-space:nowrap;
+    padding:3px 8px;
+    border-radius:20px;
+    color:#fff;
+    flex:none;
+    margin-top:1px;
+  }
+  .rule p{
+    margin:0;
+    font-size:13.5px;
+    line-height:1.5;
+  }
+  .rule .kicker{
+    font-weight:600;
+  }
+  .divider{
+    border:none;
+    border-top:1px solid var(--line);
+    margin:36px 0 26px;
+  }
+  .section-head{
+    text-align:center;
+    margin-bottom:22px;
+  }
+  .section-head .eyebrow{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .section-head h2.title{
+    font-size:21px;
+    margin:0 0 6px;
+    font-weight:600;
+  }
+  .section-head p{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:12.5px;
+    color:var(--muted);
+    margin:0;
+    max-width:520px;
+    margin:0 auto;
+  }
+  footer{
+    text-align:center;
+    margin-top:24px;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:10.5px;
+    color:var(--muted);
+  }
+  @media print{
+    body{padding:0;background:#fff;}
+    .sheet{max-width:100%;}
+    .card, .rules, .ext{break-inside:avoid;}
+  }
+  @media (max-width:600px){
+    .grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <div class="eyebrow">Leitura ativa — lei seca e jurisprudência</div>
+    <h1>Código de cores reformulado</h1>
+    <p>7 cores, mesma associação de sempre — com regra de desempate para os pontos de atrito, na lei e no julgado.</p>
+  </header>
+
+  <div class="grid">
+
+    <div class="card" style="--c:var(--azul); --bg:var(--azul-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Azul</span></div>
+      <p class="label">Quem</p>
+      <p class="def">Sujeito da norma, órgão ou autoridade competente.</p>
+      <p class="ex">ex.: "o Presidente da República...", "compete ao Tribunal..."</p>
+    </div>
+
+    <div class="card" style="--c:var(--verde); --bg:var(--verde-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Verde</span></div>
+      <p class="label">O que</p>
+      <p class="def">Verbo nuclear e objeto da norma — a ação central.</p>
+      <p class="ex">ex.: "nomeará", "editará decreto", "poderá delegar"</p>
+    </div>
+
+    <div class="card" style="--c:var(--rosa); --bg:var(--rosa-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Rosa</span></div>
+      <p class="label">Como</p>
+      <p class="def">Modo, meio ou procedimento de execução.</p>
+      <p class="ex">ex.: "mediante decreto", "por meio de concurso público"</p>
+    </div>
+
+    <div class="card" style="--c:var(--amarelo); --bg:var(--amarelo-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Amarelo</span></div>
+      <p class="label">Prazo / número</p>
+      <p class="def">Qualquer dado quantificável: prazo, valor, percentual, quórum.</p>
+      <p class="ex">ex.: "30 dias", "dois terços", "R$ 1.000,00"</p>
+    </div>
+
+    <div class="card" style="--c:var(--laranja); --bg:var(--laranja-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Laranja</span></div>
+      <p class="label">Quando / condição</p>
+      <p class="def">O conectivo lógico ou temporal em si — o gatilho da regra.</p>
+      <p class="ex">ex.: "se", "quando", "desde que", "enquanto", "até que"</p>
+    </div>
+
+    <div class="card" style="--c:var(--roxo); --bg:var(--roxo-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Roxo</span></div>
+      <p class="label">Exceção</p>
+      <p class="def">Recorte que afasta a regra geral, mesmo com cara de condição.</p>
+      <p class="ex">ex.: "salvo se", "exceto quando", "ressalvado o disposto em..."</p>
+    </div>
+
+    <div class="card" style="--c:var(--vermelho); --bg:var(--vermelho-bg); grid-column:1 / -1;">
+      <div class="head"><span class="dot"></span><span class="color-name">Vermelho</span></div>
+      <p class="label">Vedação</p>
+      <p class="def">Proibição expressa — sempre marcada assim, ainda que tecnicamente seja "o que" a norma diz.</p>
+      <p class="ex">ex.: "é vedado", "não poderá", "fica proibido"</p>
+    </div>
+
+  </div>
+
+  <div class="rules">
+    <h2>Regras de desempate</h2>
+
+    <div class="rule">
+      <span class="badge" style="background:var(--vermelho);">Vermelho vence Verde</span>
+      <p>Se a ação da norma é uma negação, grife de <span class="kicker">vermelho</span>, não de verde. "É vedado nomear" → vedação, não "o que" genérico.</p>
+    </div>
+
+    <div class="rule">
+      <span class="badge" style="background:var(--roxo);">Roxo vence Laranja</span>
+      <p>Se a oração está recortando uma exclusão da regra geral, grife de <span class="kicker">roxo</span> mesmo que comece com "se" ou "quando". "Salvo quando..." é exceção, não condição comum.</p>
+    </div>
+
+    <div class="rule">
+      <span class="badge" style="background:var(--amarelo);">Amarelo é lexical</span>
+      <p>Todo número é <span class="kicker">amarelo</span>, sem exceção — mesmo dentro de uma condição. O conectivo ("no prazo de") fica laranja; o número ("30 dias") fica amarelo. Isso separa o gatilho do dado.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-head">
+    <div class="eyebrow">Leitura ativa — jurisprudência</div>
+    <h2 class="title">Mesmo código, restrito ao texto decisório</h2>
+    <p>Aqui só entra o que está escrito na própria ementa/acórdão. Nada de inferir peso de precedente, comparar com outros julgados ou puxar metadado de capa — se não está no corpo do texto decisório, a cor não marca.</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card" style="--c:var(--azul); --bg:var(--azul-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Azul</span></div>
+      <p class="label">Quem decidiu</p>
+      <p class="def">Órgão julgador e relator, exatamente como constam na própria ementa.</p>
+      <p class="ex">ex.: "o Plenário do STF...", "a Corte Especial, por unanimidade..."</p>
+    </div>
+
+    <div class="card" style="--c:var(--verde); --bg:var(--verde-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Verde</span></div>
+      <p class="label">Tese firmada</p>
+      <p class="def">O que restou decidido, tal como redigido no texto — a regra do caso.</p>
+      <p class="ex">ex.: "é constitucional a exigência de...", "não incide o prazo de..."</p>
+    </div>
+
+    <div class="card" style="--c:var(--rosa); --bg:var(--rosa-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Rosa</span></div>
+      <p class="label">Fundamento</p>
+      <p class="def">Base legal, principiológica ou raciocínio citados na própria ementa para sustentar a tese.</p>
+      <p class="ex">ex.: "com base no princípio da...", "à luz do art. 5º, X, da CF"</p>
+    </div>
+
+    <div class="card" style="--c:var(--amarelo); --bg:var(--amarelo-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Amarelo</span></div>
+      <p class="label">Quórum e dado quantitativo do dispositivo</p>
+      <p class="def">Votação e prazo/valor fixados no próprio corpo decisório (ex.: modulação de efeitos). Não inclui número do processo nem data de julgamento — isso é capa do acórdão, não texto decisório.</p>
+      <p class="ex">ex.: "por maioria de votos", "efeitos a partir de 1º de janeiro de 2027"</p>
+    </div>
+
+    <div class="card" style="--c:var(--laranja); --bg:var(--laranja-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Laranja</span></div>
+      <p class="label">Hipótese fática</p>
+      <p class="def">A situação-tipo à qual a tese se aplica, conforme narrada na própria ementa.</p>
+      <p class="ex">ex.: "em caso de...", "tratando-se de servidor que...", "quando o contrato..."</p>
+    </div>
+
+    <div class="card" style="--c:var(--roxo); --bg:var(--roxo-bg);">
+      <div class="head"><span class="dot"></span><span class="color-name">Roxo</span></div>
+      <p class="label">Ressalva na própria tese</p>
+      <p class="def">Recorte que a própria ementa afasta expressamente dentro do que decidiu — sem precisar comparar com outro julgado.</p>
+      <p class="ex">ex.: "ressalvada a hipótese de...", "não se aplica quando o próprio ato..."</p>
+    </div>
+
+    <div class="card" style="--c:var(--vermelho); --bg:var(--vermelho-bg); grid-column:1 / -1;">
+      <div class="head"><span class="dot"></span><span class="color-name">Vermelho</span></div>
+      <p class="label">Superação textual</p>
+      <p class="def">Só quando a própria ementa afirma expressamente que revoga, supera ou altera entendimento anterior — não uma superação que você sabe de cor mas o texto não diz.</p>
+      <p class="ex">ex.: "supera o entendimento firmado em...", "cancela a Súmula nº...", "altera a jurisprudência dominante"</p>
+    </div>
+
+  </div>
+
+  <div class="rules">
+    <h2>Regras de desempate — jurisprudência</h2>
+
+    <div class="rule">
+      <span class="badge" style="background:var(--rosa);">Rosa ≠ Verde</span>
+      <p><span class="kicker">Verde</span> é o resultado (o que ficou decidido); <span class="kicker">rosa</span> é o caminho até lá (por que decidiram assim), ambos redigidos na própria ementa. Se a frase responde "qual é a regra do caso", é verde; se responde "com base em quê", é rosa.</p>
+    </div>
+
+    <div class="rule">
+      <span class="badge" style="background:var(--roxo);">Roxo vence Laranja</span>
+      <p>Se o próprio texto está afastando uma situação da tese que acabou de firmar, é <span class="kicker">roxo</span>, mesmo vindo em forma de "quando" ou "se". A diferença para o distinguishing clássico é que aqui a ressalva tem que estar escrita na mesma ementa — nunca é você comparando com outro acórdão de memória.</p>
+    </div>
+
+    <div class="rule">
+      <span class="badge" style="background:var(--vermelho);">Vermelho exige texto explícito</span>
+      <p>Só existe <span class="kicker">vermelho</span> se a ementa usar, ela mesma, uma expressão de superação ("supera", "cancela a súmula", "revê o entendimento"). Se você só desconfia que aquilo contraria um julgado antigo mas o texto não fala isso, não é vermelho — é fora do escopo do grifo.</p>
+    </div>
+
+    <div class="rule">
+      <span class="badge" style="background:var(--amarelo);">Amarelo fica só no corpo do texto</span>
+      <p>Quórum, prazo e valor citados dentro da tese ou da hipótese fática continuam <span class="kicker">amarelo</span>, do mesmo jeito que na lei seca. Número do processo e data de julgamento ficam fora do grifo — são identificação do acórdão, não conteúdo decisório.</p>
+    </div>
+  </div>
+
+  <footer>Código de cores — leitura ativa · lei seca e jurisprudência · reformulado em julho de 2026</footer>
+
+</div>
+</body>
+</html>

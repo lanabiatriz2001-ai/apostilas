@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz LINDB — Estudo da Lei de Introdução</title>
+<style>
+:root{
+  --v1:#7c3aed; --v2:#a855f7; --pink:#db2777; --amber:#f59e0b;
+  --ink:#111827; --mut:#64748b; --line:#e5e7eb; --bg:#f6f5fb;
+  --ok:#059669; --okbg:#ecfdf5; --bad:#be123c; --badbg:#fff1f2;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  font-size:16px; line-height:1.55; padding-bottom:110px;
+}
+.wrap{max-width:920px;margin:0 auto;padding:0 16px}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#5b21b6 0%,#7c3aed 32%,#db2777 72%,#f59e0b 100%);
+  color:#fff;position:relative;overflow:hidden;padding:52px 0 44px;
+}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.13)}
+.hero::before{width:340px;height:340px;top:-130px;right:-90px}
+.hero::after{width:230px;height:230px;bottom:-120px;left:-60px;background:rgba(255,255,255,.10)}
+.hero .wrap{position:relative;z-index:1}
+.tag{display:inline-block;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.45);
+  padding:5px 15px;border-radius:99px;font-size:.72rem;letter-spacing:2.5px;font-weight:700}
+.hero h1{font-size:clamp(2.6rem,8vw,4rem);margin:14px 0 2px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+.rule{width:84px;height:6px;background:#fde047;border-radius:4px;margin:12px 0 16px}
+.hero h2{font-weight:400;font-size:clamp(1rem,3vw,1.25rem);margin:0 0 14px;opacity:.96}
+.hero p{max-width:640px;opacity:.95;font-size:.95rem;margin:0}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.stat{background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:10px 18px}
+.stat b{display:block;font-size:1.5rem;line-height:1.1}
+.stat span{font-size:.66rem;letter-spacing:1.3px;text-transform:uppercase;opacity:.93}
+
+/* TOC */
+.toc{background:#fff;border:2px solid #ede9fe;border-radius:18px;padding:18px 22px;margin:26px 0 6px;
+  box-shadow:0 6px 22px rgba(80,40,140,.06)}
+.toc h3{margin:0 0 10px;color:#6d28d9;font-size:.95rem;letter-spacing:.6px}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:28px;font-size:.88rem}
+@media(max-width:640px){.toc ol{columns:1}}
+.toc li{margin-bottom:5px;break-inside:avoid}
+.toc a{color:#334155;text-decoration:none}
+.toc a:hover{color:var(--v1);text-decoration:underline}
+
+.tip{background:#fffbeb;border-left:5px solid var(--amber);border-radius:0 12px 12px 0;
+  padding:12px 16px;font-size:.88rem;margin:16px 0 4px}
+.tip b{color:#b45309}
+
+/* BLOCKS */
+.bhead{border-radius:14px;padding:12px 18px;color:#fff;font-weight:800;margin:34px 0 4px;
+  display:flex;align-items:center;gap:12px;font-size:1.02rem;box-shadow:0 5px 16px rgba(0,0,0,.09)}
+.bhead .num{background:rgba(255,255,255,.28);border-radius:9px;padding:2px 11px;font-size:.85rem}
+.b1{background:linear-gradient(90deg,#7c3aed,#a855f7)}
+.b2{background:linear-gradient(90deg,#0284c7,#38bdf8)}
+.b3{background:linear-gradient(90deg,#059669,#34d399)}
+.b4{background:linear-gradient(90deg,#ea580c,#fb923c)}
+.b5{background:linear-gradient(90deg,#be123c,#fb7185)}
+.b6{background:linear-gradient(90deg,#0f766e,#2dd4bf)}
+.b7{background:linear-gradient(90deg,#4338ca,#818cf8)}
+.b8{background:linear-gradient(90deg,#a16207,#facc15)}
+.bsub{font-size:.8rem;color:var(--mut);font-style:italic;margin:0 4px 14px}
+
+/* QUESTION CARD */
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:12px 0;
+  box-shadow:0 2px 10px rgba(20,20,60,.04);transition:box-shadow .18s,border-color .18s}
+.card:hover{box-shadow:0 6px 20px rgba(20,20,60,.08)}
+.card.done{border-color:#ddd6fe}
+.stem{font-weight:600;display:flex;gap:11px;align-items:flex-start;margin-bottom:11px}
+.n{flex:0 0 auto;min-width:28px;height:28px;line-height:28px;text-align:center;background:#1e293b;color:#fff;
+  border-radius:9px;font-size:.8rem;font-weight:800}
+.card.right .n{background:var(--ok)} .card.wrong .n{background:var(--bad)}
+.alt{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;margin:5px 0;border:1.5px solid var(--line);
+  border-radius:11px;cursor:pointer;font-size:.94rem;transition:.14s;background:#fff}
+.alt:hover{border-color:var(--v2);background:#faf5ff}
+.alt .k{flex:0 0 auto;font-weight:800;color:var(--v1);width:16px}
+.alt.sel{border-color:var(--v1);background:#f5f3ff;box-shadow:inset 0 0 0 1px var(--v1)}
+.alt.ok{border-color:var(--ok);background:var(--okbg)} .alt.ok .k{color:var(--ok)}
+.alt.no{border-color:var(--bad);background:var(--badbg)} .alt.no .k{color:var(--bad)}
+.alt.lock{cursor:default}
+.alt .mark{margin-left:auto;font-weight:800;font-size:.85rem}
+.why{display:none;margin-top:11px;padding:11px 14px;border-radius:0 11px 11px 0;font-size:.87rem;
+  background:#f8fafc;border-left:5px solid #94a3b8}
+.why.show{display:block}
+.why.good{background:var(--okbg);border-left-color:var(--ok)}
+.why.bad{background:var(--badbg);border-left-color:var(--bad)}
+.why b{display:block;margin-bottom:2px;font-size:.78rem;letter-spacing:.6px;text-transform:uppercase}
+.why.good b{color:var(--ok)} .why.bad b{color:var(--bad)}
+
+/* BAR */
+.bar{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);
+  border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(0,0,0,.08);z-index:50}
+.bar .wrap{display:flex;align-items:center;gap:14px;padding:11px 16px;flex-wrap:wrap}
+.prog{flex:1;min-width:150px}
+.prog .track{height:9px;background:#e9e6f5;border-radius:99px;overflow:hidden}
+.prog .fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--v1),var(--pink),var(--amber));transition:width .3s}
+.prog .lbl{font-size:.76rem;color:var(--mut);margin-top:3px}
+button{font-family:inherit;font-size:.87rem;font-weight:700;border-radius:11px;padding:10px 18px;cursor:pointer;border:0;transition:.15s}
+.btn-p{background:linear-gradient(90deg,var(--v1),var(--pink));color:#fff;box-shadow:0 4px 12px rgba(124,58,237,.35)}
+.btn-p:hover{filter:brightness(1.08)}
+.btn-s{background:#fff;color:#475569;border:1.5px solid var(--line)}
+.btn-s:hover{border-color:var(--v2);color:var(--v1)}
+.mode{display:flex;align-items:center;gap:7px;font-size:.8rem;color:var(--mut);cursor:pointer;user-select:none}
+.mode input{accent-color:var(--v1);width:16px;height:16px}
+
+/* RESULT */
+.result{display:none;background:linear-gradient(135deg,#0f172a,#1e3a8a 55%,#7c3aed);color:#fff;
+  border-radius:20px;padding:26px;margin:26px 0;text-align:center}
+.result.show{display:block}
+.result .score{font-size:3.2rem;font-weight:800;line-height:1;letter-spacing:-2px}
+.result .pct{font-size:1rem;opacity:.9;margin-top:4px}
+.result .msg{margin-top:12px;font-size:.95rem;opacity:.95}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);border-radius:99px;
+  padding:5px 13px;font-size:.78rem}
+.foot{text-align:center;color:var(--mut);font-size:.8rem;margin:40px 0 10px;font-style:italic}
+@media print{.bar,.tip{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">DIREITO CIVIL · CAPÍTULO 1</span>
+    <h1>QUIZ LINDB</h1>
+    <div class="rule"></div>
+    <h2>Estudo da Lei de Introdução às Normas do Direito Brasileiro</h2>
+    <p>70 questões de fixação, introdutórias à leitura da doutrina. Conceitos, classificações,
+       críticas e posicionamentos extraídos exclusivamente do texto e da opinião do autor.</p>
+    <div class="stats">
+      <div class="stat"><b>55</b><span>Múltipla escolha</span></div>
+      <div class="stat"><b>15</b><span>Certo / errado</span></div>
+      <div class="stat"><b>8</b><span>Blocos temáticos</span></div>
+      <div class="stat"><b>✓</b><span>Gabarito comentado</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc"><h3>■ ROTEIRO DO QUIZ</h3><ol id="toc"></ol></nav>
+  <div class="tip"><b>Como usar:</b> clique na alternativa que julgar correta. No modo
+    <i>feedback imediato</i> a justificativa aparece na hora; desligue-o para responder tudo antes e só
+    então corrigir. O botão <b>Corrigir</b> revela o gabarito comentado de todas as questões.</div>
+
+  <div id="quiz"></div>
+
+  <div class="result" id="result">
+    <div class="score" id="score">0/70</div>
+    <div class="pct" id="pct"></div>
+    <div class="msg" id="msg"></div>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <p class="foot">Material elaborado exclusivamente a partir do Capítulo 1 — “Estudo da Lei de Introdução”, de Flávio Tartuce.<br>
+  Respostas, classificações e posicionamentos críticos reproduzem o texto e a opinião doutrinária do autor.</p>
+</div>
+
+<div class="bar"><div class="wrap">
+  <label class="mode"><input type="checkbox" id="imm" checked> Feedback imediato</label>
+  <div class="prog">
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="lbl" id="lbl">0 de 70 respondidas</div>
+  </div>
+  <button class="btn-p" id="fix">Corrigir</button>
+  <button class="btn-s" id="reset">Refazer</button>
+</div></div>
+
+<script>
+const Q = [{"n": 1, "t": "mc", "stem": "A antiga Lei de Introdução ao Código Civil corresponde a qual diploma?", "alts": ["Lei 12.376, de 2010.", "Decreto-lei 4.657, de 1942.", "Lei Complementar 95, de 1998.", "Lei 13.655, de 2018."], "ans": 1, "why": "Decreto-lei 4.657, de 1942, conhecido pelas iniciais LICC (item 1.1)."}, {"n": 2, "t": "mc", "stem": "Dizer que a Lei de Introdução é uma <i>norma de sobredireito</i> significa que ela é:", "alts": ["norma de estatura constitucional, superior às leis ordinárias.", "norma jurídica que visa regulamentar outras normas — leis sobre leis ou <i>lex legum</i>.", "norma exclusiva do Direito Privado, aplicável apenas ao Código Civil.", "norma que revoga automaticamente todas as leis especiais anteriores."], "ans": 1, "why": "Norma de sobredireito = norma que visa regulamentar outras normas (leis sobre leis ou <i>lex legum</i>)."}, {"n": 3, "t": "mc", "stem": "A alteração do nome de LICC para “Lei de Introdução às Normas do Direito Brasileiro” foi promovida pela Lei 12.376/2010 porque:", "alts": ["o diploma passou a integrar formalmente o Código Civil de 2002.", "atualmente o diploma mais se aplica aos outros ramos do Direito do que ao próprio Direito Civil.", "o Decreto-lei 4.657/1942 não teria sido recepcionado pela CF/1988.", "a matéria deixou de interessar à Teoria Geral do Direito."], "ans": 1, "why": "Atualmente o diploma mais se aplica aos outros ramos do Direito do que ao próprio Direito Civil; o conteúdo interessa mais à Teoria Geral do Direito."}, {"n": 4, "t": "mc", "stem": "Sobre a relação entre a Lei de Introdução e as codificações civis, assinale a correta:", "alts": ["integra a Parte Geral do Código Civil de 2002.", "integrava o Código Civil de 1916, mas foi excluída do de 2002.", "não faz parte de nenhuma das codificações, sendo espécie de <i>lei anexa</i>, publicada em conjunto com o Código Civil para facilitar a sua aplicação (Serpa Lopes).", "foi expressamente revogada pelo art. 2.045 do CC/2002."], "ans": 2, "why": "Não faz parte do CC/2002 nem do CC/1916; é espécie de <i>lei anexa</i> (Serpa Lopes)."}, {"n": 5, "t": "mc", "stem": "Os arts. 20 a 30, incluídos na Lei de Introdução pela Lei 13.655/2018, tratam:", "alts": ["da vigência e da revogação das leis.", "das regras de Direito Internacional Privado.", "da atuação dos gestores e agentes públicos, consolidando o distanciamento do diploma perante o Direito Privado.", "das formas de integração da norma jurídica."], "ans": 2, "why": "Arts. 20 a 30 tratam da atuação dos gestores e agentes públicos; a Lei 13.655/2018 consolida o distanciamento do Direito Privado."}, {"n": 6, "t": "mc", "stem": "O Direito Brasileiro filia-se à escola:", "alts": ["da <i>Common Law</i>, de origem anglo-saxônica, na qual o precedente é a fonte principal.", "da <i>Civil Law</i>, de origem romano-germânica, pela qual a lei é fonte primária do sistema jurídico.", "do direito costumeiro puro, com base na <i>Lex Mercatoria</i>.", "do Estado Legal puro, em que a norma é o teto das soluções jurídicas."], "ans": 1, "why": "<i>Civil Law</i>, de origem romano-germânica, com a lei como fonte primária."}, {"n": 7, "t": "mc", "stem": "Quanto à súmula vinculante (art. 103-A da CF, incluído pela EC 45/2004), a conclusão adotada — com apoio em Walber de Moura Agra — é a de que:", "alts": ["as súmulas vinculantes são leis em sentido formal e material.", "as súmulas vinculantes não são leis, não tendo a mesma força dessas, permanecendo, pelo menos por enquanto, um sistema essencialmente legal.", "o Brasil já migrou integralmente para o sistema da <i>Common Law</i>.", "a súmula vinculante revoga a lei ordinária com ela incompatível."], "ans": 1, "why": "Walber de Moura Agra: as súmulas vinculantes não são leis, não tendo a mesma força dessas; permanência de um sistema essencialmente legal."}, {"n": 8, "t": "mc", "stem": "O conceito de norma jurídica como “<i>imperativo autorizante</i>”, seguido pelo autor, é atribuído a:", "alts": ["Miguel Reale.", "Maria Helena Diniz.", "Goffredo Telles Jr.", "Hans Kelsen."], "ans": 2, "why": "Goffredo Telles Jr., conceito seguido expressamente pelo autor."}, {"n": 9, "t": "mc", "stem": "No conceito acima, a norma é <i>imperativo</i> e é <i>autorizante</i>, respectivamente, porque:", "alts": ["emana de autoridade competente e é dirigida a todos (generalidade); e porque autoriza ou não autoriza determinadas condutas.", "impõe sanção a todos; e porque autoriza o juiz a decidir por equidade.", "tem eficácia contínua; e porque permite a repristinação.", "é permanente; e porque admite analogia em qualquer hipótese."], "ans": 0, "why": "Imperativo porque emanada de autoridade competente e dirigida a todos (generalidade); autorizamento porque autoriza ou não determinadas condutas."}, {"n": 10, "t": "mc", "stem": "Salvo disposição contrária, a lei começa a vigorar em todo o País (art. 1.º, <i>caput</i>) e nos Estados estrangeiros (art. 1.º, § 1.º), respectivamente, em:", "alts": ["30 dias e 60 dias após a publicação oficial.", "45 dias e três meses após a publicação oficial.", "45 dias e um ano após a publicação oficial.", "90 dias e seis meses após a publicação oficial."], "ans": 1, "why": "Art. 1.º, <i>caput</i> (45 dias) e art. 1.º, § 1.º (três meses nos Estados estrangeiros)."}, {"n": 11, "t": "mc", "stem": "Nos termos do art. 8.º, § 1.º, da LC 95/1998, a contagem do prazo de vacância:", "alts": ["exclui a data da publicação e inclui o último dia do prazo.", "inclui a data da publicação e o último dia do prazo, entrando a lei em vigor no dia subsequente à sua consumação integral; se a data final cair em feriado ou fim de semana, a norma entra em vigor mesmo assim, sem prorrogação.", "inclui a data da publicação, mas prorroga-se para o primeiro dia útil seguinte se o termo final cair em feriado.", "depende sempre de disposição expressa da própria lei."], "ans": 1, "why": "LC 95/1998, art. 8.º, § 1.º; a data não é prorrogada se o termo final for feriado ou fim de semana."}, {"n": 12, "t": "mc", "stem": "De acordo com o entendimento majoritário, inclusive da jurisprudência nacional, o Código Civil de 2002 entrou em vigor em:", "alts": ["1.º de janeiro de 2003.", "10 de janeiro de 2003.", "11 de janeiro de 2003, levando-se em conta a contagem dia a dia.", "12 de janeiro de 2003."], "ans": 2, "why": "11 de janeiro de 2003, contagem dia a dia (art. 2.044 do CC/2002; STJ, AgInt no AREsp 1.417.538/BA, entre outros)."}, {"n": 13, "t": "mc", "stem": "As três fases fundamentais pelas quais passa a lei, para que tenha validade e eficácia, são:", "alts": ["proposta, votação e sanção.", "elaboração, promulgação e publicação.", "publicação, vacância e revogação.", "iniciativa, promulgação e vigência sincrônica."], "ans": 1, "why": "Elaboração, promulgação e publicação; depois vem o prazo de vacância."}, {"n": 14, "t": "mc", "stem": "O art. 2.º da Lei de Introdução consagra o princípio:", "alts": ["da obrigatoriedade da norma.", "da continuidade da lei, pela qual a norma, a partir da sua entrada em vigor, tem eficácia contínua até que outra a modifique ou revogue.", "da vigência sincrônica da lei.", "da irretroatividade absoluta."], "ans": 1, "why": "Art. 2.º — princípio da continuidade da lei."}, {"n": 15, "t": "mc", "stem": "Quanto à <i>extensão</i>, a revogação classifica-se em:", "alts": ["expressa (via direta) e tácita (via oblíqua).", "total ou ab-rogação e parcial ou derrogação.", "originária e superveniente.", "material e formal."], "ans": 1, "why": "Quanto à extensão: total (ab-rogação) e parcial (derrogação). Expressa e tácita referem-se ao <i>modo</i>."}, {"n": 16, "t": "mc", "stem": "O Código Civil de 2002 dispôs de forma completa sobre o condomínio edilício (arts. 1.331 a 1.358), devendo-se ter por tacitamente revogada a Lei 4.591/1964 naquilo que regulava o assunto. Trata-se de aplicação:", "alts": ["da segunda parte do art. 2.º, § 1.º, da Lei de Introdução (lei nova que regula inteiramente a matéria da lei anterior).", "do art. 2.º, § 2.º, da Lei de Introdução.", "do art. 2.º, § 3.º, da Lei de Introdução.", "do art. 1.º, § 3.º, da Lei de Introdução."], "ans": 0, "why": "Segunda parte do art. 2.º, § 1.º; confirmado pela jurisprudência (STJ, REsp 746.589/RS)."}, {"n": 17, "t": "mc", "stem": "Sobre o efeito repristinatório, é correto afirmar:", "alts": ["é automático sempre que a norma revogadora vier a ser revogada por uma terceira norma.", "não se admite o efeito repristinatório automático (art. 2.º, § 3.º); excepcionalmente a lei revogada volta a viger quando a revogadora for declarada inconstitucional, quando concedida a suspensão cautelar da sua eficácia, ou quando o legislador assim determinar expressamente.", "é vedado em qualquer hipótese no sistema brasileiro.", "só é possível por meio de súmula vinculante do STF."], "ans": 1, "why": "Art. 2.º, § 3.º; exceções: declaração de inconstitucionalidade, suspensão cautelar (art. 11, § 2.º, da Lei 9.868/1999) e previsão expressa do legislador."}, {"n": 18, "t": "mc", "stem": "São características básicas da lei como fonte primária do Direito Brasileiro:", "alts": ["generalidade, imperatividade, permanência, competência e autorizante.", "generalidade, especialidade, hierarquia, cronologia e sanção.", "imperatividade, coercibilidade, retroatividade, permanência e equidade.", "abstração, concretude, publicidade, eficiência e moralidade."], "ans": 0, "why": "Generalidade, imperatividade, permanência, competência e autorizante (item 1.3)."}, {"n": 19, "t": "mc", "stem": "Sobre a característica “autorizante”, é correto dizer que:", "alts": ["reafirma a tese de que não há norma sem sanção, de Hans Kelsen.", "traz a ideia de autorizamento — a norma autoriza ou não autoriza determinada conduta —, estando superada a tese de que não há norma sem sanção (Hans Kelsen).", "significa que a norma autoriza o juiz a julgar sempre por equidade.", "equivale à eficácia <i>erga omnes</i> da norma."], "ans": 1, "why": "Está superada a tese de que não há norma sem sanção (Hans Kelsen)."}, {"n": 20, "t": "mc", "stem": "Entre as três correntes que justificam o art. 3.º da Lei de Introdução (ficção legal, presunção absoluta e necessidade social), a posição doutrinária adotada no texto é a de que:", "alts": ["a teoria da ficção legal é a mais correta.", "a teoria da presunção absoluta (<i>iure et de iure</i>) é a mais correta.", "a teoria da necessidade social é a mais correta — as normas devem ser conhecidas para que melhor sejam observadas —, gerando o princípio da vigência sincrônica da lei.", "nenhuma das três teorias se sustenta atualmente."], "ans": 2, "why": "“A última das teorias parece-me a mais correta” — teoria da necessidade social (Maria Helena Diniz), gerando o princípio da vigência sincrônica da lei."}, {"n": 21, "t": "mc", "stem": "Quanto ao erro de direito (<i>error iuris</i>) e ao art. 3.º da Lei de Introdução, assinale a correta:", "alts": ["há conflito insuperável entre o art. 3.º da Lei de Introdução e o art. 139, III, do CC, prevalecendo o primeiro.", "o erro de direito gera nulidade absoluta do negócio, imprescritível.", "não há conflito: a Lei de Introdução é norma geral e o Código Civil é especial, devendo este prevalecer; havendo erro de direito, proposta a ação no prazo decadencial de quatro anos contados da celebração, haverá o reconhecimento da anulabilidade do negócio.", "o Código Civil não admite o erro de direito como vício do negócio jurídico."], "ans": 2, "why": "Não há conflito: Lei de Introdução é geral, o CC é especial; arts. 139, III, 171 e 178, II, do CC."}, {"n": 22, "t": "mc", "stem": "A frase “<i>O Direito não é lacunoso, mas há lacunas</i>” relaciona-se à lição de Maria Helena Diniz, segundo a qual:", "alts": ["o sistema jurídico é fechado e completo, não admitindo omissões.", "o sistema jurídico constitui um sistema aberto, no qual há lacunas — que não são do direito, mas da lei, omissa em alguns casos.", "as lacunas só podem ser supridas pelo legislador.", "as lacunas são do direito, e não da lei."], "ans": 1, "why": "Sistema aberto; as lacunas não são do direito, mas da lei, omissa em alguns casos."}, {"n": 23, "t": "mc", "stem": "Na classificação das lacunas, aquela em que há norma prevista para o caso concreto, mas cuja aplicação seja insatisfatória ou injusta, denomina-se:", "alts": ["lacuna normativa.", "lacuna ontológica.", "lacuna axiológica.", "lacuna de conflito."], "ans": 2, "why": "Lacuna axiológica — norma existente, mas de aplicação insatisfatória ou injusta."}, {"n": 24, "t": "mc", "stem": "A lacuna <i>ontológica</i> e a lacuna <i>de conflito</i> correspondem, respectivamente, a:", "alts": ["ausência total de norma; e norma injusta no caso concreto.", "presença de norma sem eficácia social; e choque de duas ou mais normas válidas, pendente de solução (antinomia).", "norma injusta; e ausência total de norma.", "norma revogada; e norma inconstitucional."], "ans": 1, "why": "Ontológica: norma sem eficácia social. De conflito/antinomia: choque de duas ou mais normas válidas."}, {"n": 25, "t": "mc", "stem": "Sobre o art. 140 do CPC/2015, que veda o <i>non liquet</i>, é correto afirmar:", "alts": ["repetiu integralmente o art. 126 do CPC/1973, inclusive a menção à analogia, aos costumes e aos princípios gerais.", "não faz mais menção à analogia, aos costumes e aos princípios gerais de direito, remetendo a sua incidência ao art. 4.º da Lei de Introdução.", "autorizou o juiz a decidir por equidade em qualquer caso.", "revogou o art. 4.º da Lei de Introdução."], "ans": 1, "why": "O art. 140 do CPC/2015 remete a incidência ao art. 4.º da Lei de Introdução."}, {"n": 26, "t": "mc", "stem": "A distinção entre <i>integração</i> e <i>subsunção</i> está em que:", "alts": ["a subsunção é a aplicação direta da norma jurídica a um determinado tipo ou <i>fattispecie</i>, ao passo que a integração é ferramenta de correção do sistema diante da omissão.", "a subsunção só ocorre quando há lacuna normativa.", "a integração é a aplicação direta da norma ao caso concreto.", "os conceitos são sinônimos."], "ans": 0, "why": "Subsunção = aplicação direta da norma a um tipo ou <i>fattispecie</i>; integração = ferramenta de correção do sistema."}, {"n": 27, "t": "mc", "stem": "Quanto à obrigatoriedade da ordem prevista no art. 4.º da Lei de Introdução, a posição defendida no texto — em oposição à visão clássica de Silvio Rodrigues e Rubens Limongi França — é a de que:", "alts": ["a ordem deve ser rigorosamente obedecida em qualquer hipótese.", "a ordem continua sendo a regra, mas nem sempre deverá ser respeitada, diante da força normativa e coercitiva dos princípios, notadamente os constitucionais, que têm aplicação imediata e não podem mais ser vistos apenas como último recurso de integração.", "o art. 4.º foi revogado pelo art. 8.º do CPC/2015.", "a equidade deve ser aplicada antes da analogia em todos os casos."], "ans": 1, "why": "Posição do autor: os princípios constitucionais não podem mais ser vistos apenas como último recurso (art. 5.º, § 1.º, da CF; art. 8.º do CPC/2015)."}, {"n": 28, "t": "mc", "stem": "A aplicação, por analogia, das regras da ação reivindicatória à ação de imissão de posse configura exemplo de:", "alts": ["analogia legal ou <i>legis</i>.", "analogia jurídica ou <i>iuris</i>, com aplicação de um conjunto de normas próximas.", "interpretação extensiva.", "costume <i>praeter legem</i>."], "ans": 1, "why": "Analogia <i>iuris</i> — aplicação de um conjunto de normas próximas (TJMG, Agravo Interno 1.0027.09.183171-2/0011)."}, {"n": 29, "t": "mc", "stem": "Aplicar o art. 157, § 2.º, do CC à <i>lesão usurária</i> e ao <i>estado de perigo</i> (art. 156) corresponde, respectivamente, a:", "alts": ["analogia e interpretação extensiva.", "interpretação extensiva (amplia-se o sentido da norma — subsunção) e analogia (o comando é aplicado a outro instituto jurídico — integração), conforme o Enunciado n. 148 do CJF/STJ.", "costume <i>secundum legem</i> e equidade legal.", "equidade judicial e princípio geral de direito."], "ans": 1, "why": "Lesão usurária: interpretação extensiva (subsunção). Estado de perigo: analogia (integração) — Enunciado n. 148 do CJF/STJ."}, {"n": 30, "t": "mc", "stem": "As normas de exceção ou <i>normas excepcionais</i>, bem como as que restringem a autonomia privada:", "alts": ["admitem livremente analogia e interpretação extensiva.", "não admitem analogia ou interpretação extensiva, salvo para proteger vulnerável ou um valor fundamental.", "só admitem interpretação extensiva, nunca analogia.", "devem sempre ser interpretadas por equidade."], "ans": 1, "why": "Normas excepcionais e restritivas da autonomia privada não admitem analogia nem interpretação extensiva, salvo para proteger vulnerável ou valor fundamental."}, {"n": 31, "t": "mc", "stem": "Os costumes podem ser conceituados como:", "alts": ["quaisquer práticas sociais reiteradas, ainda que ilícitas.", "as práticas e usos reiterados com conteúdo lícito e relevância jurídica.", "as decisões reiteradas dos tribunais superiores.", "os princípios gerais imanentes ao ordenamento."], "ans": 1, "why": "Práticas e usos reiterados com conteúdo lícito e relevância jurídica."}, {"n": 32, "t": "mc", "stem": "Na aplicação dos costumes <i>secundum legem</i> (arts. 13 e 187 do CC):", "alts": ["há integração, pois se corrige a omissão da lei.", "não há integração, mas subsunção, eis que a própria norma jurídica é que é aplicada.", "há aplicação do costume contra a lei.", "há sempre necessidade de analogia prévia."], "ans": 1, "why": "No costume <i>secundum legem</i> há subsunção, não integração (arts. 13 e 187 do CC)."}, {"n": 33, "t": "mc", "stem": "O reconhecimento da validade do cheque pós-datado (pré-datado), com a Súmula 370 do STJ, é exemplo clássico de:", "alts": ["costume <i>secundum legem</i>.", "costume <i>praeter legem</i>, denominado costume integrativo, aplicado quando a lei for omissa.", "costume <i>contra legem</i>.", "equidade legal."], "ans": 1, "why": "Costume <i>praeter legem</i> (costume integrativo); Súmula 370 do STJ."}, {"n": 34, "t": "mc", "stem": "Sobre o costume <i>contra legem</i>, a posição adotada no texto é a de que:", "alts": ["é sempre admitido, por força do art. 4.º da Lei de Introdução.", "em regra não se pode admitir a sua aplicação, especialmente pela proibição do abuso de direito (art. 187 do CC), embora, havendo desuso da lei, possa eventualmente ser aplicado — o que não é pacífico.", "equivale ao costume integrativo.", "foi expressamente autorizado pelo CPC/2015."], "ans": 1, "why": "Pela proibição do abuso de direito (art. 187 do CC), em regra não se admite o costume <i>contra legem</i>; o desuso não é ponto pacífico."}, {"n": 35, "t": "mc", "stem": "Os cinco requisitos clássicos do costume, apresentados por Rubens Limongi França, são:", "alts": ["continuidade, uniformidade, diuturnidade, moralidade e obrigatoriedade.", "generalidade, imperatividade, permanência, competência e autorizamento.", "licitude, reiteração, publicidade, eficiência e coercibilidade.", "eticidade, socialidade, operabilidade, concretude e simplicidade."], "ans": 0, "why": "Rubens Limongi França: continuidade, uniformidade, diuturnidade, moralidade e obrigatoriedade."}, {"n": 36, "t": "mc", "stem": "Os três princípios fundamentais do Código Civil de 2002, extraídos da exposição de motivos elaborada por Miguel Reale, são:", "alts": ["legalidade, moralidade e eficiência.", "eticidade, socialidade e operabilidade.", "dignidade, proporcionalidade e razoabilidade.", "autonomia, solidariedade e segurança."], "ans": 1, "why": "Eticidade, socialidade e operabilidade (exposição de motivos de Miguel Reale)."}, {"n": 37, "t": "mc", "stem": "O princípio da operabilidade apresenta dois sentidos:", "alts": ["simplicidade (facilitação das categorias privadas) e efetividade ou concretude, buscada pelo sistema aberto de cláusulas gerais.", "generalidade e imperatividade.", "boa-fé objetiva e função social.", "retroatividade motivada e irretroatividade."], "ans": 0, "why": "Simplicidade e efetividade/concretude, esta buscada pelo sistema aberto de cláusulas gerais."}, {"n": 38, "t": "mc", "stem": "A distinção entre julgar <i>por equidade</i> e julgar <i>com equidade</i> está em que:", "alts": ["julgar por equidade significaria desconsiderar as regras e normas jurídicas, decidindo-se com outras regras; julgar com equidade tem o sentido de decidir de acordo com a justiça do caso concreto.", "julgar por equidade é decidir conforme a justiça do caso concreto; julgar com equidade é aplicar máximas econômicas.", "ambas as expressões são sinônimas e sem relevância prática.", "apenas a primeira é autorizada pelo art. 140, parágrafo único, do CPC/2015."], "ans": 0, "why": "Julgar <i>por</i> equidade: desconsiderar as regras, decidindo com outras (ex.: máximas econômicas). Julgar <i>com</i> equidade: justiça do caso concreto."}, {"n": 39, "t": "mc", "stem": "A redução equitativa da cláusula penal, prevista no art. 413 do CC/2002 como dever do magistrado, é exemplo de:", "alts": ["equidade judicial.", "equidade legal, cuja aplicação está prevista no próprio texto legal.", "costume <i>praeter legem</i>.", "analogia <i>iuris</i>."], "ans": 1, "why": "Equidade legal — prevista no próprio texto legal (art. 413 do CC/2002)."}, {"n": 40, "t": "mc", "stem": "A equidade é considerada nominalmente verdadeira fonte do Direito, de forma expressa, em:", "alts": ["art. 8.º da CLT e art. 7.º, <i>caput</i>, do CDC — sendo este tratamento amplo, sem ressalvas, o mais correto na opinião doutrinária do autor.", "art. 4.º da Lei de Introdução e art. 140 do CPC/2015.", "arts. 5.º e 6.º do CPC/2015.", "art. 187 do Código Civil."], "ans": 0, "why": "Art. 8.º da CLT e art. 7.º, <i>caput</i>, do CDC; o tratamento amplo, sem ressalva, é o mais correto na opinião doutrinária do autor."}, {"n": 41, "t": "mc", "stem": "Quanto à aplicação da norma no tempo, ordinariamente:", "alts": ["a retroatividade é a regra e a irretroatividade, a exceção.", "a irretroatividade é a regra e a retroatividade, a exceção — sendo primeiro requisito para a retroatividade estar ela prevista em lei.", "a lei nunca pode atingir fatos pretéritos.", "a retroatividade independe de previsão legal."], "ans": 1, "why": "Irretroatividade é a regra; a retroatividade exige previsão em lei e respeito ao art. 5.º, XXXVI, da CF/1988."}, {"n": 42, "t": "mc", "stem": "Comparando as categorias do art. 6.º da Lei de Introdução, é correto afirmar que:", "alts": ["a coisa julgada é o conceito mais amplo, englobando os demais.", "o direito adquirido é o mais amplo de todos, englobando os demais; a coisa julgada também deve ser considerada um ato jurídico perfeito, sendo o conceito mais restrito.", "o ato jurídico perfeito é mais amplo que o direito adquirido.", "as três categorias têm exatamente a mesma extensão."], "ans": 1, "why": "Direito adquirido é o mais amplo; a coisa julgada é o conceito mais restrito (esquema dos círculos concêntricos)."}, {"n": 43, "t": "mc", "stem": "A proteção do direito adquirido, do ato jurídico perfeito e da coisa julgada é:", "alts": ["absoluta, por força do art. 5.º, XXXVI, da CF/1988.", "relativa, diante da forte tendência de relativizar princípios e regras e da era da ponderação de princípios e valores (Robert Alexy), adotada expressamente pelo art. 489, § 2.º, do CPC/2015.", "relativa apenas quanto ao ato jurídico perfeito.", "inexistente no sistema atual."], "ans": 1, "why": "A resposta é negativa quanto ao caráter absoluto; era da ponderação (Robert Alexy), art. 489, § 2.º, do CPC/2015."}, {"n": 44, "t": "mc", "stem": "O parágrafo único do art. 2.035 do CC/2002 — segundo o qual nenhuma convenção prevalecerá se contrariar preceitos de ordem pública, como os que asseguram a função social da propriedade e dos contratos — consagra:", "alts": ["o princípio da irretroatividade absoluta.", "o princípio da retroatividade motivada ou justificada, não havendo qualquer inconstitucionalidade na norma, eis que amparada na função social da propriedade (art. 5.º, XXII e XXIII, da CF).", "o efeito repristinatório.", "a vedação da ponderação."], "ans": 1, "why": "Princípio da retroatividade motivada ou justificada; amparo no art. 5.º, XXII e XXIII, da CF."}, {"n": 45, "t": "mc", "stem": "O art. 7.º da Lei de Introdução consagra a regra:", "alts": ["<i>lex rei sitiae</i>, aplicando-se a lei do local dos bens.", "<i>lex domicilii</i>, aplicando-se, quanto ao começo e fim da personalidade, ao nome, à capacidade e aos direitos de família, as normas do país em que for domiciliada a pessoa.", "<i>locus regit actum</i>, quanto às obrigações.", "<i>lex fori</i>, aplicando-se sempre a lei brasileira."], "ans": 1, "why": "Art. 7.º — regra <i>lex domicilii</i>."}, {"n": 46, "t": "mc", "stem": "Quanto aos bens (art. 8.º), aplica-se a norma do local em que se situam (<i>lex rei sitiae</i>). Tratando-se de bens móveis transportados e do penhor, aplicam-se, respectivamente:", "alts": ["a norma do domicílio do seu proprietário; e a norma do domicílio da pessoa em cuja posse se encontre a coisa empenhada.", "a lei do local da constituição; e a lei brasileira.", "a lei do porto de destino; e a lei do credor pignoratício.", "a lei do último domicílio do proprietário; e a lei do foro."], "ans": 0, "why": "Art. 8.º, § 1.º (bens móveis transportados) e § 2.º (penhor), ambos aplicação da <i>lex domicilii</i>."}, {"n": 47, "t": "mc", "stem": "O art. 9.º, § 2.º, da Lei de Introdução (obrigação reputa-se constituída no lugar em que residir o proponente) e o art. 435 do CC/2002 (contrato reputa-se celebrado no lugar em que foi proposto) estão em conflito parcial, resolvido:", "alts": ["pelo critério cronológico, prevalecendo o Código Civil em todos os casos.", "pela especialidade: a regra do art. 435 do CC serve para os contratos nacionais, enquanto o dispositivo da Lei de Introdução é aplicado aos contratos internacionais.", "pelo critério hierárquico, prevalecendo a Lei de Introdução.", "pela revogação tácita do art. 9.º, § 2.º."], "ans": 1, "why": "Solução pela especialidade: art. 435 do CC para contratos nacionais; art. 9.º, § 2.º, da LINDB para contratos internacionais."}, {"n": 48, "t": "mc", "stem": "Segundo o art. 10 da Lei de Introdução, a sucessão por morte ou por ausência obedece à norma:", "alts": ["do país da nacionalidade do falecido.", "do país do último domicílio do <i>de cujus</i> (<i>lex domicilii</i>), regra de conexão que, todavia, não é absoluta, conforme o STJ.", "do país da situação dos bens, em qualquer hipótese.", "do país do domicílio do herdeiro."], "ans": 1, "why": "Art. 10 (<i>lex domicilii</i>), em harmonia com o art. 1.785 do CC; regra de conexão não absoluta (STJ, REsp 1.362.400/SP)."}, {"n": 49, "t": "mc", "stem": "O art. 17 da Lei de Introdução determina que as leis, atos e sentenças de outro país, bem como quaisquer declarações de vontade, não terão eficácia no Brasil quando ofenderem:", "alts": ["a soberania nacional, a ordem pública e os bons costumes.", "apenas a ordem pública.", "a coisa julgada e o direito adquirido.", "a isonomia e a dignidade da pessoa humana."], "ans": 0, "why": "Art. 17 — soberania nacional, ordem pública e bons costumes."}, {"n": 50, "t": "mc", "stem": "Sobre a prevalência das Convenções de Varsóvia e de Montreal em relação ao CDC (STF, Tema 210 de repercussão geral), é correto afirmar:", "alts": ["a tese foi reformulada em 2023 (ARE 766.618), passando a constar que o entendimento não se aplica aos danos extrapatrimoniais — solução considerada, no texto, o desfecho da polêmica, embora a prevalência sobre o CDC seja tida como um enorme retrocesso quanto à tutela dos consumidores.", "a tese abrange tanto danos materiais quanto morais, sem exceção.", "o STF concluiu pela prevalência integral do CDC.", "a matéria segue sem qualquer definição jurisprudencial."], "ans": 0, "why": "STF, ARE 766.618, Tribunal Pleno, j. 30.11.2023: a prevalência não se aplica aos danos extrapatrimoniais. O autor considera a prevalência sobre o CDC um enorme retrocesso."}, {"n": 51, "t": "mc", "stem": "Antinomia é:", "alts": ["a ausência total de norma para o caso concreto.", "a presença de duas normas conflitantes, válidas e emanadas de autoridade competente, sem que se possa dizer qual delas merecerá aplicação em determinado caso concreto (lacuna de colisão).", "a revogação tácita de uma norma por outra.", "a norma sem eficácia social."], "ans": 1, "why": "Antinomia = lacuna de conflito ou de colisão; duas normas válidas e conflitantes."}, {"n": 52, "t": "mc", "stem": "Entre os metacritérios clássicos construídos por Norberto Bobbio, o mais fraco e o mais forte são, respectivamente:", "alts": ["o hierárquico e o cronológico.", "o cronológico (constante do art. 2.º da Lei de Introdução) e o hierárquico, sendo o da especialidade o intermediário.", "o da especialidade e o cronológico.", "todos têm igual força."], "ans": 1, "why": "Cronológico é o mais fraco (art. 2.º da LINDB); especialidade é o intermediário; hierárquico é o mais forte."}, {"n": 53, "t": "mc", "stem": "Configura <i>antinomia real</i> o conflito entre:", "alts": ["norma posterior e norma anterior.", "norma especial anterior e norma geral posterior.", "norma geral superior e norma especial inferior, hipótese em que não há metarregra geral de solução — cabendo ao Legislativo editar uma terceira norma, ou ao Judiciário adotar o princípio máximo de justiça, aplicando os arts. 4.º e 5.º da Lei de Introdução e o art. 8.º do CPC/2015.", "norma superior anterior e norma inferior posterior."], "ans": 2, "why": "Conflito entre critério hierárquico e da especialidade: antinomia real (Maria Helena Diniz); soluções pelo Legislativo e pelo Judiciário."}, {"n": 54, "t": "mc", "stem": "Quanto às inclusões feitas pela Lei 13.655/2018, é correto afirmar:", "alts": ["foram incluídos os arts. 20 a 30; o então proposto art. 25 foi vetado pela Presidência da República; e o art. 29 entrou em vigor cento e oitenta dias após a publicação oficial.", "todos os artigos entraram em vigor após um ano de vacância.", "foram incluídos os arts. 20 a 25, todos vigentes desde a publicação.", "nenhum dispositivo foi vetado."], "ans": 0, "why": "Arts. 20 a 30; art. 25 vetado; art. 29 vigente 180 dias após a publicação oficial."}, {"n": 55, "t": "mc", "stem": "Sobre o art. 20 da Lei de Introdução (dever de motivação concreta e responsabilidade decisória), a crítica registrada no texto é a de que:", "alts": ["o dispositivo é inconstitucional por violar o art. 93, IX, da CF.", "a afirmação do consequencialismo é passível de críticas, pois ratifica a premissa de que os fins justificam os meios e o utilitarismo decisório, podendo representar, nas últimas consequências, o sacrifício de direitos fundamentais e de personalidade, bem como da tutela da pessoa humana.", "o dispositivo dispensa a motivação das decisões administrativas.", "o consequencialismo não tem qualquer relação com o CPC/2015."], "ans": 1, "why": "Crítica expressa ao consequencialismo: fins justificam os meios e utilitarismo decisório."}, {"n": 56, "t": "vf", "stem": "A Lei de Introdução integra formalmente o Código Civil de 2002.", "alts": ["Certo", "Errado"], "ans": 1, "why": "Não faz parte do CC/2002, como também não era componente do CC/1916; é <i>lei anexa</i>."}, {"n": 57, "t": "vf", "stem": "Para o autor, a teoria da necessidade social é a que melhor justifica o conteúdo do art. 3.º da Lei de Introdução.", "alts": ["Certo", "Errado"], "ans": 0, "why": "“A última das teorias parece-me a mais correta.”"}, {"n": 58, "t": "vf", "stem": "O efeito repristinatório automático é admitido no Direito brasileiro.", "alts": ["Certo", "Errado"], "ans": 1, "why": "Art. 2.º, § 3.º: não se admite o efeito repristinatório automático, salvo as exceções apontadas."}, {"n": 59, "t": "vf", "stem": "O critério cronológico é o mais forte dos metacritérios de solução de antinomias.", "alts": ["Certo", "Errado"], "ans": 1, "why": "O cronológico é o mais fraco de todos, sucumbindo diante dos demais."}, {"n": 60, "t": "vf", "stem": "Segundo Nelson Nery Jr. e Rosa Maria de Andrade Nery, os princípios jurídicos não precisam estar expressos na norma — conclusão tida como majoritária.", "alts": ["Certo", "Errado"], "ans": 0, "why": "Conclusão “perfeita, devendo ser tida como majoritária” (ex.: função social do contrato implícita no CDC e na CLT)."}, {"n": 61, "t": "vf", "stem": "A jurisprudência consolidada pode constituir elemento integrador do costume, o chamado costume judiciário ou jurisprudencial.", "alts": ["Certo", "Errado"], "ans": 0, "why": "Costume judiciário ou jurisprudencial (STJ, EDcl no AgRg 280.797/SP)."}, {"n": 62, "t": "vf", "stem": "Na aplicação do costume <i>secundum legem</i> há integração da norma jurídica.", "alts": ["Certo", "Errado"], "ans": 1, "why": "Há subsunção, e não integração, pois a própria norma jurídica é aplicada."}, {"n": 63, "t": "vf", "stem": "A obrigatoriedade da norma brasileira nos Estados estrangeiros passa a vigorar três meses após a publicação oficial em nosso País.", "alts": ["Certo", "Errado"], "ans": 0, "why": "Art. 1.º, § 1.º, da Lei de Introdução."}, {"n": 64, "t": "vf", "stem": "O art. 1.º, § 2.º, da Lei de Introdução foi revogado pela Lei 12.036/2009.", "alts": ["Certo", "Errado"], "ans": 0, "why": "Revogado pela Lei 12.036/2009 (Gustavo Mônaco: fim da dúvida sobre a recepção pela CF/1988)."}, {"n": 65, "t": "vf", "stem": "Se a data final do prazo de vacância cair em feriado ou fim de semana, a entrada em vigor da norma é prorrogada para o dia seguinte.", "alts": ["Certo", "Errado"], "ans": 1, "why": "A norma entra em vigor mesmo assim; a data não é prorrogada para o dia seguinte."}, {"n": 66, "t": "vf", "stem": "No sistema contemporâneo privado, a equidade deve ser considerada fonte informal ou indireta do direito.", "alts": ["Certo", "Errado"], "ans": 0, "why": "Equidade como fonte informal, indireta e mediata do Direito Civil contemporâneo."}, {"n": 67, "t": "vf", "stem": "A norma corretiva é aquela que existe para afastar equívocos importantes cometidos pelo texto legal, sendo certo que as correções de texto de lei já em vigor devem ser consideradas como lei nova.", "alts": ["Certo", "Errado"], "ans": 0, "why": "Art. 1.º, § 3.º, da Lei de Introdução."}, {"n": 68, "t": "vf", "stem": "Para o autor, o conteúdo dos novos arts. 20 a 30 da LINDB deve ser cobrado em provas dentro da disciplina de Direito Administrativo, e não no âmbito do Direito Civil.", "alts": ["Certo", "Errado"], "ans": 0, "why": "Posição expressa no item 1.8."}, {"n": 69, "t": "vf", "stem": "O art. 28 da LINDB, ao prever que o agente público responde pessoalmente por suas decisões ou opiniões técnicas apenas em caso de dolo ou erro grosseiro, traz, na avaliação do autor, um regime excessivamente protetivo.", "alts": ["Certo", "Errado"], "ans": 0, "why": "Erro grosseiro = culpa grave (<i>culpa lata dolus aequiparatur</i>); regime excessivamente protetivo, em detrimento das vítimas."}, {"n": 70, "t": "vf", "stem": "Os mandamentos do Direito Romano <i>honeste vivere, alterum non laedere</i> e <i>suum cuique tribuere</i> significam, respectivamente, viver honestamente, não lesar a ninguém e dar a cada um o que é seu.", "alts": ["Certo", "Errado"], "ans": 0, "why": "Mandamentos do Direito Romano citados no item 1.4.3."}];
+const B = [[1, 5, "01", "Primeiras palavras sobre a Lei de Introdução", "Item 1.1 — natureza, nome e posição no sistema", "b1"], [6, 17, "02", "A lei como fonte primária e a vigência das normas", "Item 1.2 — arts. 1.º e 2.º", "b2"], [18, 21, "03", "Características da norma e o art. 3.º", "Item 1.3 — obrigatoriedade e erro de direito", "b3"], [22, 29, "04", "As formas de integração — art. 4.º", "Item 1.4 — lacunas e analogia", "b4"], [30, 40, "05", "Costumes, princípios gerais e equidade", "Itens 1.4.2 a 1.4.4", "b5"], [41, 44, "06", "Aplicação da norma no tempo — art. 6.º", "Item 1.5 — direito adquirido, ato jurídico perfeito e coisa julgada", "b6"], [45, 50, "07", "Aplicação da norma no espaço — arts. 7.º a 19", "Item 1.6 — Direito Internacional Público e Privado", "b7"], [51, 55, "08", "Antinomias jurídicas e a Lei 13.655/2018", "Itens 1.7 e 1.8", "b8"], [56, 70, "V/F", "Certo ou errado — revisão geral", "Assinale conforme o texto e a opinião do autor", "b1"]];
+const K = ['a','b','c','d'];
+const ans = {};
+let revealed = false;
+
+const quiz = document.getElementById('quiz');
+const toc  = document.getElementById('toc');
+
+B.forEach((b,i)=>{
+  const [ini,fim,num,title,sub,cls] = b;
+  toc.insertAdjacentHTML('beforeend',
+    `<li><a href="#blk${i}"><b>${title}</b> (Q${ini}–Q${fim})</a></li>`);
+  quiz.insertAdjacentHTML('beforeend',
+    `<div class="bhead ${cls}" id="blk${i}"><span class="num">${num}</span>${title.toUpperCase()}</div>
+     <div class="bsub">${sub}</div>`);
+  Q.filter(q=>q.n>=ini && q.n<=fim).forEach(q=>{
+    const alts = q.alts.map((a,j)=>
+      `<div class="alt" data-q="${q.n}" data-i="${j}"><span class="k">${q.t==='mc'?K[j]+')':'■'}</span>
+       <span>${a}</span><span class="mark"></span></div>`).join('');
+    quiz.insertAdjacentHTML('beforeend',
+      `<div class="card" id="q${q.n}">
+         <div class="stem"><span class="n">${q.n}</span><span>${q.stem}</span></div>
+         ${alts}
+         <div class="why" id="w${q.n}"><b></b><span>${q.why}</span></div>
+       </div>`);
+  });
+});
+
+function score(){
+  let c=0; Q.forEach(q=>{ if(ans[q.n]===q.ans) c++; }); return c;
+}
+function progress(){
+  const n = Object.keys(ans).length;
+  document.getElementById('fill').style.width = (n/Q.length*100)+'%';
+  document.getElementById('lbl').textContent = `${n} de ${Q.length} respondidas` +
+    (revealed ? ` · ${score()} corretas` : '');
+}
+function paint(q, reveal){
+  const card = document.getElementById('q'+q.n);
+  const why  = document.getElementById('w'+q.n);
+  const alts = card.querySelectorAll('.alt');
+  const pick = ans[q.n];
+  card.classList.toggle('done', pick!==undefined);
+  alts.forEach((el,j)=>{
+    el.classList.remove('sel','ok','no','lock');
+    el.querySelector('.mark').textContent='';
+    if(pick===j) el.classList.add('sel');
+    if(reveal){
+      el.classList.add('lock');
+      if(j===q.ans){ el.classList.remove('sel'); el.classList.add('ok'); el.querySelector('.mark').textContent='✓'; }
+      else if(pick===j){ el.classList.remove('sel'); el.classList.add('no'); el.querySelector('.mark').textContent='✕'; }
+    }
+  });
+  card.classList.remove('right','wrong');
+  if(reveal && pick!==undefined) card.classList.add(pick===q.ans?'right':'wrong');
+  why.classList.toggle('show', !!reveal);
+  if(reveal){
+    const good = pick===q.ans;
+    why.className = 'why show ' + (pick===undefined ? '' : (good?'good':'bad'));
+    const letra = q.t==='mc' ? K[q.ans].toUpperCase() : (q.ans===0?'CERTO':'ERRADO');
+    why.querySelector('b').textContent =
+      pick===undefined ? `Não respondida — gabarito: ${letra}`
+      : (good ? `Correto — ${letra}` : `Incorreto — gabarito: ${letra}`);
+  }
+}
+document.addEventListener('click', e=>{
+  const el = e.target.closest('.alt'); if(!el || el.classList.contains('lock')) return;
+  const n = +el.dataset.q, q = Q.find(x=>x.n===n);
+  ans[n] = +el.dataset.i;
+  paint(q, document.getElementById('imm').checked || revealed);
+  progress();
+});
+document.getElementById('imm').addEventListener('change', e=>{
+  if(!e.target.checked && !revealed) Q.forEach(q=>paint(q,false));
+  else Q.forEach(q=>{ if(ans[q.n]!==undefined) paint(q,true); });
+});
+document.getElementById('fix').addEventListener('click', ()=>{
+  revealed = true;
+  Q.forEach(q=>paint(q,true));
+  const c = score(), p = Math.round(c/Q.length*100);
+  const r = document.getElementById('result');
+  document.getElementById('score').textContent = c+'/'+Q.length;
+  document.getElementById('pct').textContent = p+'% de acerto';
+  document.getElementById('msg').textContent =
+    p>=90 ? 'Domínio consolidado do capítulo — pronto para a leitura aprofundada e para as questões de prova.'
+   :p>=70 ? 'Bom desempenho. Revise os blocos com mais erros antes de avançar.'
+   :p>=50 ? 'Base razoável. Vale reler os itens 1.2, 1.4 e 1.7 com atenção às classificações.'
+   :        'Releia o capítulo antes de refazer: concentre-se nas classificações e nos posicionamentos do autor.';
+  const per = {};
+  B.forEach(b=>{ let t=0,a=0; Q.forEach(q=>{ if(q.n>=b[0]&&q.n<=b[1]){t++; if(ans[q.n]===q.ans)a++;} });
+    per[b[3]] = a+'/'+t; });
+  document.getElementById('chips').innerHTML =
+    Object.entries(per).map(([k,v])=>`<span class="chip">${k}: <b>${v}</b></span>`).join('');
+  r.classList.add('show');
+  progress();
+  r.scrollIntoView({behavior:'smooth',block:'center'});
+});
+document.getElementById('reset').addEventListener('click', ()=>{
+  Object.keys(ans).forEach(k=>delete ans[k]);
+  revealed = false;
+  Q.forEach(q=>paint(q,false));
+  document.getElementById('result').classList.remove('show');
+  progress();
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+progress();
+</script>
+</body>
+</html>

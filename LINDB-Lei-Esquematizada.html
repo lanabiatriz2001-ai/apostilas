@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-13 -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LINDB · Esquematizada</title>
+<style>
+  :root{--ink:#0f172a;--ink-soft:#475569;--line:#e8ebf2;--card:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Inter",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.55;padding:0 0 70px;
+    background:radial-gradient(1200px 600px at 100% -10%, #eef2ff 0%, rgba(238,242,255,0) 55%),
+      radial-gradient(1000px 500px at -10% 0%, #ecfeff 0%, rgba(236,254,255,0) 50%),
+      linear-gradient(180deg,#fbfcfe 0%, #f4f6fb 100%);background-attachment:fixed;}
+  .wrap{max-width:920px;margin:0 auto;padding:30px 20px 0}
+  /* topbar */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(250,251,254,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);padding:12px 22px;display:flex;align-items:center;gap:14px}
+  .topbar .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;color:#0f172a;letter-spacing:-.01em}
+  .topbar .brand .sq{width:24px;height:24px;border-radius:8px;background:linear-gradient(145deg,#4f46e5,#c026d3);box-shadow:0 6px 14px -6px rgba(99,102,241,.7)}
+  .tabs{margin-left:auto;display:flex;gap:5px;background:#eef0f6;padding:4px;border-radius:12px}
+  .tabbtn{appearance:none;border:0;cursor:pointer;font:inherit;font-weight:700;font-size:13.5px;color:#64748b;padding:8px 15px;border-radius:9px;background:transparent;transition:.15s}
+  .tabbtn.active{background:#fff;color:#4338ca;box-shadow:0 2px 8px -3px rgba(15,23,42,.25)}
+  .view{display:none}.view.active{display:block}
+  /* hero */
+  .head{margin-bottom:20px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:#6366f1;background:#eef2ff;border:1px solid #e0e7ff;padding:6px 12px;border-radius:999px;margin-bottom:16px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#6366f1;box-shadow:0 0 0 4px #e0e7ff}
+  h1{font-size:clamp(26px,4.5vw,36px);line-height:1.12;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;
+    background:linear-gradient(92deg,#4f46e5,#0891b2 45%,#059669 72%,#c026d3);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--ink-soft);font-size:16px;max-width:66ch}.sub b{color:var(--ink)}
+  .sub .chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
+  .sub .chips span{font-size:12px;font-weight:700;color:#475569;background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:999px}
+  /* index */
+  .index{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:22px 0 6px;box-shadow:0 12px 34px -26px rgba(15,23,42,.5)}
+  .index h3{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;font-weight:800;margin-bottom:14px}
+  .idxrow{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .idxrow:last-child{margin-bottom:0}
+  .idxrow .lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:#94a3b8;width:210px;flex:none;padding-top:5px}
+  .idxchips{display:flex;flex-wrap:wrap;gap:7px;flex:1}
+  .idxchip{font-size:12.5px;font-weight:700;color:#4338ca;background:#eef2ff;border:1px solid #e0e7ff;border-radius:9px;padding:5px 9px;text-decoration:none;transition:.12s;min-width:30px;text-align:center}
+  .idxchip:hover{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-color:transparent}
+  /* dividers */
+  .titulo{margin:42px 0 10px;padding:22px 26px;border-radius:22px;color:#fff;position:relative;overflow:hidden;
+    background:linear-gradient(120deg,#4f46e5,#7c3aed 58%,#c026d3);box-shadow:0 22px 44px -26px rgba(76,29,149,.7)}
+  .titulo .kick{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;opacity:.86}
+  .titulo h2{font-size:23px;font-weight:800;margin-top:5px;color:#fff;-webkit-text-fill-color:#fff;background:none;letter-spacing:-.01em}
+  .titulo .meta{font-size:12.5px;opacity:.92;margin-top:6px;font-weight:600}
+  .cap{display:flex;align-items:center;gap:14px;margin:30px 2px 18px}
+  .cap .bar{height:28px;width:6px;border-radius:6px;background:linear-gradient(180deg,#6366f1,#0891b2)}
+  .cap .txt{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#334155}
+  .cap .rng{font-size:12px;font-weight:700;color:#94a3b8;background:#fff;border:1px solid var(--line);padding:3px 9px;border-radius:999px}
+  .cap .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+  .secao{display:flex;align-items:center;gap:10px;margin:20px 2px 14px 4px}
+  .secao .di{width:8px;height:8px;border-radius:2px;background:#c7cede;transform:rotate(45deg)}
+  .secao .txt{font-size:12px;font-weight:800;letter-spacing:.03em;color:#64748b;text-transform:uppercase}
+  .secao .rng{font-size:11px;font-weight:700;color:#a8b0c0}
+  .secao .rule{flex:1;height:1px;background:linear-gradient(90deg,#eef0f6,transparent)}
+  /* card */
+  .artwrap{scroll-margin-top:82px}
+  .card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px 26px 22px 28px;margin-bottom:20px;
+    box-shadow:0 1px 2px rgba(15,23,42,.04),0 14px 34px -22px rgba(15,23,42,.28);overflow:hidden}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:linear-gradient(180deg,var(--accent),var(--accent2))}
+  .card-head{display:flex;align-items:flex-start;gap:15px;margin-bottom:16px}
+  .badge{flex:none;display:grid;place-items:center;min-width:62px;height:52px;padding:0 12px;border-radius:14px;color:#fff;font-weight:800;font-size:16px;
+    background:linear-gradient(145deg,var(--accent),var(--accent2));box-shadow:0 10px 20px -8px var(--accentShadow)}
+  .cat-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accentInk);background:var(--accentSoft);padding:4px 10px;border-radius:999px;margin-bottom:6px}
+  .title{font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.24}
+  /* letra da lei (literalidade primeiro) */
+  .lei{background:linear-gradient(180deg,#fbfaf6,#fffdf9);border:1px solid #efe9dc;border-left:4px solid var(--accent);border-radius:14px;padding:14px 18px;margin-bottom:16px}
+  .lei-label{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accentInk);margin-bottom:8px}
+  .lei-label svg{width:14px;height:14px}
+  .lei-body{font-family:Georgia,"Times New Roman",serif;font-size:14px;color:#3f4653;line-height:1.62}
+  .lei-body p{margin-bottom:7px}.lei-body p:last-child{margin-bottom:0}
+  .lei-body .par,.lei-body .inc{color:var(--accentInk);font-weight:700;font-family:inherit}
+  .lei-body .rev{color:#94a3b8;font-style:italic;font-family:inherit;font-size:12.5px}
+  /* destrinchamento */
+  .es-label{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#94a3b8;margin:4px 2px 10px}
+  .es-label::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--accentBorder),transparent)}
+  .esquema{display:grid;grid-template-columns:max-content 1fr;column-gap:16px;row-gap:11px;align-items:baseline;
+    background:linear-gradient(180deg,var(--accentGhost),transparent 140%);border:1px dashed var(--accentBorder);border-radius:16px;padding:17px 20px;margin-bottom:16px}
+  .key{justify-self:start;font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accentInk);background:var(--accentSoft);padding:5px 11px;border-radius:8px;white-space:nowrap}
+  .val{font-size:15px;color:#293548;line-height:1.5}
+  .val .arrow{color:var(--accent);font-weight:800;margin-right:9px}
+  .val b{color:var(--ink);font-weight:700}.val i{color:#334155}
+  .val .tag{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--accent);padding:1px 8px;border-radius:6px;margin:1px 2px;vertical-align:middle;letter-spacing:.02em}
+  .val .seq{color:var(--accent);font-weight:800;margin:0 4px}
+  /* mini tabela */
+  .mini{border:1px solid var(--accentBorder);border-radius:13px;overflow:hidden;margin-bottom:16px;font-size:13.5px}
+  .mini .mh{background:var(--accentInk);color:#fff;padding:9px 14px;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+  .mini table{width:100%;border-collapse:collapse}
+  .mini td{padding:9px 14px;border-top:1px solid var(--accentBorder);color:#3a4452;vertical-align:top}
+  .mini tr td:first-child{font-weight:700;color:var(--accentInk);white-space:nowrap;width:1%}
+  /* exemplo */
+  .exemplo{position:relative;background:var(--accentGhost);border:1px solid var(--accentBorder);border-left:4px solid var(--accent);border-radius:12px;padding:12px 16px}
+  .exemplo-label{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accentInk);margin-bottom:5px}
+  .exemplo-label svg{width:14px;height:14px}
+  .exemplo p{font-size:14px;color:#354152;line-height:1.55}.exemplo p b{color:var(--ink)}
+  .foot{margin-top:34px;text-align:center;color:#94a3b8;font-size:13px;display:flex;flex-direction:column;gap:6px;align-items:center}
+  .pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:600;color:#64748b}
+  .backtop{position:fixed;right:22px;bottom:22px;z-index:40;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;color:#6d28d9;cursor:pointer;box-shadow:0 12px 26px -10px rgba(15,23,42,.4);display:none;place-items:center;font-size:20px}
+  .backtop.show{display:grid}
+  @media(max-width:600px){.idxrow .lbl{width:100%}.esquema{grid-template-columns:1fr;row-gap:5px}.key{margin-top:6px}.topbar .brand span{display:none}.tabbtn{font-size:12px;padding:8px 10px}}
+
+  .pega{background:linear-gradient(180deg,#fff7ed,#fffdf8);border:1px solid #fed7aa;border-left:4px solid #f97316;border-radius:12px;padding:12px 15px;margin-top:2px}
+  .pega .plabel{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#c2410c;margin-bottom:5px}
+  .pega .plabel svg{width:15px;height:15px}
+  .pega p{font-size:13.5px;color:#7c4a24;line-height:1.55}
+  .pega p b{color:#9a3412;font-weight:700}
+
+  .qcard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:30px 30px 28px;max-width:680px;margin:0 auto;
+    box-shadow:0 1px 2px rgba(15,23,42,.04),0 22px 48px -30px rgba(76,29,149,.45)}
+  #start p{color:var(--ink-soft);font-size:16px;margin-bottom:8px}
+  .facts{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 26px}
+  .fact{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:#475569;background:#faf9ff;border:1px solid #eee7fb;border-radius:12px;padding:10px 14px}
+  .fact svg{width:17px;height:17px;color:#7c3aed;flex:none}
+  .btn{appearance:none;border:0;cursor:pointer;font:inherit;font-weight:800;letter-spacing:.01em;color:#fff;background:linear-gradient(135deg,#6d28d9,#8b5cf6);border-radius:14px;padding:15px 26px;font-size:16px;box-shadow:0 12px 24px -10px rgba(109,40,217,.6);transition:transform .08s ease,box-shadow .2s}
+  .btn:hover{transform:translateY(-1px)}.btn:active{transform:translateY(0)}
+  .qtop{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .bar{flex:1;height:9px;border-radius:999px;background:#eef0f6;overflow:hidden}
+  .bar > i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#6d28d9,#8b5cf6);transition:width .35s ease}
+  .count{font-size:13px;font-weight:700;color:#64748b;white-space:nowrap}
+  .score{font-size:13px;font-weight:800;color:#059669;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:999px;padding:4px 11px;white-space:nowrap}
+  .atag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6d28d9;background:#f3effe;border:1px solid #e5d9fb;padding:5px 11px;border-radius:999px;margin-bottom:14px}
+  .q{font-size:19px;font-weight:800;letter-spacing:-.01em;line-height:1.3;margin-bottom:20px;color:#0f172a}
+  .opts{display:flex;flex-direction:column;gap:11px}
+  .opt{display:flex;align-items:center;gap:13px;text-align:left;cursor:pointer;font:inherit;font-size:15px;color:#293548;background:#fff;border:1.5px solid #e6e9f2;border-radius:14px;padding:14px 16px;transition:border-color .15s,background .15s,transform .06s;width:100%}
+  .opt:hover:not(:disabled){border-color:#c9bdf3;background:#faf9ff}
+  .opt:active:not(:disabled){transform:scale(.995)}
+  .opt .mk{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:13px;background:#f1f0f8;color:#6d28d9}
+  .opt[disabled]{cursor:default}
+  .opt.correct{border-color:#a7f3d0;background:#ecfdf5}.opt.correct .mk{background:#059669;color:#fff}
+  .opt.wrong{border-color:#fecdd6;background:#fff1f2}.opt.wrong .mk{background:#e11d48;color:#fff}
+  .opt.dim{opacity:.55}
+  .exp{margin-top:18px;border-radius:14px;padding:15px 17px;font-size:14.5px;line-height:1.55;display:none;border:1px solid}
+  .exp.show{display:block;animation:fade .25s ease}
+  .exp.g{background:#ecfdf5;border-color:#a7f3d0;color:#245c48}.exp.r{background:#fff1f2;border-color:#fecdd6;color:#7a2733}
+  .exp .lab{display:flex;align-items:center;gap:7px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;margin-bottom:6px}
+  .exp .lab svg{width:15px;height:15px}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .nav{margin-top:22px;display:flex;justify-content:flex-end}
+  .nav .btn{display:none}.nav .btn.show{display:inline-block}
+  #result{text-align:center;display:none}#result.show{display:block}
+  .ring{width:168px;height:168px;margin:6px auto 4px;position:relative;display:grid;place-items:center}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .num{position:absolute;font-size:44px;font-weight:800;color:#0f172a;line-height:1}
+  .ring .num small{display:block;font-size:14px;font-weight:700;color:#94a3b8;margin-top:4px}
+  #result h2{font-size:26px;font-weight:800;margin:12px 0 6px}
+  #result .msg{color:var(--ink-soft);font-size:16px;margin-bottom:24px;max-width:46ch;margin-left:auto;margin-right:auto}
+  .ractions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  #start.hide,#quiz.hide{display:none}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="brand"><span class="sq"></span><span>LINDB · Esquematizada</span></div><div class="tabs"><button class="tabbtn active" id="tab-esq" onclick="showView(&#39;esquemas&#39;)">Esquemas</button><button class="tabbtn" id="tab-quiz" onclick="showView(&#39;quiz&#39;)">Quiz</button></div></div>
+<div class="wrap">
+<section id="view-esquemas" class="view active">
+<header class="head"><span class="eyebrow"><span class="dot"></span>DL 4.657/1942 · LINDB</span><h1>LINDB — Lei de Introdução às Normas do Direito Brasileiro</h1><p class="sub">Decreto-Lei nº <b>4.657/1942</b> (com a <b>Lei 13.655/2018</b>), arts. 1º a 30 — versão <b>atualizada</b>: em cada artigo, a <b>letra da lei</b> primeiro, o <b>destrinchamento</b> e a <b>pegadinha de banca</b>.<span class="chips"><span>Letra da lei</span><span>Natureza</span><span>Requisito</span><span>Efeito</span><span>Pegadinha</span></span></p></header>
+<div class="index"><h3>Índice — LINDB (arts. 1º a 30)</h3><div class="idxrow"><span class="lbl">Vigência e Aplicação da Lei</span><div class="idxchips"><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-1">1º</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-2">2º</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-3">3º</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-4">4º</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-5">5º</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-6">6º</a></div></div><div class="idxrow"><span class="lbl">Direito Internacional Privado</span><div class="idxchips"><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-7">7º</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-8">8º</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-9">9º</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-10">10</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-11">11</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-12">12</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-13">13</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-14">14</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-15">15</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-16">16</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-17">17</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-18">18</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-19">19</a></div></div><div class="idxrow"><span class="lbl">Reforma de 2018</span><div class="idxchips"><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-20">20</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-21">21</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-22">22</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-23">23</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-24">24</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-25">25</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-26">26</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-27">27</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-28">28</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-29">29</a><a class="idxchip" href="file:///Users/lanab/Downloads/LINDB-Esquematizada-atualizada.html#art-30">30</a></div></div></div>
+
+  <div class="cap"><span class="bar"></span><span class="txt">Vigência e Aplicação da Lei</span><span class="rng">arts. 1º – 6º</span><span class="rule"></span></div>
+
+  <article class="card artwrap" id="art-1" style="--accent:#6366f1;--accent2:#818cf8;--accentInk:#4338ca;--accentSoft:#eef2ff;--accentGhost:#f5f7ff;--accentBorder:#dfe4ff;--accentShadow:#6366f1">
+    <div class="card-head">
+      <div class="badge">Art. 1º</div>
+      <div><span class="cat-tag">Início da vigência</span><h2 class="title">Quando a lei começa a valer — <i>vacatio legis</i></h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 1º</b> Salvo disposição contrária, a lei começa a vigorar em todo o país quarenta e cinco dias depois de oficialmente publicada.</p><p><span class="par">§ 1º</span> Nos Estados estrangeiros, a obrigatoriedade da lei brasileira, quando admitida, inicia três meses depois de oficialmente publicada.</p><p><span class="par">§ 3º</span> Se, antes de entrar a lei em vigor, ocorrer nova publicação de seu texto, destinada a correção, o prazo deste artigo e dos parágrafos anteriores começará a correr da nova publicação.</p><p><span class="par">§ 4º</span> As correções a texto de lei já em vigor consideram-se lei nova.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> regra de <b>vigência temporal</b> da lei (<i>vacatio legis</i>)</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> lei que <b>não fixa</b> prazo próprio de vigência</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> começa a vigorar <b>45 dias</b> após a publicação oficial</span>
+      <span class="key">No exterior</span>
+      <span class="val"><span class="arrow">→</span> <b>3 meses</b> após a publicação (quando admitida)</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> publicação oficial + decurso do prazo <i>(salvo disposição em contrário)</i></span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> correção <b>antes</b> de vigorar reabre o prazo; correção <b>depois</b> = lei nova (§ 4º)</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>Correção do texto de lei <b>antes</b> de vigorar reabre o prazo; <b>depois</b> de vigorar, considera-se <b>lei nova</b> (§ 4º). E a vacatio padrão é <b>45 dias</b> (3 meses no exterior).</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Uma lei publicada sem prazo próprio só passa a valer <b>45 dias</b> depois — é a <i>vacatio legis</i>, o tempo que a sociedade tem para se preparar.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-2" style="--accent:#0ea5e9;--accent2:#38bdf8;--accentInk:#0369a1;--accentSoft:#e0f2fe;--accentGhost:#f0f9ff;--accentBorder:#cfeafd;--accentShadow:#0ea5e9">
+    <div class="card-head">
+      <div class="badge">Art. 2º</div>
+      <div><span class="cat-tag">Vigência e revogação</span><h2 class="title">Até quando a lei vale — e como é revogada</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 2º</b> Não se destinando à vigência temporária, a lei terá vigor até que outra a modifique ou revogue.</p><p><span class="par">§ 1º</span> A lei posterior revoga a anterior quando expressamente o declare, quando seja com ela incompatível ou quando regule inteiramente a matéria de que tratava a lei anterior.</p><p><span class="par">§ 2º</span> A lei nova, que estabeleça disposições gerais ou especiais a par das já existentes, não revoga nem modifica a lei anterior.</p><p><span class="par">§ 3º</span> Salvo disposição em contrário, a lei revogada não se restaura por ter a lei revogadora perdido a vigência.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> norma sobre <b>duração e revogação</b> das leis (continuidade)</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> a lei vale <b>até que outra a modifique ou revogue</b></span>
+      <span class="key">Revogação expressa</span>
+      <span class="val"><span class="arrow">→</span> a nova lei <b>declara</b> diretamente a revogação</span>
+      <span class="key">Revogação tácita</span>
+      <span class="val"><span class="arrow">→</span> nova lei <b>incompatível</b> ou que <b>regula toda a matéria</b></span>
+      <span class="key">Requisito p/ repristinar</span>
+      <span class="val"><span class="arrow">→</span> <b>previsão expressa</b> — não é automática (§ 3º)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> lei geral/especial nova <b>convive</b> com a anterior (§ 2º)</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>A <b>repristinação não é automática</b>: a lei revogada não volta a valer só porque a revogadora perdeu a vigência — depende de disposição expressa (§ 3º).</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Se a Lei B revoga a Lei A e, depois, a Lei B é revogada, a Lei A <b>não volta a valer sozinha</b> — só com lei expressa.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-3" style="--accent:#10b981;--accent2:#34d399;--accentInk:#047857;--accentSoft:#d1fae5;--accentGhost:#f0fdf9;--accentBorder:#c3f0dd;--accentShadow:#10b981">
+    <div class="card-head">
+      <div class="badge">Art. 3º</div>
+      <div><span class="cat-tag">Obrigatoriedade</span><h2 class="title">Ninguém se escusa de cumprir a lei que desconhece</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 3º</b> Ninguém se escusa de cumprir a lei, alegando que não a conhece.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> obrigatoriedade + <b>presunção de conhecimento</b> da lei</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> após a publicação oficial, para <b>todos</b> indistintamente</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> lei <b>vigente e regularmente publicada</b></span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> desconhecer a lei <b>não escusa</b> do cumprimento nem afasta a sanção</span>
+      <span class="key">Atenção</span>
+      <span class="val"><span class="arrow">→</span> presunção que <b>não</b> admite o desconhecimento como defesa</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>É presunção que <b>não admite</b> o desconhecimento como escusa — nem provar que 'não sabia' isenta do cumprimento.</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Passar num sinal vermelho gera multa <b>mesmo que você não soubesse</b> da regra — a infração independe do seu conhecimento.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-4" style="--accent:#8b5cf6;--accent2:#a78bfa;--accentInk:#6d28d9;--accentSoft:#ede9fe;--accentGhost:#f6f4ff;--accentBorder:#e2dbfd;--accentShadow:#8b5cf6">
+    <div class="card-head">
+      <div class="badge">Art. 4º</div>
+      <div><span class="cat-tag">Integração / lacunas</span><h2 class="title">O que o juiz faz quando a lei é omissa</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 4º</b> Quando a lei for omissa, o juiz decidirá o caso de acordo com a analogia, os costumes e os princípios gerais de direito.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>integração</b> da norma (colmatação de lacunas)</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> quando a lei é <b>omissa</b> (não há norma para o caso)</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> uso nesta ordem: <span class="seq">1</span> analogia <span class="seq">→</span> <span class="seq">2</span> costumes <span class="seq">→</span> <span class="seq">3</span> princípios gerais</span>
+      <span class="key">Dever do juiz</span>
+      <span class="val"><span class="arrow">→</span> <b>não pode deixar de decidir</b> (veda o <i>non liquet</i>)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> a lacuna é preenchida e o caso recebe <b>solução</b></span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>A ordem é <b>vinculante</b>: analogia → costumes → princípios gerais, nessa sequência. E o juiz <b>não pode deixar de decidir</b> (vedado o <i>non liquet</i>).</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Uma tecnologia nova, sem lei própria, pode ser julgada aplicando-se <b>por analogia</b> a regra de um caso parecido.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-5" style="--accent:#d97706;--accent2:#f59e0b;--accentInk:#b45309;--accentSoft:#fef3c7;--accentGhost:#fffbeb;--accentBorder:#fde9b5;--accentShadow:#d97706">
+    <div class="card-head">
+      <div class="badge">Art. 5º</div>
+      <div><span class="cat-tag">Interpretação da lei</span><h2 class="title">Aplicar a lei conforme os fins sociais e o bem comum</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 5º</b> Na aplicação da lei, o juiz atenderá aos fins sociais a que ela se dirige e às exigências do bem comum.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> regra de <b>interpretação/aplicação</b> da lei (teleológica)</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> em toda aplicação da lei a um caso concreto</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> atender aos <b>fins sociais</b> + às <b>exigências do bem comum</b></span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> afasta a leitura literal que gere resultado injusto ou absurdo</span>
+      <span class="key">Atenção</span>
+      <span class="val"><span class="arrow">→</span> o juiz busca a <b>finalidade</b> da norma, não só a sua letra</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Uma lei proíbe veículos num parque. Uma <b>ambulância</b> precisa entrar para salvar uma vida: o fim social da norma prevalece sobre a leitura literal.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-6" style="--accent:#f43f5e;--accent2:#fb7185;--accentInk:#be123c;--accentSoft:#ffe4e6;--accentGhost:#fff1f2;--accentBorder:#fecdd6;--accentShadow:#f43f5e">
+    <div class="card-head">
+      <div class="badge">Art. 6º</div>
+      <div><span class="cat-tag">Efeito da lei no tempo</span><h2 class="title">Efeito imediato da lei e os limites da retroatividade</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 6º</b> A Lei em vigor terá efeito imediato e geral, respeitados o ato jurídico perfeito, o direito adquirido e a coisa julgada.</p><p><span class="par">§ 1º</span> Reputa-se ato jurídico perfeito o já consumado segundo a lei vigente ao tempo em que se efetuou.</p><p><span class="par">§ 2º</span> Consideram-se adquiridos assim os direitos que o seu titular, ou alguém por ele, possa exercer, como aqueles cujo começo do exercício tenha termo pré-fixo, ou condição pré-estabelecida inalterável, a arbítrio de outrem.</p><p><span class="par">§ 3º</span> Chama-se coisa julgada ou caso julgado a decisão judicial de que já não caiba recurso.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> eficácia da lei no tempo + proteção da <b>segurança jurídica</b></span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> a lei nova tem <b>efeito imediato e geral</b></span>
+      <span class="key">Estrutura</span>
+      <span class="val"><span class="arrow">→</span> 3 escudos: <span class="tag">ato jurídico perfeito</span><span class="tag">direito adquirido</span><span class="tag">coisa julgada</span></span>
+      <span class="key">Ato jurídico perfeito</span>
+      <span class="val"><span class="arrow">→</span> negócio <b>já consumado</b> sob a lei vigente à época (§ 1º)</span>
+      <span class="key">Direito adquirido</span>
+      <span class="val"><span class="arrow">→</span> direito que o titular <b>já pode exercer</b>, ou com termo/condição prefixada (§ 2º)</span>
+      <span class="key">Coisa julgada</span>
+      <span class="val"><span class="arrow">→</span> decisão judicial da qual <b>já não cabe recurso</b> (§ 3º)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> a lei nova <b>não retroage</b> para atingir situações já consolidadas</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>São <b>três</b> os escudos contra a lei nova: ato jurídico perfeito, direito adquirido e coisa julgada (a banca troca por 'boa-fé/moralidade'). A lei nova tem efeito imediato, mas <b>não retroage</b> sobre situações consolidadas.</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Um <b>contrato assinado antes</b> da mudança da lei não é atingido pela nova norma — é ato jurídico perfeito, um dos escudos da segurança jurídica.</p><p></p></div>
+  </article>
+
+  <div class="cap"><span class="bar"></span><span class="txt">Direito Internacional Privado</span><span class="rng">arts. 7º – 19</span><span class="rule"></span></div>
+
+  <article class="card artwrap" id="art-7" style="--accent:#14b8a6;--accent2:#2dd4bf;--accentInk:#0f766e;--accentSoft:#ccfbf1;--accentGhost:#f0fdfa;--accentBorder:#b8f0e6;--accentShadow:#14b8a6">
+    <div class="card-head">
+      <div class="badge">Art. 7º</div>
+      <div><span class="cat-tag">DIPr · Estatuto pessoal</span><h2 class="title">A lei do domicílio rege a pessoa e a família</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 7º</b> A lei do país em que domiciliada a pessoa determina as regras sobre o começo e o fim da personalidade, o nome, a capacidade e os direitos de família.</p><p><span class="par">§ 1º</span> Realizando-se o casamento no Brasil, será aplicada a lei brasileira quanto aos impedimentos dirimentes e às formalidades da celebração.</p><p><span class="par">§ 4º</span> O regime de bens, legal ou convencional, obedece à lei do país em que tiverem os nubentes domicílio, e, se este for diverso, à do primeiro domicílio conjugal.</p><p><span class="par">§ 6º</span> O divórcio realizado no estrangeiro, se um ou ambos os cônjuges forem brasileiros, só será reconhecido no Brasil depois de 1 (um) ano da data da sentença, salvo se houver sido antecedida de separação judicial por igual prazo, caso em que a homologação produzirá efeito imediato.</p><p><span class="par">§ 8º</span> Quando a pessoa não tiver domicílio, considerar-se-á domiciliada no lugar de sua residência ou naquele em que se encontre.</p><p class="om">(§§ 2º, 3º, 5º e 7º omitidos por brevidade.)</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>estatuto pessoal</b> no Direito Internacional Privado</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> a lei do <b>domicílio</b> rege personalidade, nome, capacidade e direitos de família</span>
+      <span class="key">Casamento no Brasil</span>
+      <span class="val"><span class="arrow">→</span> lei brasileira quanto a impedimentos e formalidades (§ 1º)</span>
+      <span class="key">Regime de bens</span>
+      <span class="val"><span class="arrow">→</span> lei do domicílio dos nubentes; se diverso, do <b>1º domicílio conjugal</b> (§ 4º)</span>
+      <span class="key">Divórcio no exterior</span>
+      <span class="val"><span class="arrow">→</span> reconhecido no Brasil (regra do prazo de 1 ano — § 6º)</span>
+      <span class="key">Sem domicílio</span>
+      <span class="val"><span class="arrow">→</span> vale o lugar da <b>residência</b> (§ 8º)</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>O critério do estatuto pessoal é o <b>domicílio</b>, não a nacionalidade. Casamento no Brasil: lei brasileira quanto a impedimentos e formalidades.</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Um <b>estrangeiro domiciliado no Brasil</b> tem seu nome e sua capacidade regidos pela lei brasileira — o critério é o domicílio, não a nacionalidade.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-8" style="--accent:#d946ef;--accent2:#e879f9;--accentInk:#a21caf;--accentSoft:#fae8ff;--accentGhost:#fdf4ff;--accentBorder:#f5d0fb;--accentShadow:#d946ef">
+    <div class="card-head">
+      <div class="badge">Art. 8º</div>
+      <div><span class="cat-tag">DIPr · Bens</span><h2 class="title">Os bens seguem a lei do lugar onde estão</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 8º</b> Para qualificar os bens e regular as relações a eles concernentes, aplicar-se-á a lei do país em que estiverem situados.</p><p><span class="par">§ 1º</span> Aplicar-se-á a lei do país em que for domiciliado o proprietário, quanto aos bens móveis que ele trouxer ou se destinarem a transporte para outros lugares.</p><p><span class="par">§ 2º</span> O penhor regula-se pela lei do domicílio que tiver a pessoa, em cuja posse se encontre a coisa apenhada.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> lei aplicável aos <b>bens</b> (DIPr) — <i>lex rei sitae</i></span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> aplica-se a lei do país onde o bem está <b>situado</b></span>
+      <span class="key">Bem móvel em trânsito</span>
+      <span class="val"><span class="arrow">→</span> lei do <b>domicílio do proprietário</b> (§ 1º)</span>
+      <span class="key">Penhor</span>
+      <span class="val"><span class="arrow">→</span> lei do domicílio de quem tem a <b>posse</b> da coisa apenhada (§ 2º)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> resolve o conflito de leis sobre qualificação e relações dos bens</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Um <b>imóvel localizado no Brasil</b> segue a lei brasileira, mesmo que o dono seja estrangeiro e more fora.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-9" style="--accent:#6366f1;--accent2:#818cf8;--accentInk:#4338ca;--accentSoft:#eef2ff;--accentGhost:#f5f7ff;--accentBorder:#dfe4ff;--accentShadow:#6366f1">
+    <div class="card-head">
+      <div class="badge">Art. 9º</div>
+      <div><span class="cat-tag">DIPr · Obrigações</span><h2 class="title">As obrigações seguem a lei do país onde nascem</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 9º</b> Para qualificar e reger as obrigações, aplicar-se-á a lei do país em que se constituírem.</p><p><span class="par">§ 1º</span> Destinando-se a obrigação a ser executada no Brasil e dependendo de forma essencial, será esta observada, admitidas as peculiaridades da lei estrangeira quanto aos requisitos extrínsecos do ato.</p><p><span class="par">§ 2º</span> A obrigação resultante do contrato reputa-se constituída no lugar em que residir o proponente.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> lei aplicável às <b>obrigações</b> (DIPr) — <i>lex loci contractus</i></span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> aplica-se a lei do país em que a obrigação se <b>constituiu</b></span>
+      <span class="key">Execução no Brasil</span>
+      <span class="val"><span class="arrow">→</span> respeita-se a <b>forma essencial</b> exigida pela lei brasileira (§ 1º)</span>
+      <span class="key">Local da constituição</span>
+      <span class="val"><span class="arrow">→</span> onde <b>reside o proponente</b> (§ 2º)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> define direitos e deveres conforme a origem da obrigação</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Um <b>contrato firmado nos EUA</b> tem seus direitos e deveres regidos pela lei americana — a origem da obrigação define a lei aplicável.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-10" style="--accent:#0ea5e9;--accent2:#38bdf8;--accentInk:#0369a1;--accentSoft:#e0f2fe;--accentGhost:#f0f9ff;--accentBorder:#cfeafd;--accentShadow:#0ea5e9">
+    <div class="card-head">
+      <div class="badge">Art. 10</div>
+      <div><span class="cat-tag">DIPr · Sucessão</span><h2 class="title">A herança segue a lei do domicílio do falecido</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 10.</b> A sucessão por morte ou por ausência obedece à lei do país em que domiciliado o defunto ou o desaparecido, qualquer que seja a natureza e a situação dos bens.</p><p><span class="par">§ 1º</span> A sucessão de bens de estrangeiros, situados no País, será regulada pela lei brasileira em benefício do cônjuge ou dos filhos brasileiros, ou de quem os represente, sempre que não lhes seja mais favorável a lei pessoal do <i>de cujus</i>.</p><p><span class="par">§ 2º</span> A lei do domicílio do herdeiro ou legatário regula a capacidade para suceder.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> lei aplicável à <b>sucessão</b> por morte ou ausência (DIPr)</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> obedece à lei do <b>domicílio do falecido/ausente</b>, qualquer que seja o bem</span>
+      <span class="key">Exceção pró-brasileiro</span>
+      <span class="val"><span class="arrow">→</span> bens no Brasil: aplica-se a <b>lei mais favorável</b> ao cônjuge/filhos brasileiros (§ 1º)</span>
+      <span class="key">Capacidade p/ suceder</span>
+      <span class="val"><span class="arrow">→</span> lei do domicílio do <b>herdeiro/legatário</b> (§ 2º)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> uma só lei rege toda a herança</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>Bens de estrangeiro situados no Brasil: aplica-se a <b>lei mais favorável</b> ao cônjuge/filhos brasileiros (§ 1º) — não automaticamente a lei do domicílio do falecido.</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Filho <b>brasileiro</b> herdeiro de estrangeiro com bens no Brasil recebe a proteção da lei que lhe for <b>mais favorável</b>.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-11" style="--accent:#10b981;--accent2:#34d399;--accentInk:#047857;--accentSoft:#d1fae5;--accentGhost:#f0fdf9;--accentBorder:#c3f0dd;--accentShadow:#10b981">
+    <div class="card-head">
+      <div class="badge">Art. 11</div>
+      <div><span class="cat-tag">DIPr · Pessoas jurídicas</span><h2 class="title">Sociedades e fundações seguem a lei de onde se constituem</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 11.</b> As organizações destinadas a fins de interesse coletivo, como as sociedades e as fundações, obedecem à lei do Estado em que se constituírem.</p><p><span class="par">§ 1º</span> Não poderão, entretanto, ter no Brasil filiais, agências ou estabelecimentos antes de serem os atos constitutivos aprovados pelo Governo brasileiro, ficando sujeitas à lei brasileira.</p><p><span class="par">§ 2º</span> Os Governos estrangeiros, bem como as organizações de qualquer natureza, que eles tenham constituído, dirijam ou hajam investido de funções públicas, não poderão adquirir no Brasil bens imóveis ou suscetíveis de desapropriação.</p><p><span class="par">§ 3º</span> Os Governos estrangeiros podem adquirir a propriedade dos prédios necessários à sede dos representantes diplomáticos ou dos agentes consulares.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> lei aplicável às <b>pessoas jurídicas</b> (sociedades e fundações)</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> obedecem à lei do Estado em que se <b>constituírem</b></span>
+      <span class="key">Requisito p/ atuar no Brasil</span>
+      <span class="val"><span class="arrow">→</span> aprovação dos atos pelo Governo + sujeição à lei brasileira (§ 1º)</span>
+      <span class="key">Vedação</span>
+      <span class="val"><span class="arrow">→</span> Governo estrangeiro <b>não adquire</b> imóvel desapropriável no Brasil (§ 2º)</span>
+      <span class="key">Exceção</span>
+      <span class="val"><span class="arrow">→</span> pode adquirir prédio para <b>sede diplomática/consular</b> (§ 3º)</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Uma <b>sociedade estrangeira</b> só abre filial no Brasil após aprovação oficial, ficando sujeita à lei brasileira na sua atuação aqui.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-12" style="--accent:#8b5cf6;--accent2:#a78bfa;--accentInk:#6d28d9;--accentSoft:#ede9fe;--accentGhost:#f6f4ff;--accentBorder:#e2dbfd;--accentShadow:#8b5cf6">
+    <div class="card-head">
+      <div class="badge">Art. 12</div>
+      <div><span class="cat-tag">DIPr · Competência</span><h2 class="title">Quando a Justiça brasileira é competente</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 12.</b> É competente a autoridade judiciária brasileira, quando for o réu domiciliado no Brasil ou aqui tiver de ser cumprida a obrigação.</p><p><span class="par">§ 1º</span> Só à autoridade judiciária brasileira compete conhecer das ações relativas a imóveis situados no Brasil.</p><p><span class="par">§ 2º</span> A autoridade judiciária brasileira cumprirá, concedido o <i>exequatur</i> e segundo a forma estabelecida pela lei brasileira, as diligências deprecadas por autoridade estrangeira competente, observando a lei desta, quanto ao objeto das diligências.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>competência internacional</b> da Justiça brasileira</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> réu domiciliado no Brasil <b>ou</b> obrigação a ser cumprida aqui</span>
+      <span class="key">Competência exclusiva</span>
+      <span class="val"><span class="arrow">→</span> ações sobre <b>imóveis situados no Brasil</b> (§ 1º)</span>
+      <span class="key">Cooperação</span>
+      <span class="val"><span class="arrow">→</span> cumpre cartas rogatórias via <i>exequatur</i> (§ 2º)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> fixa quando o juiz brasileiro pode/deve atuar</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>Ações sobre <b>imóveis situados no Brasil</b> são de competência <b>exclusiva</b> da Justiça brasileira (§ 1º) — decisão estrangeira não vale.</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Ação sobre <b>imóvel localizado no Brasil</b> só pode correr na Justiça brasileira — competência exclusiva, sem exceção.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-13" style="--accent:#d97706;--accent2:#f59e0b;--accentInk:#b45309;--accentSoft:#fef3c7;--accentGhost:#fffbeb;--accentBorder:#fde9b5;--accentShadow:#d97706">
+    <div class="card-head">
+      <div class="badge">Art. 13</div>
+      <div><span class="cat-tag">DIPr · Prova de fatos</span><h2 class="title">Prova de fatos ocorridos no exterior</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 13.</b> A prova dos fatos ocorridos em país estrangeiro rege-se pela lei que nele vigorar, quanto ao ônus e aos meios de produzir-se, não admitindo os tribunais brasileiros provas que a lei brasileira desconheça.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> lei aplicável à <b>prova de fatos</b> ocorridos no estrangeiro</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> a prova rege-se pela lei do país onde o fato <b>ocorreu</b> (ônus e meios)</span>
+      <span class="key">Limite</span>
+      <span class="val"><span class="arrow">→</span> tribunais brasileiros não admitem prova que a <b>lei brasileira desconheça</b></span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> equilíbrio entre a lei estrangeira e a ordem jurídica brasileira</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>O modo de <b>provar</b> um fato ocorrido na Argentina segue a lei argentina — mas não se aceita aqui um meio de prova que o direito brasileiro sequer conheça.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-14" style="--accent:#f43f5e;--accent2:#fb7185;--accentInk:#be123c;--accentSoft:#ffe4e6;--accentGhost:#fff1f2;--accentBorder:#fecdd6;--accentShadow:#f43f5e">
+    <div class="card-head">
+      <div class="badge">Art. 14</div>
+      <div><span class="cat-tag">DIPr · Prova da lei</span><h2 class="title">Provar o texto e a vigência da lei estrangeira</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 14.</b> Não conhecendo a lei estrangeira, poderá o juiz exigir de quem a invoca prova do texto e da vigência.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>prova</b> da lei estrangeira invocada</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> o juiz <b>não conhece</b> a lei estrangeira alegada</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> a parte que invoca prova o <b>texto</b> e a <b>vigência</b> da lei</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> não basta alegar a lei estrangeira — é preciso comprová-la</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Quem invoca uma lei estrangeira pode ter de <b>apresentar o texto</b> e a prova de que ela está em vigor no país de origem.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-15" style="--accent:#14b8a6;--accent2:#2dd4bf;--accentInk:#0f766e;--accentSoft:#ccfbf1;--accentGhost:#f0fdfa;--accentBorder:#b8f0e6;--accentShadow:#14b8a6">
+    <div class="card-head">
+      <div class="badge">Art. 15</div>
+      <div><span class="cat-tag">DIPr · Sentença estrangeira</span><h2 class="title">Requisitos para executar sentença estrangeira no Brasil</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 15.</b> Será executada no Brasil a sentença proferida no estrangeiro, que reúna os seguintes requisitos:</p><p>a) haver sido proferida por juiz competente;</p><p>b) terem sido as partes citadas ou haver-se legalmente verificado a revelia;</p><p>c) ter passado em julgado e estar revestida das formalidades necessárias para a execução no lugar em que foi proferida;</p><p>d) estar traduzida por intérprete autorizado;</p><p>e) ter sido homologada pelo Supremo Tribunal Federal. <span class="om">(Hoje: Superior Tribunal de Justiça — STJ.)</span></p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> homologação e execução de <b>sentença estrangeira</b></span>
+      <span class="key">Requisitos</span>
+      <span class="val"><span class="arrow">→</span> <span class="tag">juiz competente</span> <span class="tag">citação / revelia</span> <span class="tag">trânsito em julgado</span> <span class="tag">tradução oficial</span> <span class="tag">homologação do STJ</span></span>
+      <span class="key">Atenção</span>
+      <span class="val"><span class="arrow">→</span> o texto diz <b>STF</b>, mas hoje quem homologa é o <b>STJ</b> (EC 45/2004)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> só cumpridos <b>todos</b> os requisitos a sentença vale no Brasil</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>O texto fala em <b>STF</b>, mas, desde a <b>EC 45/2004</b>, quem <b>homologa</b> a sentença estrangeira é o <b>STJ</b>. A banca cobra a redação literal (STF).</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Uma sentença dos EUA só produz efeitos aqui após <b>homologação pelo STJ</b>, com tradução oficial e trânsito em julgado.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-16" style="--accent:#d946ef;--accent2:#e879f9;--accentInk:#a21caf;--accentSoft:#fae8ff;--accentGhost:#fdf4ff;--accentBorder:#f5d0fb;--accentShadow:#d946ef">
+    <div class="card-head">
+      <div class="badge">Art. 16</div>
+      <div><span class="cat-tag">DIPr · Reenvio</span><h2 class="title">Aplica-se a lei estrangeira, sem reenvio</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 16.</b> Quando, nos termos dos artigos precedentes, se houver de aplicar a lei estrangeira, ter-se-á em vista a disposição desta, sem considerar-se qualquer remissão por ela feita a outra lei.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>vedação ao reenvio</b> (retorno) no DIPr</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> quando se deve aplicar a <b>lei estrangeira</b></span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> aplica-se a disposição dela, <b>sem</b> considerar remissão que faça a outra lei</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> evita o efeito cascata entre legislações; garante previsibilidade</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>Vedação ao <b>reenvio</b>: aplica-se a disposição da lei estrangeira indicada, <b>sem</b> considerar remissões que ela faça a outra lei.</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Se a lei brasileira manda aplicar a lei <b>francesa</b>, e a francesa remete à <b>alemã</b>, o juiz para na francesa — não segue a cadeia de remissões.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-17" style="--accent:#6366f1;--accent2:#818cf8;--accentInk:#4338ca;--accentSoft:#eef2ff;--accentGhost:#f5f7ff;--accentBorder:#dfe4ff;--accentShadow:#6366f1">
+    <div class="card-head">
+      <div class="badge">Art. 17</div>
+      <div><span class="cat-tag">Ordem pública</span><h2 class="title">Limites ao direito estrangeiro no Brasil</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 17.</b> As leis, atos e sentenças de outro país, bem como quaisquer declarações de vontade, não terão eficácia no Brasil, quando ofenderem a soberania nacional, a ordem pública e os bons costumes.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>limites de eficácia</b> do direito estrangeiro no Brasil</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> leis, atos e sentenças estrangeiras, em regra, valem no Brasil...</span>
+      <span class="key">Limites (3)</span>
+      <span class="val"><span class="arrow">→</span> <span class="tag">soberania nacional</span> <span class="tag">ordem pública</span> <span class="tag">bons costumes</span></span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> ferindo <b>qualquer</b> um dos três, não produzem efeito aqui</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>Os limites ao direito estrangeiro são <b>três</b>: soberania nacional, ordem pública e bons costumes — ferido qualquer um, não há eficácia no Brasil.</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Um contrato válido no exterior que permita algo contrário à <b>ordem pública</b> brasileira simplesmente não produz efeito no Brasil.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-18" style="--accent:#0ea5e9;--accent2:#38bdf8;--accentInk:#0369a1;--accentSoft:#e0f2fe;--accentGhost:#f0f9ff;--accentBorder:#cfeafd;--accentShadow:#0ea5e9">
+    <div class="card-head">
+      <div class="badge">Art. 18</div>
+      <div><span class="cat-tag">Atos consulares</span><h2 class="title">O cônsul brasileiro e os atos de brasileiros no exterior</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 18.</b> Tratando-se de brasileiros, são competentes as autoridades consulares brasileiras para lhes celebrar o casamento e os mais atos de Registro Civil e de tabelionato, inclusive o registro de nascimento e de óbito dos filhos de brasileiro ou brasileira nascido no país da sede do Consulado.</p><p><span class="par">§ 1º</span> As autoridades consulares brasileiras também poderão celebrar a separação consensual e o divórcio consensual de brasileiros, não havendo filhos menores ou incapazes do casal e observados os requisitos legais quanto aos prazos, devendo constar da respectiva escritura pública as disposições relativas à descrição e à partilha dos bens comuns e à pensão alimentícia e, ainda, ao acordo quanto à retomada pelo cônjuge de seu nome de solteiro ou à manutenção do nome adotado quando se deu o casamento.</p><p><span class="par">§ 2º</span> É indispensável a assistência de advogado, devidamente constituído, que se dará mediante a subscrição de petição, juntamente com ambas as partes, ou com apenas uma delas, caso a outra constitua advogado próprio.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>competência consular</b> brasileira no exterior</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> tratando-se de <b>brasileiros</b></span>
+      <span class="key">Poderes</span>
+      <span class="val"><span class="arrow">→</span> casamento, registro civil, tabelionato, nascimento e óbito</span>
+      <span class="key">Separação/divórcio</span>
+      <span class="val"><span class="arrow">→</span> consensual, <b>sem filhos menores/incapazes</b> + requisitos (§ 1º)</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> assistência de <b>advogado</b> é indispensável (§ 2º)</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Um brasileiro morando fora pode <b>casar</b> e registrar o nascimento do filho no consulado brasileiro, sem precisar voltar ao Brasil.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-19" style="--accent:#10b981;--accent2:#34d399;--accentInk:#047857;--accentSoft:#d1fae5;--accentGhost:#f0fdf9;--accentBorder:#c3f0dd;--accentShadow:#10b981">
+    <div class="card-head">
+      <div class="badge">Art. 19</div>
+      <div><span class="cat-tag">Atos consulares</span><h2 class="title">Validade dos atos consulares já celebrados</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 19.</b> Reputam-se válidos todos os atos indicados no artigo anterior e celebrados pelos cônsules brasileiros na vigência do Decreto-lei nº 4.657, de 4 de setembro de 1942, desde que satisfaçam todos os requisitos legais.</p><p><span class="par">Parágrafo único.</span> No caso em que a celebração desses atos tiver sido recusada pelas autoridades consulares, com fundamento no artigo 18 do mesmo Decreto-lei, o interessado é facultado renovar o pedido dentro em 90 (noventa) dias contados da data da publicação desta lei.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>convalidação</b> de atos consulares anteriores</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> atos consulares celebrados na vigência da LINDB são <b>válidos</b>, se cumpriram os requisitos</span>
+      <span class="key">Prazo</span>
+      <span class="val"><span class="arrow">→</span> pedido recusado pode ser <b>renovado em 90 dias</b> (parágrafo único)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> preserva atos praticados no passado</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Atos feitos por cônsules brasileiros no passado seguem <b>válidos</b>, desde que tenham cumprido os requisitos legais da época.</p><p></p></div>
+  </article>
+
+  <div class="cap"><span class="bar"></span><span class="txt">Segurança Jurídica — Reforma de 2018</span><span class="rng">arts. 20 – 30</span><span class="rule"></span></div>
+
+  <article class="card artwrap" id="art-20" style="--accent:#8b5cf6;--accent2:#a78bfa;--accentInk:#6d28d9;--accentSoft:#ede9fe;--accentGhost:#f6f4ff;--accentBorder:#e2dbfd;--accentShadow:#8b5cf6">
+    <div class="card-head">
+      <div class="badge">Art. 20</div>
+      <div><span class="cat-tag">Reforma 2018 · Consequencialismo</span><h2 class="title">Decidir considerando as consequências práticas</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 20.</b> Nas esferas administrativa, controladora e judicial, não se decidirá com base em valores jurídicos abstratos sem que sejam consideradas as consequências práticas da decisão.</p><p><span class="par">Parágrafo único.</span> A motivação demonstrará a necessidade e a adequação da medida imposta ou da invalidação de ato, contrato, ajuste, processo ou norma administrativa, inclusive em face das possíveis alternativas.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>consequencialismo jurídico</b> (dever de considerar consequências)</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> decisões <b>administrativa, controladora ou judicial</b></span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> não decidir só com base em <b>valores abstratos</b> sem avaliar as consequências práticas</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> motivação demonstra <b>necessidade + adequação</b>, inclusive frente às alternativas</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> decisão que ignora as consequências fica vulnerável a questionamento</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>Consequencialismo: não se decide com base em <b>valores jurídicos abstratos</b> sem considerar as <b>consequências práticas</b>; a motivação demonstra necessidade e adequação, inclusive frente às alternativas.</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Um julgador não pode anular uma medida invocando só "moralidade" — precisa avaliar o <b>impacto real</b> da decisão no mundo concreto.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-21" style="--accent:#d97706;--accent2:#f59e0b;--accentInk:#b45309;--accentSoft:#fef3c7;--accentGhost:#fffbeb;--accentBorder:#fde9b5;--accentShadow:#d97706">
+    <div class="card-head">
+      <div class="badge">Art. 21</div>
+      <div><span class="cat-tag">Reforma 2018 · Invalidação</span><h2 class="title">Indicar as consequências ao invalidar</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 21.</b> A decisão que, nas esferas administrativa, controladora ou judicial, decretar a invalidação de ato, contrato, ajuste, processo ou norma administrativa deverá indicar de modo expresso suas consequências jurídicas e administrativas.</p><p><span class="par">Parágrafo único.</span> A decisão a que se refere o caput deste artigo deverá, quando for o caso, indicar as condições para que a regularização ocorra de modo proporcional e equânime e sem prejuízo aos interesses gerais, não podendo impor aos sujeitos atingidos ônus ou perdas que, em função das peculiaridades do caso, sejam anormais ou excessivos.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> dever de <b>indicar consequências</b> da invalidação</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> decisão que invalida ato, contrato, ajuste, processo ou norma</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> indicar <b>expressamente</b> as consequências jurídicas e administrativas</span>
+      <span class="key">Regularização</span>
+      <span class="val"><span class="arrow">→</span> <b>proporcional e equânime</b>, sem ônus anormais/excessivos (par. único)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> a anulação não pode gerar injustiça desproporcional</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Ao anular um contrato administrativo, a decisão deve dizer <b>o que muda</b> e abrir caminho para regularizar sem punir excessivamente quem agiu de boa-fé.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-22" style="--accent:#f43f5e;--accent2:#fb7185;--accentInk:#be123c;--accentSoft:#ffe4e6;--accentGhost:#fff1f2;--accentBorder:#fecdd6;--accentShadow:#f43f5e">
+    <div class="card-head">
+      <div class="badge">Art. 22</div>
+      <div><span class="cat-tag">Reforma 2018 · Gestão pública</span><h2 class="title">Interpretar considerando a realidade do gestor</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 22.</b> Na interpretação de normas sobre gestão pública, serão considerados os obstáculos e as dificuldades reais do gestor e as exigências das políticas públicas a seu cargo, sem prejuízo dos direitos dos administrados.</p><p><span class="par">§ 1º</span> Em decisão sobre regularidade de conduta ou validade de ato, contrato, ajuste, processo ou norma administrativa, serão consideradas as circunstâncias práticas que houverem imposto, limitado ou condicionado a ação do agente.</p><p><span class="par">§ 2º</span> Na aplicação de sanções, serão consideradas a natureza e a gravidade da infração cometida, os danos que dela provierem para a administração pública, as circunstâncias agravantes ou atenuantes e os antecedentes do agente.</p><p><span class="par">§ 3º</span> As sanções aplicadas ao agente serão levadas em conta na dosimetria das demais sanções de mesma natureza e relativas ao mesmo fato.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>interpretação realista</b> das normas de gestão pública</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> considerar os <b>obstáculos e dificuldades reais</b> do gestor + as exigências das políticas públicas</span>
+      <span class="key">Circunstâncias</span>
+      <span class="val"><span class="arrow">→</span> o que limitou ou condicionou a ação do agente (§ 1º)</span>
+      <span class="key">Dosimetria</span>
+      <span class="val"><span class="arrow">→</span> natureza, gravidade, danos, agravantes/atenuantes e antecedentes (§ 2º)</span>
+      <span class="key"><i>Bis in idem</i></span>
+      <span class="val"><span class="arrow">→</span> sanções anteriores contam na dosimetria das demais (§ 3º)</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Ao julgar um gestor, considera-se a <b>falta de recursos</b> e o prazo apertado que ele enfrentou — não se exige uma atuação em condições perfeitas.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-23" style="--accent:#14b8a6;--accent2:#2dd4bf;--accentInk:#0f766e;--accentSoft:#ccfbf1;--accentGhost:#f0fdfa;--accentBorder:#b8f0e6;--accentShadow:#14b8a6">
+    <div class="card-head">
+      <div class="badge">Art. 23</div>
+      <div><span class="cat-tag">Reforma 2018 · Transição</span><h2 class="title">Regime de transição para interpretação nova</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 23.</b> A decisão administrativa, controladora ou judicial que estabelecer interpretação ou orientação nova sobre norma de conteúdo indeterminado, impondo novo dever ou novo condicionamento de direito, deverá prever regime de transição quando indispensável para que o novo dever ou condicionamento de direito seja cumprido de modo proporcional, equânime e eficiente e sem prejuízo aos interesses gerais.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>regime de transição</b> para orientação/interpretação nova</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> decisão que impõe interpretação <b>NOVA</b> sobre norma indeterminada, criando novo dever/condicionamento</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> prever <b>regime de transição</b> quando indispensável</span>
+      <span class="key">Finalidade</span>
+      <span class="val"><span class="arrow">→</span> cumprimento proporcional, equânime e eficiente, sem prejuízo ao interesse geral</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> evita surpresa; garante segurança jurídica</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Se um tribunal passa a <b>exigir uma cláusula nova</b> em contratos de um setor, deve dar prazo para as partes se adaptarem, em vez de invalidar tudo de imediato.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-24" style="--accent:#d946ef;--accent2:#e879f9;--accentInk:#a21caf;--accentSoft:#fae8ff;--accentGhost:#fdf4ff;--accentBorder:#f5d0fb;--accentShadow:#d946ef">
+    <div class="card-head">
+      <div class="badge">Art. 24</div>
+      <div><span class="cat-tag">Reforma 2018 · Revisão</span><h2 class="title">Não invalidar o passado por mudança de orientação</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 24.</b> A revisão, nas esferas administrativa, controladora ou judicial, quanto à validade de ato, contrato, ajuste, processo ou norma administrativa cuja produção já se houver completado levará em conta as orientações gerais da época, sendo vedado que, com base em mudança posterior de orientação geral, se declarem inválidas situações plenamente constituídas.</p><p><span class="par">Parágrafo único.</span> Consideram-se orientações gerais as interpretações e especificações contidas em atos públicos de caráter geral ou em jurisprudência judicial ou administrativa majoritária, e ainda as adotadas por prática administrativa reiterada e de amplo conhecimento público.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> proteção contra <b>mudança retroativa</b> de orientação</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> revisão de ato/contrato/ajuste/processo/norma <b>já concluído</b></span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> considerar as <b>orientações gerais da época</b></span>
+      <span class="key">Vedação</span>
+      <span class="val"><span class="arrow">→</span> invalidar situação constituída com base em mudança <b>posterior</b> de orientação</span>
+      <span class="key">Orientações gerais</span>
+      <span class="val"><span class="arrow">→</span> atos públicos gerais, jurisprudência majoritária, prática reiterada (par. único)</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>É <b>vedado</b> invalidar situação plenamente constituída com base em <b>mudança posterior</b> de orientação geral — considera-se a orientação da <b>época</b> do ato.</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Uma licença concedida conforme o entendimento da época <b>não</b> pode ser anulada só porque, anos depois, o órgão mudou de interpretação.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-25" style="--accent:#94a3b8;--accent2:#cbd5e1;--accentInk:#475569;--accentSoft:#f1f5f9;--accentGhost:#f8fafc;--accentBorder:#e2e8f0;--accentShadow:#94a3b8">
+    <div class="card-head">
+      <div class="badge">Art. 25</div>
+      <div><span class="cat-tag">Reforma 2018 · Vetado</span><h2 class="title">Art. 25 — dispositivo vetado</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 25.</b> (VETADO). (Incluído pela Lei nº 13.655, de 2018)</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> dispositivo <b>VETADO</b> (Lei 13.655/2018)</span>
+      <span class="key">Situação</span>
+      <span class="val"><span class="arrow">→</span> o art. 25 foi vetado — <b>não há norma em vigor</b></span>
+      <span class="key">Para a prova</span>
+      <span class="val"><span class="arrow">→</span> basta saber que está vetado e não produz efeitos</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Em provas, o art. 25 costuma aparecer só para confundir: ele foi <b>barrado no veto</b> presidencial e não integra a LINDB em vigor.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-26" style="--accent:#0ea5e9;--accent2:#38bdf8;--accentInk:#0369a1;--accentSoft:#e0f2fe;--accentGhost:#f0f9ff;--accentBorder:#cfeafd;--accentShadow:#0ea5e9">
+    <div class="card-head">
+      <div class="badge">Art. 26</div>
+      <div><span class="cat-tag">Reforma 2018 · Compromisso</span><h2 class="title">Compromisso para eliminar incerteza jurídica</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 26.</b> Para eliminar irregularidade, incerteza jurídica ou situação contenciosa na aplicação do direito público, inclusive no caso de expedição de licença, a autoridade administrativa poderá, após oitiva do órgão jurídico e, quando for o caso, após realização de consulta pública, e presentes razões de relevante interesse geral, celebrar compromisso com os interessados, observada a legislação aplicável, o qual só produzirá efeitos a partir de sua publicação oficial.</p><p><span class="par">§ 1º</span> O compromisso referido no caput deste artigo: I - buscará solução jurídica proporcional, equânime, eficiente e compatível com os interesses gerais; III - não poderá conferir desoneração permanente de dever ou condicionamento de direito reconhecidos por orientação geral; IV - deverá prever com clareza as obrigações das partes, o prazo para seu cumprimento e as sanções aplicáveis em caso de descumprimento.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>compromisso administrativo</b> para resolver incertezas</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> eliminar irregularidade, incerteza jurídica ou situação contenciosa no direito público</span>
+      <span class="key">Requisitos</span>
+      <span class="val"><span class="arrow">→</span> oitiva do órgão jurídico + (quando couber) consulta pública + <b>relevante interesse geral</b></span>
+      <span class="key">Conteúdo</span>
+      <span class="val"><span class="arrow">→</span> obrigações, prazo e sanções claras; sem desoneração permanente de dever</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> só produz efeitos <b>após a publicação oficial</b></span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Diante de uma <b>licença controversa</b>, a Administração pode firmar um compromisso com o interessado para resolver a incerteza — publicado oficialmente.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-27" style="--accent:#10b981;--accent2:#34d399;--accentInk:#047857;--accentSoft:#d1fae5;--accentGhost:#f0fdf9;--accentBorder:#c3f0dd;--accentShadow:#10b981">
+    <div class="card-head">
+      <div class="badge">Art. 27</div>
+      <div><span class="cat-tag">Reforma 2018 · Compensação</span><h2 class="title">Compensar benefícios indevidos ou prejuízos injustos</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 27.</b> A decisão do processo, nas esferas administrativa, controladora ou judicial, poderá impor compensação por benefícios indevidos ou prejuízos anormais ou injustos resultantes do processo ou da conduta dos envolvidos.</p><p><span class="par">§ 1º</span> A decisão sobre a compensação será motivada, ouvidas previamente as partes sobre seu cabimento, sua forma e, se for o caso, o seu valor.</p><p><span class="par">§ 2º</span> Para prevenir ou regular a compensação, poderá ser celebrado compromisso processual entre os envolvidos.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>compensação</b> por desequilíbrios gerados pelo processo</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> benefícios indevidos ou prejuízos <b>anormais/injustos</b> do processo ou da conduta</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> decisão <b>motivada</b> + oitiva prévia das partes (cabimento, forma, valor) (§ 1º)</span>
+      <span class="key">Instrumento</span>
+      <span class="val"><span class="arrow">→</span> <b>compromisso processual</b> entre os envolvidos (§ 2º)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> reequilibra as consequências do processo</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Se o andamento de um processo causa um <b>prejuízo anormal</b> a uma parte, a decisão final pode determinar uma compensação para reequilibrar.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-28" style="--accent:#8b5cf6;--accent2:#a78bfa;--accentInk:#6d28d9;--accentSoft:#ede9fe;--accentGhost:#f6f4ff;--accentBorder:#e2dbfd;--accentShadow:#8b5cf6">
+    <div class="card-head">
+      <div class="badge">Art. 28</div>
+      <div><span class="cat-tag">Reforma 2018 · Responsabilidade</span><h2 class="title">Responsabilidade pessoal do agente público</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 28.</b> O agente público responderá pessoalmente por suas decisões ou opiniões técnicas em caso de dolo ou erro grosseiro.</p><p class="om">(§§ 1º, 2º e 3º vetados.)</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>responsabilidade pessoal</b> do agente público</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> agir com <b>dolo</b> OU <b>erro grosseiro</b></span>
+      <span class="key">Não responde</span>
+      <span class="val"><span class="arrow">→</span> erro de boa-fé, dentro de margem razoável de interpretação</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> protege quem decide de boa-fé; pune dolo e erro grosseiro</span>
+      <span class="key">Atenção</span>
+      <span class="val"><span class="arrow">→</span> os §§ 1º, 2º e 3º foram <b>vetados</b></span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>O agente responde pessoalmente só por <b>dolo</b> ou <b>erro grosseiro</b>; erro de boa-fé não gera responsabilidade. Atenção: os §§ 1º, 2º e 3º foram <b>vetados</b>.</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Interpretar uma norma ambígua de forma <b>equivocada, mas fundamentada</b>, não gera responsabilidade pessoal — só o dolo ou o erro grosseiro geram.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-29" style="--accent:#d97706;--accent2:#f59e0b;--accentInk:#b45309;--accentSoft:#fef3c7;--accentGhost:#fffbeb;--accentBorder:#fde9b5;--accentShadow:#d97706">
+    <div class="card-head">
+      <div class="badge">Art. 29</div>
+      <div><span class="cat-tag">Reforma 2018 · Consulta pública</span><h2 class="title">Consulta pública antes de editar atos normativos</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 29.</b> Em qualquer órgão ou Poder, a edição de atos normativos por autoridade administrativa, salvo os de mera organização interna, poderá ser precedida de consulta pública para manifestação de interessados, preferencialmente por meio eletrônico, a qual será considerada na decisão.</p><p><span class="par">§ 1º</span> A convocação conterá a minuta do ato normativo e fixará o prazo e demais condições da consulta pública, observadas as normas legais e regulamentares específicas, se houver.</p><p class="om">(§ 2º vetado.)</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>consulta pública</b> prévia à edição de atos normativos</span>
+      <span class="key">Quando?</span>
+      <span class="val"><span class="arrow">→</span> edição de atos normativos (salvo os de mera organização interna)</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> é <b>opcional</b> abrir, mas, aberta, as manifestações devem ser consideradas</span>
+      <span class="key">Requisito</span>
+      <span class="val"><span class="arrow">→</span> convocação com a <b>minuta</b> do ato + prazo e condições (§ 1º)</span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> mais participação e legitimidade na norma</span>
+    </div>
+    
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>Antes de criar uma norma administrativa, o órgão pode abrir <b>consulta pública</b> (de preferência eletrônica) e considerar as contribuições recebidas.</p><p></p></div>
+  </article>
+
+  <article class="card artwrap" id="art-30" style="--accent:#f43f5e;--accent2:#fb7185;--accentInk:#be123c;--accentSoft:#ffe4e6;--accentGhost:#fff1f2;--accentBorder:#fecdd6;--accentShadow:#f43f5e">
+    <div class="card-head">
+      <div class="badge">Art. 30</div>
+      <div><span class="cat-tag">Reforma 2018 · Segurança jurídica</span><h2 class="title">Dever de aumentar a segurança jurídica</h2></div>
+    </div>
+    <div class="lei"><span class="lei-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg> Letra da lei</span><div class="lei-body"><p><b>Art. 30.</b> As autoridades públicas devem atuar para aumentar a segurança jurídica na aplicação das normas, inclusive por meio de regulamentos, súmulas administrativas e respostas a consultas.</p><p><span class="par">Parágrafo único.</span> Os instrumentos previstos no caput deste artigo terão caráter vinculante em relação ao órgão ou entidade a que se destinam, até ulterior revisão.</p></div></div>
+    <div class="es-label">Destrinchando o artigo</div>
+    <div class="esquema">
+      <span class="key">Natureza</span>
+      <span class="val"><span class="arrow">→</span> <b>dever</b> de promover segurança jurídica na aplicação das normas</span>
+      <span class="key">Regra</span>
+      <span class="val"><span class="arrow">→</span> as autoridades devem atuar para <b>aumentar a segurança jurídica</b></span>
+      <span class="key">Instrumentos</span>
+      <span class="val"><span class="arrow">→</span> <span class="tag">regulamentos</span> <span class="tag">súmulas administrativas</span> <span class="tag">respostas a consultas</span></span>
+      <span class="key">Efeito</span>
+      <span class="val"><span class="arrow">→</span> vinculam o próprio órgão/entidade <b>até ulterior revisão</b> (par. único)</span>
+      <span class="key">Finalidade</span>
+      <span class="val"><span class="arrow">→</span> previsibilidade para cidadãos e empresas</span>
+    </div>
+    <div class="pega"><span class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><path d="M12 9v4M12 17h.01"></path></svg> Pegadinha de banca</span><p>Regulamentos, súmulas administrativas e respostas a consultas <b>vinculam</b> o próprio órgão/entidade <b>até ulterior revisão</b> (par. único).</p></div>
+    <div class="exemplo"><span class="exemplo-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path></svg> Na prática</span><p></p><p>A Receita Federal editar uma <b>súmula</b> sobre dedução de despesas dá segurança jurídica — e ela vincula a própria Receita até ser revista.</p><p></p></div>
+  </article>
+<div class="foot"><span class="pill">LINDB · DL 4.657/1942 (com a Lei 13.655/2018) · arts. 1º a 30</span><span>Use a aba <b>Quiz</b> no topo para testar.</span></div>
+</section>
+<section id="view-quiz" class="view">
+<div class="qcard">
+  <section id="start">
+    <span class="eyebrow"><span class="dot"></span>DL 4.657/1942 · LINDB</span>
+    <h1>Quiz — LINDB</h1>
+    <p>Lei de Introdução às Normas do Direito Brasileiro (arts. 1º a 30).</p>
+    <div class="facts"><span class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>Feedback na hora</span><span class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>Explicação por questão</span><span class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path></svg>Pontuação final</span></div>
+    <button class="btn" onclick="start()">Começar quiz &nbsp;→</button>
+  </section>
+  <section id="quiz" class="hide">
+    <div class="qtop"><div class="bar"><i id="fill"></i></div><span class="count" id="count">1 / 1</span><span class="score" id="score">Acertos: 0</span></div>
+    <span class="atag" id="atag">Art. 1º</span>
+    <h2 class="q" id="qtext">—</h2>
+    <div class="opts" id="opts"></div>
+    <div class="exp" id="exp"></div>
+    <div class="nav"><button class="btn" id="next" onclick="next()">Próxima &nbsp;→</button></div>
+  </section>
+  <section id="result"><div class="ring" id="ring"></div><h2 id="rtitle">—</h2><p class="msg" id="rmsg">—</p><div class="ractions"><button class="btn" onclick="restart()">↺ Refazer quiz</button></div></section>
+</div>
+</section>
+</div>
+<button class="backtop show" id="bt" onclick="window.scrollTo({top:0,behavior:&#39;smooth&#39;})">↑</button>
+<script>
+function showView(v){document.getElementById('view-esquemas').classList.toggle('active',v==='esquemas');document.getElementById('view-quiz').classList.toggle('active',v==='quiz');document.getElementById('tab-esq').classList.toggle('active',v==='esquemas');document.getElementById('tab-quiz').classList.toggle('active',v==='quiz');window.scrollTo({top:0});}
+window.addEventListener('scroll',function(){document.getElementById('bt').classList.toggle('show',window.scrollY>500)});
+const QUESTIONS = [
+ {a:"Art. 1º", q:"Salvo disposição em contrário, quando uma lei começa a vigorar em todo o país?",
+  opts:["45 dias após a publicação oficial","Na data da publicação oficial","90 dias após a publicação","Após regulamentação por decreto"],
+  correct:0, exp:"É a <b>vacatio legis</b> padrão: 45 dias após a publicação oficial, salvo prazo próprio no texto da lei."},
+ {a:"Art. 2º", q:"A lei revogada volta a valer automaticamente quando a lei que a revogou perde a vigência?",
+  opts:["Não — salvo disposição expressa em contrário","Sim, sempre (repristinação automática)","Sim, depois de 45 dias","Somente em matéria penal"],
+  correct:0, exp:"A <b>repristinação não é automática</b> (art. 2º, §3º): depende de previsão expressa da nova lei."},
+ {a:"Art. 3º", q:"Sobre a obrigatoriedade da lei, é correto afirmar:",
+  opts:["O desconhecimento da lei não escusa o seu cumprimento","Quem prova que não sabia da lei fica isento","A regra vale só para o direito penal","A lei só obriga quem foi notificado pessoalmente"],
+  correct:0, exp:"Art. 3º — ninguém se escusa de cumprir a lei alegando que não a conhece (presunção de conhecimento)."},
+ {a:"Art. 4º", q:"Quando a lei é omissa, qual a ordem que o juiz deve seguir para integrar a lacuna?",
+  opts:["Analogia → costumes → princípios gerais de direito","Costumes → analogia → princípios gerais","Princípios gerais → analogia → costumes","Jurisprudência → analogia → costumes"],
+  correct:0, exp:"Art. 4º — nesta ordem: analogia, costumes e princípios gerais de direito."},
+ {a:"Art. 5º", q:"Na aplicação da lei, o juiz deve atender especialmente a:",
+  opts:["Aos fins sociais e às exigências do bem comum","Apenas à literalidade do texto legal","À vontade pessoal do legislador","Aos interesses das partes no processo"],
+  correct:0, exp:"Art. 5º — interpretação teleológica: o juiz atende aos fins sociais e às exigências do bem comum."},
+ {a:"Art. 6º", q:"A lei nova tem efeito imediato e geral, mas deve respeitar três institutos. São eles:",
+  opts:["Ato jurídico perfeito, direito adquirido e coisa julgada","Boa-fé, moralidade e interesse público","Analogia, costume e equidade","Soberania, ordem pública e bons costumes"],
+  correct:0, exp:"Art. 6º — os três 'escudos' contra a lei nova: ato jurídico perfeito, direito adquirido e coisa julgada."},
+ {a:"Art. 7º", q:"Que lei determina as regras sobre nome, capacidade e direitos de família da pessoa?",
+  opts:["A lei do país em que a pessoa é domiciliada","A lei da nacionalidade da pessoa","A lei do local de nascimento","A lei escolhida pela própria pessoa"],
+  correct:0, exp:"Art. 7º — estatuto pessoal pelo critério do <b>domicílio</b> (não da nacionalidade)."},
+ {a:"Art. 8º", q:"Para qualificar os bens e reger as relações a eles referentes, aplica-se:",
+  opts:["A lei do país onde os bens estão situados","A lei do domicílio do proprietário, sempre","A lei do país onde o bem foi fabricado","A lei escolhida no contrato"],
+  correct:0, exp:"Art. 8º — regra da <i>lex rei sitae</i>: aplica-se a lei do local onde o bem está situado."},
+ {a:"Art. 9º", q:"Para qualificar e reger as obrigações, aplica-se a lei do país:",
+  opts:["Em que a obrigação se constituiu","Em que a obrigação será executada, sempre","Do domicílio do devedor","De maior proteção ao consumidor"],
+  correct:0, exp:"Art. 9º — aplica-se a lei do país em que a obrigação se constituiu (reputa-se constituída onde reside o proponente)."},
+ {a:"Art. 10", q:"A sucessão por morte obedece, em regra, à lei do país:",
+  opts:["Em que era domiciliado o falecido","Em que se situam os bens","Da nacionalidade dos herdeiros","Onde foi lavrado o testamento"],
+  correct:0, exp:"Art. 10 — lei do domicílio do falecido. Exceção: bens no Brasil aplicam a lei mais favorável ao cônjuge/filhos brasileiros (§1º)."},
+ {a:"Art. 11", q:"Sociedades e fundações estrangeiras, para funcionar no Brasil, precisam:",
+  opts:["Ter os atos constitutivos aprovados pelo Governo e sujeitar-se à lei brasileira","Apenas comunicar o início das atividades","Ser autorizadas pelo país de origem","Nada — atuam livremente"],
+  correct:0, exp:"Art. 11, §1º — obedecem à lei de onde se constituíram, mas para ter filial no Brasil dependem de aprovação do Governo e ficam sujeitas à lei brasileira."},
+ {a:"Art. 12", q:"A ação sobre imóvel situado no Brasil é de competência:",
+  opts:["Exclusiva da autoridade judiciária brasileira","Concorrente com o país do proprietário","Do país onde o contrato foi assinado","Escolhida pelas partes"],
+  correct:0, exp:"Art. 12, §1º — competência exclusiva da Justiça brasileira para ações relativas a imóveis situados no Brasil."},
+ {a:"Art. 13", q:"A prova de fatos ocorridos no exterior rege-se pela lei do país onde ocorreram, mas:",
+  opts:["Não se admite prova que a lei brasileira desconheça","Admite-se qualquer meio de prova, sem limite","A prova segue sempre a lei brasileira","Depende de tratado internacional"],
+  correct:0, exp:"Art. 13 — a lei do local rege ônus e meios de prova, mas o Brasil não aceita meio de prova que sua lei desconheça."},
+ {a:"Art. 14", q:"Quanto à lei estrangeira invocada por uma parte, o juiz:",
+  opts:["Pode exigir de quem a invoca prova do texto e da vigência","É obrigado a conhecê-la de ofício","Deve sempre recusá-la","Aplica-a apenas se houver tradução juramentada"],
+  correct:0, exp:"Art. 14 — não conhecendo a lei estrangeira, o juiz pode exigir prova do seu texto e da sua vigência."},
+ {a:"Art. 15", q:"Atualmente, a homologação de sentença estrangeira compete a qual órgão?",
+  opts:["Ao Superior Tribunal de Justiça (STJ)","Ao Supremo Tribunal Federal (STF)","Ao juiz de primeiro grau","Ao Ministério da Justiça"],
+  correct:0, exp:"O art. 15 fala em STF, mas, desde a EC 45/2004, a homologação é do <b>STJ</b>."},
+ {a:"Art. 16", q:"Ao aplicar a lei estrangeira, o juiz brasileiro deve considerar as remissões que ela faça a outra lei?",
+  opts:["Não — aplica-se a disposição dela, sem reenvio","Sim, seguindo toda a cadeia de remissões","Somente se a outra lei for mais favorável","Apenas em direito de família"],
+  correct:0, exp:"Art. 16 — vedação ao <b>reenvio</b>: aplica-se a lei estrangeira indicada, sem considerar remissões a outras leis."},
+ {a:"Art. 17", q:"Leis, atos e sentenças estrangeiras NÃO terão eficácia no Brasil quando ofenderem:",
+  opts:["A soberania nacional, a ordem pública e os bons costumes","Apenas a Constituição Federal","Somente a ordem econômica","Qualquer norma infralegal brasileira"],
+  correct:0, exp:"Art. 17 — os três limites: soberania nacional, ordem pública e bons costumes."},
+ {a:"Art. 18", q:"Sobre o divórcio consensual de brasileiros perante autoridade consular, é correto:",
+  opts:["É possível se não houver filhos menores/incapazes e com advogado","É vedado em qualquer hipótese","Dispensa a presença de advogado","Só vale para estrangeiros"],
+  correct:0, exp:"Art. 18, §§1º e 2º — cabe separação/divórcio consensual no consulado, sem filhos menores/incapazes, com assistência obrigatória de advogado."},
+ {a:"Art. 19", q:"Os atos celebrados por cônsules brasileiros na vigência da LINDB:",
+  opts:["São válidos, desde que cumpram todos os requisitos legais","São nulos de pleno direito","Dependem de nova homologação anual","Valem apenas por 90 dias"],
+  correct:0, exp:"Art. 19 — reputam-se válidos se satisfizerem os requisitos; pedido recusado pode ser renovado em 90 dias."},
+ {a:"Art. 20", q:"Nas esferas administrativa, controladora e judicial, NÃO se decidirá com base em valores jurídicos abstratos sem:",
+  opts:["Considerar as consequências práticas da decisão","Ouvir o Ministério Público","Publicar edital prévio","Consultar o tribunal superior"],
+  correct:0, exp:"Art. 20 — consequencialismo: a motivação deve demonstrar necessidade e adequação, inclusive frente às alternativas."},
+ {a:"Art. 21", q:"A decisão que invalida ato, contrato ou norma administrativa deverá:",
+  opts:["Indicar expressamente suas consequências jurídicas e administrativas","Ser mantida em sigilo","Impor o maior ônus possível ao infrator","Aguardar autorização legislativa"],
+  correct:0, exp:"Art. 21 — deve indicar as consequências e, quando for o caso, condições de regularização proporcionais, sem ônus anormais/excessivos."},
+ {a:"Art. 22", q:"Na interpretação de normas sobre gestão pública, devem ser considerados:",
+  opts:["Os obstáculos e as dificuldades reais do gestor","Apenas o resultado final alcançado","A opinião pessoal do julgador","O tempo de serviço do agente, somente"],
+  correct:0, exp:"Art. 22 — leva em conta as circunstâncias práticas que limitaram a ação do agente; na sanção, natureza, gravidade, danos, atenuantes e antecedentes."},
+ {a:"Art. 23", q:"Ao estabelecer interpretação NOVA que imponha novo dever, a decisão deverá:",
+  opts:["Prever regime de transição, quando indispensável","Ter efeitos retroativos","Ser aplicada imediatamente, sem exceção","Ser submetida a referendo"],
+  correct:0, exp:"Art. 23 — regime de transição para cumprimento proporcional, equânime e eficiente, sem prejuízo ao interesse geral."},
+ {a:"Art. 24", q:"Na revisão de ato já concluído, é VEDADO:",
+  opts:["Invalidar situação constituída com base em mudança posterior de orientação","Considerar as orientações gerais da época","Analisar a jurisprudência majoritária","Levar em conta a prática administrativa reiterada"],
+  correct:0, exp:"Art. 24 — considera-se a orientação geral da época; não se pode invalidar o que estava conforme o entendimento vigente ao tempo do ato."},
+ {a:"Art. 25", q:"Qual a situação do art. 25 da LINDB (incluído pela Lei 13.655/2018)?",
+  opts:["Foi vetado — não há norma em vigor","Trata da coisa julgada administrativa","Regula a consulta pública","Define o erro grosseiro do agente"],
+  correct:0, exp:"O art. 25 foi <b>vetado</b> integralmente: não produz efeitos e não integra a LINDB em vigor."},
+ {a:"Art. 26", q:"O compromisso firmado pela Administração para eliminar incerteza jurídica:",
+  opts:["Só produz efeitos a partir da publicação oficial","Vale desde a assinatura, sem publicação","Dispensa a oitiva do órgão jurídico","Pode desonerar dever de forma permanente"],
+  correct:0, exp:"Art. 26 — exige oitiva do órgão jurídico e (quando couber) consulta pública; só produz efeitos após a publicação oficial."},
+ {a:"Art. 27", q:"A decisão do processo poderá impor compensação por:",
+  opts:["Benefícios indevidos ou prejuízos anormais ou injustos","Qualquer prejuízo, ainda que normal","Danos morais presumidos","Custas processuais apenas"],
+  correct:0, exp:"Art. 27 — compensa desequilíbrios do processo; decisão motivada, ouvidas as partes; cabe compromisso processual."},
+ {a:"Art. 28", q:"O agente público responde pessoalmente por suas decisões ou opiniões técnicas:",
+  opts:["Em caso de dolo ou erro grosseiro","Por qualquer erro, ainda que leve","Somente por dolo","Sempre que houver prejuízo ao erário"],
+  correct:0, exp:"Art. 28 — responsabilidade pessoal apenas por dolo ou erro grosseiro; erro de boa-fé fundamentado não gera responsabilidade."},
+ {a:"Art. 29", q:"A edição de atos normativos pela Administração poderá ser precedida de:",
+  opts:["Consulta pública, salvo atos de mera organização interna","Referendo popular obrigatório","Autorização do Poder Judiciário","Parecer vinculante do Congresso"],
+  correct:0, exp:"Art. 29 — consulta pública (preferencialmente eletrônica); aberta, as manifestações devem ser consideradas na decisão."},
+ {a:"Art. 30", q:"Regulamentos, súmulas administrativas e respostas a consultas, previstos no art. 30:",
+  opts:["Vinculam o próprio órgão/entidade até ulterior revisão","Têm caráter meramente opinativo","Vinculam todos os Poderes","Valem apenas por um ano"],
+  correct:0, exp:"Art. 30 — dever de aumentar a segurança jurídica; esses instrumentos vinculam o órgão a que se destinam até ulterior revisão."},
+];
+
+let order=[],idx=0,hits=0,answered=false,seed=7;
+function fakeRandom(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor((i+1)*fakeRandom());[a[i],a[j]]=[a[j],a[i]];}return a;}
+function start(){order=QUESTIONS.map((_,i)=>i);idx=0;hits=0;document.getElementById('start').classList.add('hide');document.getElementById('result').classList.remove('show');document.getElementById('quiz').classList.remove('hide');render();}
+function render(){answered=false;const total=QUESTIONS.length,Q=QUESTIONS[order[idx]];
+ document.getElementById('count').textContent=(idx+1)+' / '+total;
+ document.getElementById('score').textContent='Acertos: '+hits;
+ document.getElementById('fill').style.width=(idx/total*100)+'%';
+ document.getElementById('atag').textContent=Q.a;
+ document.getElementById('qtext').innerHTML=Q.q;
+ const exp=document.getElementById('exp');exp.className='exp';exp.innerHTML='';
+ const nx=document.getElementById('next');nx.classList.remove('show');nx.textContent=(idx===total-1)?'Ver resultado  →':'Próxima  →';
+ const L=['A','B','C','D'];let arr=Q.opts.map((t,i)=>({t,ok:i===Q.correct}));arr=shuffle(arr.slice());
+ const box=document.getElementById('opts');box.innerHTML='';
+ arr.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';b.innerHTML='<span class="mk">'+L[i]+'</span><span>'+o.t+'</span>';b.onclick=()=>choose(b,o.ok,arr);box.appendChild(b);});}
+function choose(btn,ok,arr){if(answered)return;answered=true;const total=QUESTIONS.length,Q=QUESTIONS[order[idx]];
+ const btns=[...document.querySelectorAll('#opts .opt')];btns.forEach(b=>b.disabled=true);
+ btns.forEach((b,i)=>{if(arr[i].ok)b.classList.add('correct');else b.classList.add('dim');});
+ const exp=document.getElementById('exp');
+ if(ok){hits++;btn.classList.remove('dim');btn.classList.add('correct');exp.className='exp g show';
+  exp.innerHTML='<span class="lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Correto!</span>'+Q.exp;}
+ else{btn.classList.remove('dim');btn.classList.add('wrong');exp.className='exp r show';
+  exp.innerHTML='<span class="lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>Não foi dessa vez</span>'+Q.exp;}
+ document.getElementById('score').textContent='Acertos: '+hits;
+ document.getElementById('fill').style.width=((idx+1)/total*100)+'%';
+ document.getElementById('next').classList.add('show');}
+function next(){if(idx<QUESTIONS.length-1){idx++;render();}else showResult();}
+function showResult(){document.getElementById('quiz').classList.add('hide');
+ const total=QUESTIONS.length,pct=Math.round(hits/total*100),r=68,c=2*Math.PI*r,off=c*(1-hits/total),col=pct>=80?'#059669':pct>=50?'#7c3aed':'#e11d48';
+ document.getElementById('ring').innerHTML='<svg width="168" height="168"><circle cx="84" cy="84" r="'+r+'" fill="none" stroke="#eef0f6" stroke-width="14"/><circle cx="84" cy="84" r="'+r+'" fill="none" stroke="'+col+'" stroke-width="14" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'"/></svg><div class="num">'+hits+'<small>de '+total+'</small></div>';
+ let t,m;if(pct>=80){t='Excelente! 🎯';m='Você domina a Parte Geral do CC. Acertou '+hits+' de '+total+' ('+pct+'%).';}
+ else if(pct>=50){t='Bom caminho!';m='Você acertou '+hits+' de '+total+' ('+pct+'%). Revise os capítulos que escaparam e refaça.';}
+ else{t='Hora de revisar';m='Você acertou '+hits+' de '+total+' ('+pct+'%). Releia os cards esquematizados e volte.';}
+ document.getElementById('rtitle').textContent=t;document.getElementById('rmsg').textContent=m;document.getElementById('result').classList.add('show');}
+function restart(){seed=7;document.getElementById('result').classList.remove('show');start();}
+
+</script>
+
+</body></html>

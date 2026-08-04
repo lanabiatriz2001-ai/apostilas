@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="claro">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Súmulas Vinculantes 37 a 48 — Material de estudo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fs:19px; --lh:1.75; --measure:66ch;
+  --sans:"Plus Jakarta Sans",system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --grad:linear-gradient(135deg,#6d5efc 0%,#a24bff 48%,#ff5fa2 100%);
+  --gap:clamp(16px,3vw,32px); --radius:22px;
+}
+html[data-theme="claro"]{
+  --bg:#f3f5fd; --bg2:#eef1fb; --ink:#1b2036; --ink-soft:#5f6685; --line:#e4e7f5;
+  --card:#ffffff; --accent:#6d5efc; --accent-ink:#5a4bf0;
+  --shadow:0 10px 30px rgba(80,70,190,.10); --shadow-sm:0 4px 14px rgba(80,70,190,.08);
+}
+html[data-theme="escuro"]{
+  --bg:#0f1120; --bg2:#151830; --ink:#eef0fb; --ink-soft:#9aa2c9; --line:#262a45;
+  --card:#181b30; --accent:#8f81ff; --accent-ink:#a99dff;
+  --shadow:0 12px 34px rgba(0,0,0,.45); --shadow-sm:0 6px 18px rgba(0,0,0,.4);
+}
+html[data-theme="sepia"]{
+  --bg:#fbeede; --bg2:#f7e6cf; --ink:#3a2f22; --ink-soft:#7b6a4f; --line:#ecdcc0;
+  --card:#fff7ea; --accent:#e06636; --accent-ink:#c4522a;
+  --shadow:0 10px 28px rgba(150,100,40,.14); --shadow-sm:0 4px 14px rgba(150,100,40,.1);
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:var(--fs);line-height:var(--lh);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body.font-amigavel{--sans:"Verdana","Trebuchet MS","Comic Sans MS",sans-serif;letter-spacing:.01em}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth} .lift{transition:transform .16s ease,box-shadow .16s ease,border-color .16s}}
+h1,h2,h3,h4{font-weight:800;line-height:1.18;letter-spacing:-.01em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* header */
+header.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:10px;padding:11px 16px;max-width:1220px;margin:0 auto}
+.brand{font-weight:800;font-size:1rem;margin-right:auto;display:flex;align-items:center;gap:11px}
+.brand .mk{width:34px;height:34px;border-radius:11px;background:var(--grad);color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:800;box-shadow:0 6px 16px rgba(120,80,240,.35)}
+.brand .btxt small{display:block;font-size:.7rem;color:var(--ink-soft);font-weight:600;letter-spacing:.02em}
+.iconbtn{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 15px;cursor:pointer;font-size:.85rem;font-weight:600;min-height:42px;display:inline-flex;align-items:center;gap:7px}
+.iconbtn:hover{border-color:var(--accent);color:var(--accent)}
+.iconbtn.primary{background:var(--grad);color:#fff;border:none;box-shadow:0 8px 20px rgba(120,80,240,.32)}
+.iconbtn.primary:hover{color:#fff;filter:brightness(1.05)}
+.iconbtn:focus-visible,.qopt:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media(max-width:520px){.hide-sm{display:none}}
+.progresswrap{height:4px;background:var(--line)} .progressbar{height:100%;width:0;background:var(--grad)}
+
+.wrap{max-width:1220px;margin:0 auto;display:grid;grid-template-columns:300px minmax(0,1fr);gap:var(--gap);padding:var(--gap) 16px 130px}
+@media (max-width:960px){.wrap{grid-template-columns:1fr}}
+
+/* TOC */
+aside.toc{position:sticky;top:78px;align-self:start;max-height:calc(100vh - 98px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.toc h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-soft);margin:.1rem .2rem .5rem}
+.toc .prog{font-size:.82rem;color:var(--ink-soft);margin:0 .2rem .7rem;display:flex;align-items:center;gap:8px}
+.toc .prog .pill{background:var(--grad);color:#fff;border-radius:999px;padding:2px 10px;font-weight:700;font-size:.75rem}
+.toclink{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:14px;cursor:pointer;color:var(--ink);text-decoration:none;font-size:.9rem;font-weight:600}
+.toclink:hover{background:var(--bg)}
+.toclink.active{background:color-mix(in srgb,var(--sc) 12%,var(--card))}
+.toclink .tnum{min-width:50px;flex:0 0 50px;text-align:center;font-weight:800;font-size:.72rem;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));border-radius:9px;padding:5px 2px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.toclink.active .ttl{color:var(--sc)}
+.toclink .check{margin-left:auto;width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:0 0 auto;font-size:11px;color:#fff;display:grid;place-items:center}
+.toclink.read .check{background:linear-gradient(135deg,#22c55e,#16a34a);border-color:transparent}
+.toclink.read .check::after{content:"✓"}
+@media (max-width:960px){
+  aside.toc{position:fixed;inset:0 auto 0 0;width:min(86vw,330px);z-index:60;transform:translateX(-105%);transition:transform .22s;border-radius:0 var(--radius) var(--radius) 0;max-height:100vh}
+  aside.toc.open{transform:none}
+  .scrim{position:fixed;inset:0;background:rgba(10,10,30,.45);z-index:55;opacity:0;pointer-events:none;transition:opacity .2s}
+  .scrim.on{opacity:1;pointer-events:auto}
+}
+@media(min-width:961px){.scrim{display:none}.menu-only{display:none}}
+
+main{min-width:0}
+/* HERO */
+.hero{position:relative;overflow:hidden;border-radius:26px;padding:clamp(24px,4vw,44px);color:#fff;margin-bottom:var(--gap);
+  background:linear-gradient(135deg,#6d5efc 0%,#9b45ff 42%,#ff5b9a 82%,#ff8f5f 100%);box-shadow:0 20px 50px rgba(110,70,230,.32)}
+.hero::before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.16);top:-140px;right:-80px;filter:blur(6px)}
+.hero::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.12);bottom:-120px;left:20%}
+.hero>*{position:relative;z-index:1}
+.hero .kicker{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;opacity:.92;margin:0 0 10px}
+.hero h1{margin:.1rem 0;font-size:clamp(1.7rem,4.6vw,2.7rem);text-shadow:0 2px 10px rgba(60,20,90,.2)}
+.hero .sub{font-size:1.05rem;opacity:.95;margin:.4rem 0 0;font-weight:500;max-width:62ch}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.legend span{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 13px;font-size:.82rem;font-weight:600}
+.legend .sw{width:13px;height:13px;border-radius:4px}.legend .sw.orig{background:#fff;opacity:.85}.legend .sw.aid{background:#ffe08a}
+.howto{margin-top:18px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);border-radius:16px;padding:15px 18px;backdrop-filter:blur(4px)}
+.howto b{font-weight:800} .howto ul{margin:.5rem 0 0;padding-left:1.1rem;font-size:.88rem;opacity:.96} .howto li{margin:.32rem 0}
+.note-parte{margin-top:14px;background:rgba(255,255,255,.16);border-radius:16px;padding:13px 16px;font-size:.85rem;font-weight:500;border-left:5px solid #ffe08a}
+
+/* SECTION */
+.section{scroll-margin-top:84px;margin-bottom:calc(var(--gap)*1.5)}
+.section .shead{display:flex;gap:15px;align-items:center;margin-bottom:6px}
+.section .snum{flex:0 0 auto;min-width:60px;height:60px;padding:0 10px;border-radius:18px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;display:grid;place-items:center;box-shadow:0 12px 26px color-mix(in srgb,var(--sc) 45%,transparent);line-height:1}
+.section .snum small{font-size:.58rem;letter-spacing:.14em;font-weight:800;opacity:.92}
+.section .snum span{font-size:1.5rem;font-weight:800}
+.section .stitlewrap{display:flex;flex-direction:column;gap:1px;min-width:0}
+.section .skicker{font-size:.72rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--sc)}
+.section .stitle{font-size:clamp(1.25rem,2.8vw,1.7rem);margin:0;letter-spacing:-.02em}
+.section .hrule{height:5px;border-radius:999px;background:linear-gradient(90deg,var(--c1),var(--c2),transparent);margin:12px 0 18px}
+.readbtn{margin-left:auto;align-self:center;white-space:nowrap}
+
+/* ENUNCIADO box */
+.enun{background:linear-gradient(135deg,color-mix(in srgb,var(--c1) 15%,var(--card)),color-mix(in srgb,var(--c2) 11%,var(--card)));
+  border:2px solid color-mix(in srgb,var(--sc) 34%,var(--line));border-radius:20px;padding:17px 20px;margin:6px 0 18px;box-shadow:var(--shadow-sm)}
+.enun .etag{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;border-radius:999px;padding:6px 14px;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:11px;box-shadow:0 6px 16px color-mix(in srgb,var(--sc) 40%,transparent)}
+.enun p{margin:.1rem 0 0;font-size:1.06rem;font-weight:600;line-height:1.62;max-width:72ch}
+.enun .mchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.enun .mchip{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--sc) 13%,var(--card));border:1.5px solid color-mix(in srgb,var(--sc) 30%,var(--line));color:var(--sc);border-radius:999px;padding:5px 12px;font-size:.77rem;font-weight:700}
+
+.prosa{max-width:var(--measure)}
+.prosa p{margin:1.05em 0}
+.prosa p.quote{background:color-mix(in srgb,var(--sc) 9%,var(--card));border-left:5px solid var(--sc);padding:12px 18px;border-radius:6px 16px 16px 6px;font-size:.98rem;font-weight:500}
+b.bi{font-weight:800}
+
+/* AIDS — colorful cards, gradient pill labels */
+.aid{background:color-mix(in srgb,var(--sc) 7%,var(--card));border:1.5px solid color-mix(in srgb,var(--sc) 22%,var(--line));border-radius:20px;padding:16px 18px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.aid .tag{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;border-radius:999px;padding:6px 14px;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:11px;box-shadow:0 6px 16px color-mix(in srgb,var(--sc) 40%,transparent)}
+.aid.resumo p{margin:.1rem 0 0;max-width:64ch}
+.pontos{list-style:none;margin:.1rem 0 0;padding:0;display:grid;gap:10px}
+.pontos li{display:flex;gap:12px;align-items:flex-start;font-size:.93rem;font-weight:500}
+.pontos li::before{content:"";width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--c1),var(--c2));margin-top:.42em;flex:0 0 auto;box-shadow:0 2px 6px color-mix(in srgb,var(--sc) 45%,transparent)}
+.terms{display:flex;flex-wrap:wrap;gap:9px;margin-top:2px}
+.chip{border:1.5px solid color-mix(in srgb,var(--sc) 30%,var(--line));background:color-mix(in srgb,var(--sc) 10%,var(--card));color:var(--sc);border-radius:999px;padding:7px 14px;font-size:.82rem;font-weight:700;cursor:pointer}
+.chip:hover{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;border-color:transparent}
+.termdef{margin-top:12px;font-size:.9rem;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:none;font-weight:500}
+.termdef.show{display:block} .termdef b{color:var(--sc)}
+
+.quiz .tag{background:linear-gradient(135deg,var(--c1),var(--c2))}
+.qhint{font-size:.82rem;color:var(--ink-soft);margin:-2px 0 10px;font-weight:500}
+.qitem{margin:14px 0} .qitem:first-of-type{margin-top:4px}
+.qq{font-weight:700;margin:0 0 10px;font-size:1rem}
+.qq .qn{color:var(--sc);font-weight:800;margin-right:3px}
+.qopts{display:grid;gap:8px}
+.qo{width:100%;text-align:left;font-family:inherit;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:13px;padding:10px 13px;font-size:.9rem;font-weight:500;display:flex;gap:11px;align-items:center;cursor:pointer;transition:border-color .12s,background .12s,transform .05s}
+.qo:hover:not(.locked){border-color:var(--sc)}
+.qo:active:not(.locked){transform:scale(.995)}
+.qo:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.qo:disabled{cursor:default}
+.qo .ql{flex:0 0 auto;width:26px;height:26px;border-radius:9px;background:color-mix(in srgb,var(--sc) 13%,var(--card));color:var(--sc);display:grid;place-items:center;font-weight:800;font-size:.85rem;transition:background .12s,color .12s}
+.qo .qtext{flex:1}
+.qo .qmk{flex:0 0 auto;width:20px;text-align:center;font-weight:800;font-size:1.05rem}
+.qo.correct{border-color:#16a34a;background:color-mix(in srgb,#22c55e 15%,var(--card))}
+.qo.correct .ql{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
+.qo.correct .qmk::after{content:"✓";color:#16a34a}
+.qo.wrong{border-color:#e11d48;background:color-mix(in srgb,#f43f5e 14%,var(--card))}
+.qo.wrong .ql{background:linear-gradient(135deg,#fb7185,#e11d48);color:#fff}
+.qo.wrong .qmk::after{content:"✗";color:#e11d48}
+.qfb{display:none;margin:9px 0 2px;padding:11px 14px;border-radius:13px;font-size:.88rem;font-weight:500;line-height:1.5}
+.qfb.show{display:block}
+.qfb.ok{background:color-mix(in srgb,#22c55e 12%,var(--card));border:1.5px solid color-mix(in srgb,#22c55e 42%,var(--line))}
+.qfb.no{background:color-mix(in srgb,#f43f5e 10%,var(--card));border:1.5px solid color-mix(in srgb,#f43f5e 40%,var(--line))}
+.qfb .qfbh{font-weight:800;display:block;margin-bottom:2px}
+.qfb.ok .qfbh{color:#15803d} .qfb.no .qfbh{color:#be123c}
+html[data-theme="escuro"] .qfb.ok .qfbh{color:#4ade80} html[data-theme="escuro"] .qfb.no .qfbh{color:#fb7185}
+.enun.suspensa{border-style:dashed} .enun .ewarn{margin:0 0 8px;font-weight:700;color:var(--sc);font-size:.9rem}
+/* gabarito recolhível */
+.gab{margin:16px 0;border:2px dashed color-mix(in srgb,var(--sc) 40%,var(--line));border-radius:18px;background:color-mix(in srgb,var(--sc) 6%,var(--card));overflow:hidden}
+.gab>summary{cursor:pointer;list-style:none;padding:13px 16px;display:flex;align-items:center;gap:11px;font-weight:600}
+.gab>summary::-webkit-details-marker{display:none}
+.gab>summary::after{content:"▸";margin-left:auto;color:var(--sc);font-weight:800;transition:transform .15s}
+.gab[open]>summary::after{transform:rotate(90deg)}
+.gab .gtag{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;border-radius:999px;padding:6px 14px;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.gab .ghint{color:var(--ink-soft);font-size:.83rem;font-weight:500}
+.gablist{margin:0;padding:2px 20px 16px 44px;display:grid;gap:10px;font-size:.9rem;font-weight:500}
+.gablist li{padding-left:4px} .gablist li::marker{color:var(--sc);font-weight:800}
+.gablist b{color:var(--sc)}
+
+/* drawer */
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(90vw,370px);background:var(--card);border-left:1px solid var(--line);z-index:70;transform:translateX(105%);transition:transform .22s;overflow:auto;box-shadow:var(--shadow)}
+.drawer.open{transform:none}
+.drawer .dhead{display:flex;align-items:center;padding:16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--card)}
+.drawer .dhead b{margin-right:auto;font-size:1.05rem}
+.drawer .body{padding:16px;display:grid;gap:20px}
+.ctl label{display:block;font-size:.78rem;color:var(--ink-soft);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1;min-width:44px;border:2px solid var(--line);background:var(--bg2);color:var(--ink);border-radius:13px;padding:9px;cursor:pointer;font-size:.86rem;font-weight:600}
+.seg button.on{border-color:transparent;background:var(--grad);color:#fff}
+.sw-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sw-row .lbl{font-size:.9rem;font-weight:600} .sw-row .lbl small{display:block;color:var(--ink-soft);font-size:.76rem;font-weight:400}
+.switch{position:relative;width:52px;height:30px;flex:0 0 auto}
+.switch input{opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.slider{position:absolute;inset:0;background:var(--line);border-radius:999px;transition:.16s}
+.slider::before{content:"";position:absolute;left:3px;top:3px;width:24px;height:24px;background:#fff;border-radius:50%;transition:.16s;box-shadow:0 2px 5px rgba(0,0,0,.2)}
+.switch input:checked + .slider{background:var(--grad)} .switch input:checked + .slider::before{transform:translateX(22px)}
+
+.ttsbar{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:65;background:var(--card);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow);display:none;align-items:center;gap:6px;padding:8px 12px}
+.ttsbar.show{display:flex}
+.ttsbar button{border:none;background:var(--bg2);color:var(--ink);border-radius:999px;width:42px;height:42px;cursor:pointer;font-size:1rem}
+.ttsbar button:hover{background:var(--grad);color:#fff}
+.ttsbar .lab{font-size:.8rem;color:var(--ink-soft);padding:0 8px;max-width:44vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.reading{background:color-mix(in srgb,var(--accent) 16%,transparent);border-radius:10px;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 32%,transparent)}
+
+body.focus .prosa p{transition:opacity .2s} body.focus .prosa p:not(.pfocus){opacity:.24}
+body.focus .prosa p.pfocus,body.focus .prosa p.reading{opacity:1}
+.focusnav{position:fixed;right:16px;bottom:16px;z-index:64;display:none;flex-direction:column;gap:8px}
+body.focus .focusnav{display:flex}
+.focusnav button{width:54px;height:54px;border-radius:50%;border:none;background:var(--grad);color:#fff;box-shadow:0 10px 24px rgba(120,80,240,.4);cursor:pointer;font-size:1.4rem}
+
+.modal{position:fixed;inset:0;z-index:90;display:none;align-items:flex-start;justify-content:center;padding:5vh 16px}
+.modal.open{display:flex}
+.modal .mbg{position:absolute;inset:0;background:rgba(10,10,30,.5)}
+.modal .mcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:24px;width:min(720px,100%);max-height:90vh;overflow:auto;box-shadow:var(--shadow)}
+.modal .mhead{position:sticky;top:0;background:var(--card);padding:16px 18px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center}
+.modal .mhead b{margin-right:auto;font-size:1.1rem}
+.modal input.search{width:100%;padding:12px 15px;border:2px solid var(--line);border-radius:14px;background:var(--bg2);color:var(--ink);font-size:.92rem;font-weight:500}
+.modal input.search:focus{outline:none;border-color:var(--accent)}
+.gitem{padding:13px 18px;border-bottom:1px solid var(--line)}
+.gitem .gt{font-weight:800} .gitem .gs{font-size:.72rem;color:#fff;background:var(--grad);border-radius:999px;padding:2px 9px;margin-left:8px;font-weight:700}
+.gitem .gd{margin:5px 0 0;font-size:.9rem;color:var(--ink-soft);font-weight:500}
+.backtop{position:fixed;right:16px;bottom:16px;z-index:50;border:none;background:var(--grad);color:#fff;border-radius:14px;padding:11px 15px;cursor:pointer;box-shadow:0 10px 24px rgba(120,80,240,.35);display:none;font-weight:700}
+.backtop.show{display:block} @media(max-width:960px){.backtop{bottom:80px}}
+</style></head>
+<body>
+<header class="top"><div class="top-in">
+  <button class="iconbtn menu-only" id="btnMenu" aria-label="Índice">☰</button>
+  <div class="brand"><span class="mk">SV</span><span class="btxt">Súmulas Vinculantes<small>STF · 37 a 48</small></span></div>
+  <button class="iconbtn" id="btnGloss">📖 <span class="hide-sm">Glossário</span></button>
+  <button class="iconbtn primary" id="btnSettings">Aa <span class="hide-sm">Ajustes</span></button>
+</div><div class="progresswrap"><div class="progressbar" id="pbar"></div></div></header>
+
+<div class="scrim" id="scrim"></div>
+<div class="wrap">
+  <aside class="toc" id="toc"><h2>Sumário</h2><div class="prog"><span class="pill" id="progPill">0/0</span> <span id="progText">súmulas lidas</span></div><nav id="tocNav"></nav></aside>
+  <main id="main"></main>
+</div>
+
+<div class="drawer" id="drawer">
+  <div class="dhead"><b>Ajustes de leitura</b><button class="iconbtn" id="btnCloseDrawer">✕</button></div>
+  <div class="body">
+    <div class="ctl"><label>Tema</label><div class="seg" id="segTheme">
+      <button data-theme="claro" class="on">☀️ Claro</button><button data-theme="sepia">🌼 Creme</button><button data-theme="escuro">🌙 Escuro</button></div></div>
+    <div class="ctl"><label>Tamanho do texto</label><div class="seg" id="segFs">
+      <button data-fs="16">A</button><button data-fs="19" class="on">A</button><button data-fs="22">A</button><button data-fs="26">A</button></div></div>
+    <div class="ctl"><label>Espaçamento</label><div class="seg" id="segLh">
+      <button data-lh="1.5">Compacto</button><button data-lh="1.75" class="on">Médio</button><button data-lh="2.1">Amplo</button></div></div>
+    <div class="ctl"><label>Largura da coluna</label><div class="seg" id="segMeasure">
+      <button data-measure="54ch">Estreita</button><button data-measure="66ch" class="on">Média</button><button data-measure="84ch">Larga</button></div></div>
+    <div class="sw-row"><div class="lbl">Fonte amigável<small>Espaçada, p/ dislexia</small></div><label class="switch"><input type="checkbox" id="swFont"><span class="slider"></span></label></div>
+    <div class="sw-row"><div class="lbl">Leitura biônica<small>Início das palavras em negrito</small></div><label class="switch"><input type="checkbox" id="swBionic"><span class="slider"></span></label></div>
+    <div class="sw-row"><div class="lbl">Modo foco<small>Um parágrafo por vez</small></div><label class="switch"><input type="checkbox" id="swFocus"><span class="slider"></span></label></div>
+    <div class="ctl"><label>Velocidade da leitura em voz alta</label><div class="seg" id="segRate">
+      <button data-rate="0.8">Devagar</button><button data-rate="1" class="on">Normal</button><button data-rate="1.25">Rápido</button></div></div>
+    <button class="iconbtn" id="btnReset" style="width:100%">↺ Restaurar padrões</button>
+    <p style="font-size:.76rem;color:var(--ink-soft);margin:0">Preferências e progresso ficam salvos neste navegador.</p>
+  </div>
+</div>
+
+<div class="modal" id="modalGloss"><div class="mbg" data-close></div><div class="mcard">
+  <div class="mhead"><b>📖 Glossário</b><button class="iconbtn" data-close>✕</button></div>
+  <div style="padding:14px 18px"><input class="search" id="gSearch" placeholder="Buscar termo… (ex.: nepotismo, precatório, uti singuli)"></div>
+  <div id="glist"></div></div></div>
+
+<div class="ttsbar" id="ttsbar"><button id="ttsPrev">⏮</button><button id="ttsToggle">⏸</button><button id="ttsStop">⏹</button><span class="lab" id="ttsLab">Lendo…</span></div>
+<div class="focusnav"><button id="fnUp" aria-label="Anterior">↑</button><button id="fnDown" aria-label="Próximo">↓</button></div>
+<button class="backtop" id="backtop">↑ topo</button>
+
+<script>const DATA={"title": "SÚMULAS VINCULANTES 37 A 48", "subtitle": "STF · enunciados oficiais + explicações de estudo", "hues": {"37": 262, "38": 190, "39": 150, "40": 32, "41": 340, "42": 210, "43": 288, "44": 120, "45": 16, "46": 308, "47": 168, "48": 236}, "sections": [{"num": "37", "theme": "Judiciário não aumenta vencimentos por isonomia", "enunciado": "Não cabe ao Poder Judiciário, que não tem função legislativa, aumentar vencimentos de servidores públicos sob o fundamento de isonomia.", "meta": ["Aprovada em 16/10/2014.", "Importante."], "resumo": "O Judiciário não pode aumentar vencimentos de servidores públicos invocando a isonomia. Como a remuneração depende de lei específica (art. 37, X, da CF) e o juiz não legisla, não cabe a ele suprir a falta de lei para equiparar salários. A regra vem da antiga Súmula 339 do STF.", "pontos": ["Vencimento só se fixa ou altera por lei específica (art. 37, X, da CF).", "O juiz não exerce função legislativa — não pode conceder aumento por isonomia.", "A SV 37 converteu a Súmula 339 do STF (precedente RE 592.317, Tema 315)."], "quiz": [{"q": "O Judiciário pode aumentar vencimentos de servidores com base na isonomia?", "options": ["Sim", "Não (SV 37)", "Só em caso de erro material"], "answer": 1, "explain": "A SV 37 veda ao Judiciário aumentar vencimentos sob o fundamento de isonomia, pois não exerce função legislativa."}, {"q": "Por que o juiz não pode conceder esse aumento?", "options": ["Porque não exerce função legislativa e a remuneração depende de lei (art. 37, X)", "Porque falta prova nos autos", "Porque a isonomia não se aplica ao serviço público"], "answer": 0, "explain": "A remuneração só se altera por lei específica; o juiz não legisla nem supre a ausência de lei."}, {"q": "A SV 37 tem origem em qual enunciado?", "options": ["Súmula 339 do STF", "Súmula 686 do STF", "Súmula 19 do STJ"], "answer": 0, "explain": "A SV 37 converteu a Súmula 339 do STF."}, {"q": "Qual dispositivo exige lei específica para fixar ou alterar a remuneração de servidor?", "options": ["Art. 37, X, da CF", "Art. 5º, II, da CF", "Art. 150, I, da CF"], "answer": 0, "explain": "O art. 37, X, da CF exige lei específica para a fixação ou alteração da remuneração."}, {"q": "Identificada uma desigualdade entre servidores, o juiz pode equipará-los?", "options": ["Sim, sempre", "Não — a correção depende de lei", "Só por meio de liminar"], "answer": 1, "explain": "Mesmo diante de desigualdade, o juiz não pode equiparar por isonomia; depende de lei."}], "terms": [{"termo": "Isonomia", "definicao": "Princípio da igualdade. Não autoriza o Judiciário a equiparar vencimentos sem lei (SV 37).", "secao": "37"}, {"termo": "Reserva legal (art. 37, X)", "definicao": "Exigência de lei específica para fixar ou alterar a remuneração de servidores públicos.", "secao": "37"}, {"termo": "Súmula 339 do STF", "definicao": "Enunciado anterior, de mesmo teor, convertido na SV 37.", "secao": "37"}], "blocks": ["A remuneração de servidor público só pode ser fixada ou alterada por lei específica (art. 37, X, da CF/88). Ainda que o juiz identifique uma desigualdade entre servidores, ele não pode conceder aumento com base na isonomia, porque não exerce função legislativa e não pode suprir a ausência de lei.", "A SV 37 converteu em súmula vinculante a antiga Súmula 339 do STF, recepcionada pela CF/88 (precedente: RE 592.317/RJ, Tema 315).", "Ponto de atenção: discute-se, ainda sem definição plenária, eventual exceção ligada à simetria entre a Magistratura e o Ministério Público (Resolução 133/2011 do CNJ)."]}, {"num": "38", "theme": "Município fixa o horário do comércio local", "enunciado": "É competente o Município para fixar o horário de funcionamento de estabelecimento comercial.", "meta": ["Aprovada em 11/03/2015."], "resumo": "O Município é competente para fixar o horário de funcionamento do comércio, por ser assunto de interesse local (art. 30, I, da CF). Cuidado com a distinção: o horário de atendimento dos bancos é competência da União (Súmula 19 do STJ), mas o conforto e a segurança dos usuários de banco (fila, cadeiras, etc.) podem ser regulados pelo Município.", "pontos": ["Horário do comércio local = competência do Município (interesse local, art. 30, I).", "Horário bancário = competência da União (Súmula 19 do STJ).", "Conforto/segurança do usuário de banco (fila, cadeiras) = pode o Município.", "A SV 38 converteu a Súmula 645 do STF."], "quiz": [{"q": "Quem fixa o horário de funcionamento do comércio local?", "options": ["A União", "O Município (SV 38)", "O Estado"], "answer": 1, "explain": "É competência do Município, por ser assunto de interesse local (art. 30, I, da CF)."}, {"q": "E o horário de atendimento dos bancos, quem fixa?", "options": ["O Município", "A União (Súmula 19 do STJ)", "O próprio banco"], "answer": 1, "explain": "O horário bancário é competência da União; o tema transcende o interesse local (Súmula 19 do STJ)."}, {"q": "O Município pode legislar sobre tempo de fila e cadeiras para usuários de banco?", "options": ["Não", "Sim, é interesse local", "Só com lei federal autorizando"], "answer": 1, "explain": "Pode: o conforto e a segurança dos usuários são interesse local."}, {"q": "Qual o fundamento da competência municipal na SV 38?", "options": ["Interesse local (art. 30, I, da CF)", "Competência residual", "Art. 22, I, da CF"], "answer": 0, "explain": "O art. 30, I, da CF atribui aos Municípios legislar sobre assuntos de interesse local."}, {"q": "A SV 38 converteu qual súmula anterior?", "options": ["Súmula 645 do STF", "Súmula 19 do STJ", "Súmula 666 do STF"], "answer": 0, "explain": "A SV 38 converteu a Súmula 645 do STF."}], "terms": [{"termo": "Interesse local (art. 30, I)", "definicao": "Assuntos predominantemente locais, de competência legislativa do Município — como o horário do comércio.", "secao": "38"}, {"termo": "Súmula 19 do STJ", "definicao": "Fixa que o horário bancário (atendimento ao público) é competência da União, não do Município.", "secao": "38"}], "blocks": ["O horário de funcionamento do comércio local é assunto de interesse local (art. 30, I, da CF/88); por isso, compete ao Município legislar sobre o tema. Cada cidade tem características próprias que justificam a regulação local. A SV 38 converteu a Súmula 645 do STF.", "Ressalva importante — horário bancário: a fixação do horário de atendimento dos bancos é competência da União, não do Município, porque o tema transcende o interesse local (Súmula 19 do STJ).", "Por outro lado, o Município PODE legislar sobre os serviços prestados aos usuários de banco — tempo de espera na fila, bebedouros, cadeiras, segurança, etc. —, pois isso é interesse local."]}, {"num": "39", "theme": "União legisla sobre vencimentos das polícias e bombeiros do DF", "enunciado": "Compete privativamente à União legislar sobre vencimentos dos membros das polícias civil e militar e do corpo de bombeiros militar do Distrito Federal.", "meta": ["Aprovada em 11/03/2015."], "resumo": "Quem legisla sobre os vencimentos das polícias civil e militar e do corpo de bombeiros militar do Distrito Federal é a União, de forma privativa (arts. 21, XIV, e 22 da CF). A SV 39 converteu a Súmula 647 do STF.", "pontos": ["Vencimentos das polícias e bombeiros do DF = competência privativa da União.", "Fundamento: arts. 21, XIV, 22 e 61 da CF/88.", "A SV 39 converteu a Súmula 647 do STF."], "quiz": [{"q": "Quem legisla sobre os vencimentos das polícias civil e militar e bombeiros do DF?", "options": ["O Distrito Federal", "A União, privativamente (SV 39)", "Os Estados vizinhos"], "answer": 1, "explain": "É competência privativa da União (SV 39)."}, {"q": "A competência da União, nesse caso, é:", "options": ["Concorrente", "Privativa", "Comum"], "answer": 1, "explain": "O enunciado fala em competência privativa da União."}, {"q": "A SV 39 alcança o corpo de bombeiros militar do DF?", "options": ["Não, só as polícias", "Sim, expressamente", "Só a polícia militar"], "answer": 1, "explain": "O enunciado inclui expressamente o corpo de bombeiros militar do DF."}, {"q": "A SV 39 converteu qual súmula?", "options": ["Súmula 647 do STF", "Súmula 645 do STF", "Súmula 681 do STF"], "answer": 0, "explain": "A SV 39 converteu a Súmula 647 do STF."}], "terms": [{"termo": "Competência privativa da União", "definicao": "Competência legislativa reservada à União (art. 22), aqui sobre vencimentos das polícias e bombeiros do DF.", "secao": "39"}, {"termo": "Súmula 647 do STF", "definicao": "Enunciado anterior convertido na SV 39.", "secao": "39"}], "blocks": ["É competência privativa da União legislar sobre os vencimentos dos membros das polícias civil e militar e do corpo de bombeiros militar do Distrito Federal (relacionada aos arts. 21, XIV, 22 e 61 da CF/88).", "A razão é a organização e a manutenção dessas carreiras no DF, atribuídas à União pela Constituição. A SV 39 converteu a Súmula 647 do STF, explicitando também o corpo de bombeiros militar."]}, {"num": "40", "theme": "Contribuição confederativa só dos filiados ao sindicato", "enunciado": "A contribuição confederativa de que trata o art. 8º, IV, da Constituição Federal, só é exigível dos filiados ao sindicato respectivo.", "meta": ["Aprovada em 11/03/2015."], "resumo": "A contribuição confederativa (fixada em assembleia do sindicato, não por lei) só pode ser exigida dos trabalhadores filiados ao sindicato. Quem não é filiado não pode ser obrigado a pagá-la. A SV 40 converteu a Súmula 666 do STF. Não confundir com a contribuição sindical, prevista em lei.", "pontos": ["Contribuição confederativa (art. 8º, IV, CF): só dos filiados ao sindicato.", "É fixada em assembleia (não por lei) → natureza voluntária.", "A SV 40 converteu a Súmula 666 do STF.", "Não confundir com a contribuição sindical, prevista em lei."], "quiz": [{"q": "A contribuição confederativa pode ser cobrada de quem não é filiado ao sindicato?", "options": ["Sim", "Não — só dos filiados (SV 40)", "Só de servidores públicos"], "answer": 1, "explain": "A SV 40 firma que ela só é exigível dos filiados ao sindicato respectivo."}, {"q": "A contribuição confederativa é fixada por:", "options": ["Lei", "Assembleia geral do sindicato", "Decreto do Executivo"], "answer": 1, "explain": "É fixada em assembleia do sindicato (não por lei), daí a sua natureza voluntária."}, {"q": "Qual dispositivo trata da contribuição confederativa?", "options": ["Art. 8º, IV, da CF", "Art. 149 da CF", "Art. 195 da CF"], "answer": 0, "explain": "O art. 8º, IV, da CF trata da contribuição confederativa."}, {"q": "A SV 40 converteu qual súmula?", "options": ["Súmula 666 do STF", "Súmula 670 do STF", "Súmula 645 do STF"], "answer": 0, "explain": "A SV 40 converteu a Súmula 666 do STF."}, {"q": "Contribuição confederativa e contribuição sindical são a mesma coisa?", "options": ["Sim", "Não — a sindical é prevista em lei", "Só no serviço público"], "answer": 1, "explain": "Não se confundem: a contribuição sindical é prevista em lei (parte final do art. 8º, IV)."}], "terms": [{"termo": "Contribuição confederativa", "definicao": "Contribuição fixada em assembleia do sindicato; só exigível dos filiados (art. 8º, IV, CF; SV 40).", "secao": "40"}, {"termo": "Contribuição sindical", "definicao": "Contribuição prevista em lei; não se confunde com a confederativa. Após a Reforma Trabalhista, depende de autorização do trabalhador.", "secao": "40"}, {"termo": "Súmula 666 do STF", "definicao": "Enunciado anterior convertido na SV 40.", "secao": "40"}], "blocks": ["A contribuição confederativa (também chamada de &quot;contribuição de assembleia&quot;) é fixada pela assembleia geral do sindicato, e não por lei. Por isso, tem natureza voluntária e só pode ser cobrada de quem optou por se filiar ao sindicato.", "Ninguém pode ser obrigado a pagá-la sem previsão legal ou sem ter aderido à filiação. A SV 40 converteu a Súmula 666 do STF.", "Não confundir com a contribuição sindical prevista em lei (mencionada na parte final do art. 8º, IV, da CF): esta é diferente e, após a Reforma Trabalhista (Lei 13.467/2017), passou a depender de autorização prévia e expressa do trabalhador."]}, {"num": "41", "theme": "Iluminação pública não pode ser custeada por taxa", "enunciado": "O serviço de iluminação pública não pode ser remunerado mediante taxa.", "meta": ["Aprovada em 11/03/2015.", "Importante."], "resumo": "A iluminação pública não pode ser paga por taxa, porque é serviço geral e indivisível — não atende aos requisitos da taxa (serviço específico e divisível). Para custeá-la, a EC 39/2002 criou a COSIP (art. 149-A da CF), contribuição que Municípios e o DF podem instituir, inclusive na conta de luz. A EC 132/2023 ampliou sua destinação (expansão, melhoria e monitoramento para segurança).", "pontos": ["Iluminação pública = serviço geral e indivisível → não cabe taxa (SV 41).", "A taxa exige serviço específico e divisível (art. 145, II, da CF).", "Custeio correto: COSIP (art. 149-A da CF), criada pela EC 39/2002.", "A EC 132/2023 ampliou a destinação (expansão, melhoria e monitoramento p/ segurança).", "A SV 41 converteu a Súmula 670 do STF."], "quiz": [{"q": "A iluminação pública pode ser custeada por taxa?", "options": ["Sim", "Não (SV 41)", "Só nas capitais"], "answer": 1, "explain": "A SV 41 veda a taxa: a iluminação pública é serviço geral e indivisível."}, {"q": "Por que não cabe taxa para a iluminação pública?", "options": ["Porque é serviço geral e indivisível (uti universi)", "Porque é serviço gratuito", "Porque é competência da União"], "answer": 0, "explain": "A taxa exige serviço específico e divisível; a iluminação pública é geral e indivisível."}, {"q": "Como o serviço de iluminação pública pode ser custeado?", "options": ["Por taxa", "Pela COSIP (art. 149-A da CF)", "Pelo imposto de renda"], "answer": 1, "explain": "A EC 39/2002 criou a COSIP (art. 149-A), contribuição que Municípios e o DF podem instituir."}, {"q": "Qual emenda criou a COSIP?", "options": ["EC 39/2002", "EC 33/2001", "EC 132/2023"], "answer": 0, "explain": "A EC 39/2002 acrescentou o art. 149-A, criando a COSIP."}, {"q": "O que a EC 132/2023 fez em relação à COSIP?", "options": ["Extinguiu a contribuição", "Ampliou a destinação (expansão, melhoria e monitoramento p/ segurança)", "Transformou-a em taxa"], "answer": 1, "explain": "A EC 132/2023 ampliou a destinação da contribuição, incluindo o monitoramento para segurança."}, {"q": "A SV 41 converteu qual súmula?", "options": ["Súmula 670 do STF", "Súmula 666 do STF", "Súmula 685 do STF"], "answer": 0, "explain": "A SV 41 converteu a Súmula 670 do STF."}], "terms": [{"termo": "Taxa (requisitos)", "definicao": "Tributo que exige serviço público específico e divisível (art. 145, II, da CF; art. 77 do CTN).", "secao": "41"}, {"termo": "Serviço uti universi", "definicao": "Serviço geral e indivisível, prestado a todos (ex.: iluminação pública); não pode ser custeado por taxa.", "secao": "41"}, {"termo": "COSIP", "definicao": "Contribuição para Custeio do Serviço de Iluminação Pública (art. 149-A da CF), criada pela EC 39/2002 — forma correta de custear a iluminação.", "secao": "41"}, {"termo": "Súmula 670 do STF", "definicao": "Enunciado anterior convertido na SV 41.", "secao": "41"}], "blocks": ["A taxa exige serviço público específico e divisível (art. 145, II, da CF; art. 77 do CTN). A iluminação pública é serviço geral (beneficia toda a coletividade, uti universi) e indivisível (não há como medir o uso individual); por isso, não pode ser custeada por taxa. A SV 41 converteu a Súmula 670 do STF.", "Solução dada pelo legislador: a EC 39/2002 criou a COSIP (Contribuição para Custeio do Serviço de Iluminação Pública), no art. 149-A da CF, que Municípios e o DF podem instituir — inclusive cobrada na fatura de energia. O STF reconheceu a constitucionalidade da COSIP no RE 573.675.", "A EC 132/2023 (Reforma Tributária) ampliou a destinação da contribuição: além do custeio, também a expansão e a melhoria da iluminação pública e de sistemas de monitoramento para segurança e preservação de logradouros públicos."]}, {"num": "42", "theme": "Reajuste de servidor local não pode ser vinculado a índice federal", "enunciado": "É inconstitucional a vinculação do reajuste de vencimentos de servidores estaduais ou municipais a índices federais de correção monetária.", "meta": ["Aprovada em 11/03/2015."], "resumo": "É inconstitucional atrelar o reajuste dos vencimentos de servidores estaduais ou municipais a índices federais de correção monetária. Isso feriria a autonomia dos entes (art. 18 da CF) e o art. 37, XIII (vedação de vinculação de espécies remuneratórias). A SV 42 converteu a Súmula 681 do STF.", "pontos": ["Não se pode vincular o reajuste de servidor estadual/municipal a índice federal.", "Fere a autonomia dos entes (art. 18) e o art. 37, XIII (vedação de vinculação).", "A SV 42 converteu a Súmula 681 do STF."], "quiz": [{"q": "Um Estado pode vincular o reajuste de seus servidores a um índice federal (ex.: IPCA)?", "options": ["Sim", "Não — é inconstitucional (SV 42)", "Só por lei complementar"], "answer": 1, "explain": "A SV 42 declara inconstitucional a vinculação a índices federais de correção monetária."}, {"q": "Qual princípio é ferido por essa vinculação?", "options": ["A autonomia dos entes (art. 18 da CF)", "A anterioridade tributária", "A legalidade penal"], "answer": 0, "explain": "Vincular a índices federais transfere à União o poder de decidir vencimentos locais, ferindo a autonomia federativa."}, {"q": "Qual dispositivo veda a vinculação de espécies remuneratórias?", "options": ["Art. 37, XIII, da CF", "Art. 150, I, da CF", "Art. 5º, II, da CF"], "answer": 0, "explain": "O art. 37, XIII, da CF veda a vinculação ou equiparação de espécies remuneratórias."}, {"q": "A SV 42 converteu qual súmula?", "options": ["Súmula 681 do STF", "Súmula 670 do STF", "Súmula 686 do STF"], "answer": 0, "explain": "A SV 42 converteu a Súmula 681 do STF."}], "terms": [{"termo": "Autonomia federativa (art. 18)", "definicao": "Estados e Municípios têm autonomia, inclusive para fixar a remuneração de seus servidores.", "secao": "42"}, {"termo": "Vedação de vinculação (art. 37, XIII)", "definicao": "Proíbe vincular ou equiparar espécies remuneratórias no serviço público.", "secao": "42"}], "blocks": ["Estados e Municípios são entes autônomos (art. 18 da CF) e devem ter liberdade para fixar a remuneração de seus servidores. Vincular o reajuste a índices federais (por exemplo, IPCA/IBGE) transferiria à União o poder de decidir sobre os vencimentos locais, ferindo essa autonomia.", "A vinculação também viola o art. 37, XIII, da CF, que veda a vinculação ou a equiparação de espécies remuneratórias no serviço público. A SV 42 converteu a Súmula 681 do STF."]}, {"num": "43", "theme": "Ascensão funcional sem concurso é inconstitucional", "enunciado": "É inconstitucional toda modalidade de provimento que propicie ao servidor investir-se, sem prévia aprovação em concurso público destinado ao seu provimento, em cargo que não integra a carreira na qual anteriormente investido.", "meta": ["Aprovada em 08/04/2015.", "Importante."], "resumo": "É inconstitucional a ascensão funcional: passar para cargo de outra carreira sem novo concurso viola o art. 37, II, da CF. Continuam válidas, porém, a promoção dentro da própria carreira e outras formas de provimento derivado (readaptação, reintegração, recondução, aproveitamento, reversão). A SV 43 converteu a Súmula 685 do STF.", "pontos": ["Proibida a ascensão funcional (mudar de carreira sem novo concurso) — art. 37, II.", "Permitida a promoção dentro da mesma carreira.", "Permitidas outras formas de provimento derivado (readaptação, reintegração, etc.).", "A SV 43 converteu a Súmula 685 do STF."], "quiz": [{"q": "A ascensão funcional (mudar de carreira sem novo concurso) é constitucional?", "options": ["Sim", "Não (SV 43)", "Só no Poder Judiciário"], "answer": 1, "explain": "A SV 43 declara inconstitucional a ascensão funcional, por violar o concurso público (art. 37, II)."}, {"q": "A promoção dentro da mesma carreira é proibida pela SV 43?", "options": ["Sim", "Não — continua permitida", "Só para servidores efetivos"], "answer": 1, "explain": "Não: a SV 43 veda a ascensão (mudança de carreira), não a promoção na mesma carreira."}, {"q": "Qual princípio a ascensão funcional viola?", "options": ["O concurso público (art. 37, II, da CF)", "A isonomia", "A anterioridade"], "answer": 0, "explain": "Viola a exigência de prévia aprovação em concurso público (art. 37, II)."}, {"q": "A readaptação e a reintegração são proibidas pela SV 43?", "options": ["Sim, todas as formas derivadas", "Não — são formas de provimento derivado permitidas", "Só a reintegração"], "answer": 1, "explain": "A SV 43 veda apenas a ascensão; readaptação, reintegração, recondução, aproveitamento e reversão continuam válidas."}, {"q": "A SV 43 converteu qual súmula?", "options": ["Súmula 685 do STF", "Súmula 686 do STF", "Súmula 681 do STF"], "answer": 0, "explain": "A SV 43 converteu a Súmula 685 do STF."}], "terms": [{"termo": "Ascensão funcional", "definicao": "Passagem para cargo de outra carreira sem novo concurso; é inconstitucional (SV 43).", "secao": "43"}, {"termo": "Promoção", "definicao": "Progressão dentro da mesma carreira; é permitida.", "secao": "43"}, {"termo": "Provimento derivado", "definicao": "Provimento a partir de vínculo anterior (promoção, readaptação, reintegração, etc.); só a ascensão é vedada.", "secao": "43"}, {"termo": "Súmula 685 do STF", "definicao": "Enunciado anterior convertido na SV 43.", "secao": "43"}], "blocks": ["A SV 43 proíbe a ascensão funcional (também chamada de acesso ou transposição): a passagem do servidor para cargo de carreira diferente sem novo concurso. Isso viola o princípio do concurso público (art. 37, II, da CF).", "O que NÃO é proibido: a promoção dentro da mesma carreira (provimento derivado vertical permitido) e outras formas de provimento derivado, como a readaptação (horizontal) e o reingresso (reintegração, recondução, aproveitamento, reversão).", "Em resumo, a SV 43 veda apenas a ascensão funcional — e não todas as formas de provimento derivado. A súmula converteu a Súmula 685 do STF."]}, {"num": "44", "theme": "Exame psicotécnico exige previsão em lei", "enunciado": "Só por lei se pode sujeitar a exame psicotécnico a habilitação de candidato a cargo público.", "meta": ["Aprovada em 08/04/2015.", "Importante."], "resumo": "O exame psicotécnico só pode ser exigido se houver previsão em lei (art. 37, I, da CF) — não basta o edital. A jurisprudência soma dois requisitos: critérios objetivos e possibilidade de recurso. Sem lei, o candidato reprovado é considerado aprovado; sem objetividade, refaz o teste. A SV 44 converteu a Súmula 686 do STF.", "pontos": ["Psicotécnico exige previsão em lei (art. 37, I) — não basta o edital.", "Requisitos cumulativos: lei + critérios objetivos + direito a recurso.", "Sem lei → candidato aprovado; sem objetividade → refaz o teste.", "A SV 44 converteu a Súmula 686 do STF."], "quiz": [{"q": "O que é preciso para exigir exame psicotécnico em concurso?", "options": ["Só o edital", "Previsão em lei (art. 37, I, da CF)", "Autorização da banca examinadora"], "answer": 1, "explain": "A SV 44 exige previsão em lei; o edital sozinho não basta."}, {"q": "Além da lei, quais requisitos a jurisprudência soma ao psicotécnico?", "options": ["Critérios objetivos e direito a recurso", "Idade mínima e prova oral", "Diploma de pós-graduação"], "answer": 0, "explain": "São exigidos critérios objetivos e a possibilidade de recurso pelo candidato."}, {"q": "Se o psicotécnico for anulado por falta de previsão legal, o que ocorre?", "options": ["O candidato é considerado aprovado", "Todo o concurso é anulado", "Nada muda"], "answer": 0, "explain": "Sem previsão em lei, o candidato reprovado passa a ser considerado aprovado."}, {"q": "De quando conta o prazo do mandado de segurança contra a reprovação no psicotécnico?", "options": ["Da publicação do edital", "Da publicação do resultado", "Da data da posse"], "answer": 1, "explain": "O prazo conta da publicação do resultado, e não do edital."}, {"q": "A SV 44 converteu qual súmula?", "options": ["Súmula 686 do STF", "Súmula 685 do STF", "Súmula 670 do STF"], "answer": 0, "explain": "A SV 44 converteu a Súmula 686 do STF."}], "terms": [{"termo": "Exame psicotécnico", "definicao": "Avaliação psicológica em concurso; só pode ser exigido se previsto em lei (SV 44).", "secao": "44"}, {"termo": "Princípio da legalidade (art. 37, I)", "definicao": "Os requisitos de acesso a cargo público devem estar previstos em lei.", "secao": "44"}, {"termo": "Súmula 686 do STF", "definicao": "Enunciado anterior convertido na SV 44.", "secao": "44"}], "blocks": ["O exame psicotécnico é válido em concursos, desde que respeite o princípio da legalidade (art. 37, I, da CF). A jurisprudência exige três requisitos cumulativos: previsão em lei (e no edital); critérios objetivos no teste; e possibilidade de recurso pelo candidato.", "Consequências práticas: se o exame for anulado por falta de previsão legal, o candidato é considerado aprovado; se for anulado por falta de objetividade, o candidato deve refazer o teste com critérios objetivos.", "O prazo para mandado de segurança contra a reprovação conta da publicação do resultado (e não do edital). A SV 44 converteu a Súmula 686 do STF."]}, {"num": "45", "theme": "Tribunal do Júri x foro só da Constituição estadual", "enunciado": "A competência constitucional do Tribunal do Júri prevalece sobre o foro por prerrogativa de função estabelecido exclusivamente pela Constituição estadual.", "meta": ["Aprovada em 08/04/2015.", "Importante."], "resumo": "Se a autoridade tem foro por prerrogativa previsto só na Constituição Estadual e comete crime doloso contra a vida, quem julga é o Tribunal do Júri (o art. 5º, XXXVIII, da CF prevalece). Mas, se o foro estiver na própria CF/88 (ex.: Prefeito), prevalece o foro. A SV 45 converteu a Súmula 721 do STF.", "pontos": ["Foro só na Constituição estadual + crime doloso contra a vida → Tribunal do Júri.", "Foro na própria CF/88 (ex.: Prefeito, art. 29, X) → prevalece o foro.", "Fundamento do Júri: art. 5º, XXXVIII, da CF.", "A SV 45 converteu a Súmula 721 do STF."], "quiz": [{"q": "Autoridade com foro previsto SÓ na Constituição estadual comete crime doloso contra a vida. Quem julga?", "options": ["O foro por prerrogativa", "O Tribunal do Júri (SV 45)", "O STF"], "answer": 1, "explain": "A competência do Júri (CF, art. 5º, XXXVIII) prevalece sobre o foro previsto só na Constituição estadual."}, {"q": "E se o foro estiver previsto na própria CF/88 (ex.: Prefeito)?", "options": ["Prevalece o foro por prerrogativa", "Vai ao Tribunal do Júri", "Vai ao STJ"], "answer": 0, "explain": "Se o foro está na CF/88, prevalece o foro por prerrogativa (norma mais específica)."}, {"q": "Qual dispositivo garante a competência do Tribunal do Júri?", "options": ["Art. 5º, XXXVIII, da CF", "Art. 109 da CF", "Art. 37, II, da CF"], "answer": 0, "explain": "O art. 5º, XXXVIII, da CF assegura a competência do Júri para crimes dolosos contra a vida."}, {"q": "O Júri prevalece sobre foro previsto na própria Constituição Federal?", "options": ["Sim", "Não — só afasta o foro previsto exclusivamente em Constituição estadual", "Sempre, em qualquer caso"], "answer": 1, "explain": "A SV 45 só afasta o foro estabelecido exclusivamente por Constituição estadual."}, {"q": "A SV 45 converteu qual súmula?", "options": ["Súmula 721 do STF", "Súmula 702 do STF", "Súmula 685 do STF"], "answer": 0, "explain": "A SV 45 converteu a Súmula 721 do STF."}], "terms": [{"termo": "Tribunal do Júri", "definicao": "Órgão que julga os crimes dolosos contra a vida (art. 5º, XXXVIII, da CF).", "secao": "45"}, {"termo": "Foro por prerrogativa de função", "definicao": "Competência especial em razão do cargo; se previsto só na Constituição estadual, cede ao Júri (SV 45).", "secao": "45"}, {"termo": "Súmula 721 do STF", "definicao": "Enunciado anterior convertido na SV 45.", "secao": "45"}], "blocks": ["O Tribunal do Júri julga os crimes dolosos contra a vida por força da própria CF/88 (art. 5º, XXXVIII). Quando o foro por prerrogativa de função é previsto apenas na Constituição Estadual, prevalece a competência do Júri (norma da CF/88, hierarquicamente superior). A SV 45 converteu a Súmula 721 do STF.", "Distinção relevante: se o foro está previsto na própria CF/88 (por exemplo, o Prefeito, art. 29, X), prevalece o foro por prerrogativa (norma mais específica), respeitada a Súmula 702 do STF (julgamento pelo TJ, TRF ou TRE conforme a natureza do crime) e desde que o crime tenha relação com o cargo."]}, {"num": "46", "theme": "Crimes de responsabilidade: competência privativa da União", "enunciado": "A definição dos crimes de responsabilidade e o estabelecimento das respectivas normas de processo e julgamento são da competência legislativa privativa da União.", "meta": ["Aprovada em 09/04/2015."], "resumo": "Definir crimes de responsabilidade e as normas de seu processo e julgamento é competência privativa da União (art. 22, I, e art. 85, parágrafo único, da CF). Embora sejam infrações político-administrativas, o STF os equipara a matéria penal/processual para fins de competência. Estados não podem legislar sobre isso, nem na Constituição estadual. A SV 46 converteu a Súmula 722 do STF.", "pontos": ["Definir crimes de responsabilidade e o seu rito = competência privativa da União.", "Fundamento: art. 22, I, e art. 85, parágrafo único, da CF.", "Sanções desses crimes: perda do cargo e inabilitação (não prisão/multa).", "Estados não podem legislar sobre o tema (nem na Constituição estadual).", "A SV 46 converteu a Súmula 722 do STF."], "quiz": [{"q": "Quem pode definir crimes de responsabilidade e o seu processo?", "options": ["Cada Estado", "A União, privativamente (SV 46)", "Os Municípios"], "answer": 1, "explain": "É competência legislativa privativa da União (SV 46)."}, {"q": "Qual a natureza dos crimes de responsabilidade?", "options": ["Penal comum", "Infração político-administrativa (perda do cargo e inabilitação)", "Contravenção penal"], "answer": 1, "explain": "São infrações político-administrativas; as sanções são a perda do cargo e a inabilitação."}, {"q": "Um Estado pode definir crimes de responsabilidade na sua Constituição?", "options": ["Sim", "Não (SV 46)", "Só com autorização da União"], "answer": 1, "explain": "Não: a competência é privativa da União; nem a Constituição estadual pode fazê-lo."}, {"q": "Qual dispositivo embasa a competência da União aqui?", "options": ["Art. 22, I, e art. 85, parágrafo único, da CF", "Art. 30, I, da CF", "Art. 145, II, da CF"], "answer": 0, "explain": "O STF equipara a matéria a Direito Penal/Processual (art. 22, I) e o art. 85, parágrafo único, remete a lei federal."}, {"q": "A SV 46 converteu qual súmula?", "options": ["Súmula 722 do STF", "Súmula 721 do STF", "Súmula 666 do STF"], "answer": 0, "explain": "A SV 46 converteu a Súmula 722 do STF (acrescentando a palavra \"privativa\")."}], "terms": [{"termo": "Crime de responsabilidade", "definicao": "Infração político-administrativa de autoridades; sanções de perda do cargo e inabilitação (não prisão).", "secao": "46"}, {"termo": "Competência privativa da União (art. 22, I)", "definicao": "Inclui legislar sobre Direito Penal e Processual — e, por equiparação, sobre crimes de responsabilidade.", "secao": "46"}, {"termo": "Súmula 722 do STF", "definicao": "Enunciado anterior convertido na SV 46.", "secao": "46"}], "blocks": ["Crimes de responsabilidade são infrações político-administrativas — as sanções são a perda do cargo e a inabilitação (não penas de prisão ou multa). Apesar dessa natureza, para fins de competência legislativa o STF equipara a matéria a Direito Penal e Processual.", "Como legislar sobre Direito Penal e Processual é competência privativa da União (art. 22, I, da CF), e o art. 85, parágrafo único, da CF remete a definição a lei especial federal, os Estados não podem definir crimes de responsabilidade nem o seu processo e julgamento — nem mesmo na Constituição estadual. A SV 46 converteu a Súmula 722 do STF."]}, {"num": "47", "theme": "Honorários advocatícios: verba alimentar (precatório/RPV)", "enunciado": "Os honorários advocatícios incluídos na condenação ou destacados do montante principal devido ao credor consubstanciam verba de natureza alimentar cuja satisfação ocorrerá com a expedição de precatório ou requisição de pequeno valor, observada ordem especial restrita aos créditos dessa natureza.", "meta": ["Aprovada em 27/05/2015.", "Importante."], "resumo": "Honorários advocatícios (incluídos na condenação ou destacados) são verba de natureza alimentar do advogado. Contra a Fazenda, seguem por precatório ou RPV conforme o valor, e podem ser executados de forma autônoma — os de pequeno valor por RPV, mesmo que o principal vá por precatório. Entram em fila preferencial própria dos créditos alimentares.", "pontos": ["Honorários advocatícios = verba de natureza alimentar (do advogado).", "Pagos por precatório ou RPV, conforme o valor, com fila preferencial própria.", "Podem ser fracionados/executados de forma autônoma (RPV mesmo com o principal em precatório).", "Honorários contratuais podem ser destacados antes do levantamento (Lei 8.906/94)."], "quiz": [{"q": "Qual a natureza dos honorários advocatícios, segundo a SV 47?", "options": ["Comum", "Alimentar", "Tributária"], "answer": 1, "explain": "A SV 47 firma que os honorários têm natureza alimentar."}, {"q": "Os honorários de pequeno valor podem ser pagos por RPV mesmo que o principal vá por precatório?", "options": ["Não", "Sim — execução autônoma", "Só com acordo da Fazenda"], "answer": 1, "explain": "Podem ser fracionados: RPV para os honorários de pequeno valor, ainda que o principal siga por precatório (RE 564.132)."}, {"q": "Por serem verba alimentar, os honorários entram em que fila?", "options": ["Na fila geral", "Em fila preferencial própria dos créditos alimentares (art. 100, §1º, CF)", "Não entram em fila"], "answer": 1, "explain": "Entram na fila preferencial dos créditos de natureza alimentar, separada da fila do credor principal."}, {"q": "A quem pertencem os honorários sucumbenciais?", "options": ["À parte vencedora", "Ao advogado", "Ao juízo"], "answer": 1, "explain": "Os honorários pertencem ao advogado."}, {"q": "Os honorários contratuais podem ser destacados do montante principal antes do levantamento?", "options": ["Não", "Sim (art. 22, §4º, e art. 23 da Lei 8.906/94)", "Só após o trânsito em julgado"], "answer": 1, "explain": "O advogado pode requerer o destaque dos honorários contratuais antes do levantamento (Estatuto da OAB)."}], "terms": [{"termo": "Verba alimentar", "definicao": "Crédito destinado à subsistência; tem preferência no pagamento (aqui, os honorários advocatícios).", "secao": "47"}, {"termo": "Precatório / RPV", "definicao": "Formas de pagamento pela Fazenda: precatório (valores maiores) e requisição de pequeno valor (valores menores, mais rápida).", "secao": "47"}, {"termo": "Honorários sucumbenciais", "definicao": "Devidos pela parte vencida ao advogado da parte vencedora; pertencem ao advogado.", "secao": "47"}, {"termo": "Honorários destacados", "definicao": "Honorários contratuais retirados do montante principal antes do levantamento (Lei 8.906/94).", "secao": "47"}], "blocks": ["Os honorários advocatícios (contratuais e sucumbenciais) têm natureza alimentar e pertencem ao advogado. Contra a Fazenda Pública, são pagos por precatório ou por requisição de pequeno valor (RPV), conforme o valor.", "Podem ser fracionados e executados de forma autônoma: ainda que o crédito principal siga por precatório, os honorários de &quot;pequeno valor&quot; podem ser pagos por RPV (RE 564.132/RS). Por serem verba alimentar, entram em fila preferencial própria (art. 100, §1º, da CF), separada da fila do credor principal.", "Honorários destacados: o advogado pode requerer o destaque dos honorários contratuais do montante principal antes do levantamento (art. 22, §4º, e art. 23 da Lei 8.906/94).", "Atenção: o STF entende que a súmula abrange os honorários incluídos na condenação; a negativa de RPV separada para honorários contratuais não viola a SV 47. A SV 47 é súmula originária (não converteu súmula anterior)."]}, {"num": "48", "theme": "ICMS na importação: cobrança no desembaraço aduaneiro", "enunciado": "Na entrada de mercadoria importada do exterior, é legítima a cobrança do ICMS por ocasião do desembaraço aduaneiro.", "meta": ["Aprovada em 27/05/2015."], "resumo": "Na importação, o ICMS pode ser cobrado no momento do desembaraço aduaneiro (art. 12, IX, da LC 87/96). Desde a EC 33/2001, o imposto incide sobre qualquer importação, mesmo por quem não é contribuinte habitual e qualquer que seja a finalidade. A antiga Súmula 577 (fato gerador na entrada no estabelecimento) está superada.", "pontos": ["ICMS na importação é cobrado no desembaraço aduaneiro (art. 12, IX, da LC 87/96).", "Incide sobre qualquer importação desde a EC 33/2001 (art. 155, §2º, IX, \"a\", CF), mesmo por não contribuinte habitual.", "A SV 48 converteu a Súmula 661 do STF.", "A Súmula 577 do STF está superada."], "quiz": [{"q": "Em que momento se pode cobrar o ICMS na importação?", "options": ["Na entrada no estabelecimento do importador", "No desembaraço aduaneiro (SV 48)", "Na venda ao consumidor final"], "answer": 1, "explain": "A SV 48 legitima a cobrança do ICMS por ocasião do desembaraço aduaneiro."}, {"q": "O ICMS-importação incide mesmo sobre quem não é contribuinte habitual do imposto?", "options": ["Não", "Sim, desde a EC 33/2001", "Só sobre empresas"], "answer": 1, "explain": "Desde a EC 33/2001, incide sobre qualquer importação, ainda que por não contribuinte habitual e qualquer que seja a finalidade."}, {"q": "Qual emenda passou a permitir o ICMS sobre qualquer importação?", "options": ["EC 33/2001", "EC 39/2002", "EC 132/2023"], "answer": 0, "explain": "A EC 33/2001 deu nova redação ao art. 155, §2º, IX, \"a\", da CF."}, {"q": "Qual súmula ficou superada pela SV 48?", "options": ["Súmula 577 do STF", "Súmula 661 do STF", "Súmula 670 do STF"], "answer": 0, "explain": "A Súmula 577 (fato gerador na entrada no estabelecimento) está superada."}, {"q": "A SV 48 converteu qual súmula?", "options": ["Súmula 661 do STF", "Súmula 577 do STF", "Súmula 685 do STF"], "answer": 0, "explain": "A SV 48 converteu a Súmula 661 do STF."}], "terms": [{"termo": "Desembaraço aduaneiro", "definicao": "Ato que libera a mercadoria importada; momento legítimo para a cobrança do ICMS (SV 48; art. 12, IX, da LC 87/96).", "secao": "48"}, {"termo": "ICMS-importação", "definicao": "ICMS que incide sobre a entrada de mercadoria importada, desde a EC 33/2001, mesmo por não contribuinte habitual.", "secao": "48"}, {"termo": "Súmula 577 do STF", "definicao": "Enunciado superado — fixava o fato gerador na entrada no estabelecimento do importador.", "secao": "48"}, {"termo": "Súmula 661 do STF", "definicao": "Enunciado anterior convertido na SV 48.", "secao": "48"}], "blocks": ["Incide ICMS sobre toda e qualquer importação, desde a EC 33/2001 (art. 155, §2º, IX, &quot;a&quot;, da CF), independentemente de o importador ser ou não contribuinte habitual do imposto e qualquer que seja a finalidade da importação.", "O momento em que se pode exigir o imposto é o desembaraço aduaneiro (art. 12, IX, da LC 87/96). A SV 48 converteu a Súmula 661 do STF.", "Como consequência, a Súmula 577 do STF — que fixava o fato gerador na entrada da mercadoria no estabelecimento do importador — está superada, por se basear em legislação anterior à LC 87/96."]}], "glossario": [{"termo": "Isonomia", "definicao": "Princípio da igualdade. Não autoriza o Judiciário a equiparar vencimentos sem lei (SV 37).", "secao": "37"}, {"termo": "Reserva legal (art. 37, X)", "definicao": "Exigência de lei específica para fixar ou alterar a remuneração de servidores públicos.", "secao": "37"}, {"termo": "Súmula 339 do STF", "definicao": "Enunciado anterior, de mesmo teor, convertido na SV 37.", "secao": "37"}, {"termo": "Interesse local (art. 30, I)", "definicao": "Assuntos predominantemente locais, de competência legislativa do Município — como o horário do comércio.", "secao": "38"}, {"termo": "Súmula 19 do STJ", "definicao": "Fixa que o horário bancário (atendimento ao público) é competência da União, não do Município.", "secao": "38"}, {"termo": "Competência privativa da União", "definicao": "Competência legislativa reservada à União (art. 22), aqui sobre vencimentos das polícias e bombeiros do DF.", "secao": "39"}, {"termo": "Súmula 647 do STF", "definicao": "Enunciado anterior convertido na SV 39.", "secao": "39"}, {"termo": "Contribuição confederativa", "definicao": "Contribuição fixada em assembleia do sindicato; só exigível dos filiados (art. 8º, IV, CF; SV 40).", "secao": "40"}, {"termo": "Contribuição sindical", "definicao": "Contribuição prevista em lei; não se confunde com a confederativa. Após a Reforma Trabalhista, depende de autorização do trabalhador.", "secao": "40"}, {"termo": "Súmula 666 do STF", "definicao": "Enunciado anterior convertido na SV 40.", "secao": "40"}, {"termo": "Taxa (requisitos)", "definicao": "Tributo que exige serviço público específico e divisível (art. 145, II, da CF; art. 77 do CTN).", "secao": "41"}, {"termo": "Serviço uti universi", "definicao": "Serviço geral e indivisível, prestado a todos (ex.: iluminação pública); não pode ser custeado por taxa.", "secao": "41"}, {"termo": "COSIP", "definicao": "Contribuição para Custeio do Serviço de Iluminação Pública (art. 149-A da CF), criada pela EC 39/2002 — forma correta de custear a iluminação.", "secao": "41"}, {"termo": "Súmula 670 do STF", "definicao": "Enunciado anterior convertido na SV 41.", "secao": "41"}, {"termo": "Autonomia federativa (art. 18)", "definicao": "Estados e Municípios têm autonomia, inclusive para fixar a remuneração de seus servidores.", "secao": "42"}, {"termo": "Vedação de vinculação (art. 37, XIII)", "definicao": "Proíbe vincular ou equiparar espécies remuneratórias no serviço público.", "secao": "42"}, {"termo": "Ascensão funcional", "definicao": "Passagem para cargo de outra carreira sem novo concurso; é inconstitucional (SV 43).", "secao": "43"}, {"termo": "Promoção", "definicao": "Progressão dentro da mesma carreira; é permitida.", "secao": "43"}, {"termo": "Provimento derivado", "definicao": "Provimento a partir de vínculo anterior (promoção, readaptação, reintegração, etc.); só a ascensão é vedada.", "secao": "43"}, {"termo": "Súmula 685 do STF", "definicao": "Enunciado anterior convertido na SV 43.", "secao": "43"}, {"termo": "Exame psicotécnico", "definicao": "Avaliação psicológica em concurso; só pode ser exigido se previsto em lei (SV 44).", "secao": "44"}, {"termo": "Princípio da legalidade (art. 37, I)", "definicao": "Os requisitos de acesso a cargo público devem estar previstos em lei.", "secao": "44"}, {"termo": "Súmula 686 do STF", "definicao": "Enunciado anterior convertido na SV 44.", "secao": "44"}, {"termo": "Tribunal do Júri", "definicao": "Órgão que julga os crimes dolosos contra a vida (art. 5º, XXXVIII, da CF).", "secao": "45"}, {"termo": "Foro por prerrogativa de função", "definicao": "Competência especial em razão do cargo; se previsto só na Constituição estadual, cede ao Júri (SV 45).", "secao": "45"}, {"termo": "Súmula 721 do STF", "definicao": "Enunciado anterior convertido na SV 45.", "secao": "45"}, {"termo": "Crime de responsabilidade", "definicao": "Infração político-administrativa de autoridades; sanções de perda do cargo e inabilitação (não prisão).", "secao": "46"}, {"termo": "Competência privativa da União (art. 22, I)", "definicao": "Inclui legislar sobre Direito Penal e Processual — e, por equiparação, sobre crimes de responsabilidade.", "secao": "46"}, {"termo": "Súmula 722 do STF", "definicao": "Enunciado anterior convertido na SV 46.", "secao": "46"}, {"termo": "Verba alimentar", "definicao": "Crédito destinado à subsistência; tem preferência no pagamento (aqui, os honorários advocatícios).", "secao": "47"}, {"termo": "Precatório / RPV", "definicao": "Formas de pagamento pela Fazenda: precatório (valores maiores) e requisição de pequeno valor (valores menores, mais rápida).", "secao": "47"}, {"termo": "Honorários sucumbenciais", "definicao": "Devidos pela parte vencida ao advogado da parte vencedora; pertencem ao advogado.", "secao": "47"}, {"termo": "Honorários destacados", "definicao": "Honorários contratuais retirados do montante principal antes do levantamento (Lei 8.906/94).", "secao": "47"}, {"termo": "Desembaraço aduaneiro", "definicao": "Ato que libera a mercadoria importada; momento legítimo para a cobrança do ICMS (SV 48; art. 12, IX, da LC 87/96).", "secao": "48"}, {"termo": "ICMS-importação", "definicao": "ICMS que incide sobre a entrada de mercadoria importada, desde a EC 33/2001, mesmo por não contribuinte habitual.", "secao": "48"}, {"termo": "Súmula 577 do STF", "definicao": "Enunciado superado — fixava o fato gerador na entrada no estabelecimento do importador.", "secao": "48"}, {"termo": "Súmula 661 do STF", "definicao": "Enunciado anterior convertido na SV 48.", "secao": "48"}]};</script>
+<script>
+const $=(s,r=document)=>r.querySelector(s);const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+function esc(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function shortTitle(t){let x=String(t);if(x.length>40)x=x.slice(0,38).replace(/\s+\S*$/,'')+'…';return x;}
+const store=(()=>{let ok=true;try{localStorage.setItem('__t','1');localStorage.removeItem('__t');}catch(e){ok=false;}const mem={};
+  return{get(k,d){try{if(ok){const v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}}catch(e){}return(k in mem)?mem[k]:d;},
+  set(k,v){try{if(ok){localStorage.setItem(k,JSON.stringify(v));return;}}catch(e){}mem[k]=v;}};})();
+const SKEY='sv3_v1';
+let state=Object.assign({theme:'claro',fs:'19',lh:'1.75',measure:'66ch',font:false,bionic:false,focus:false,rate:'1',read:[]},store.get(SKEY,{}));
+const readSet=new Set(state.read||[]);
+function save(){state.read=[...readSet];store.set(SKEY,state);}
+
+const main=$('#main'),tocNav=$('#tocNav');
+const totalSec=DATA.sections.length;
+const hero=el('section','hero');
+hero.innerHTML=`<p class="kicker">Material de estudo interativo</p>
+  <h1>${esc(DATA.title)}</h1><p class="sub">${esc(DATA.subtitle)}</p>
+  <div class="legend"><span><i class="sw orig"></i> Enunciado oficial do STF</span><span><i class="sw aid"></i> Comentários e apoios de estudo</span></div>
+  <div class="howto"><b>Como usar</b><ul>
+    <li><b>Quiz interativo</b>: cada súmula abre com um teste — <b>toque na alternativa</b> para responder e ver a correção na hora (verde/vermelho + explicação). O <b>gabarito completo</b> fica no fim de cada tema.</li>
+    <li><b>Ajustes (Aa)</b>: tamanho, espaçamento, tema, fonte amigável, leitura biônica e modo foco.</li>
+    <li><b>Modo foco</b>: ilumina um parágrafo por vez — setas ↑ ↓ (tela ou teclado).</li>
+    <li><b>🔊 Ouvir</b>: escute o enunciado e os comentários de cada súmula em voz alta.</li></ul></div>
+  <div class="note-parte">✅ Os <b>enunciados foram conferidos nos textos oficiais do STF</b> (fonte confiável, base Dizer o Direito). Foram feitos ajustes mínimos de literalidade nas SV <b>37, 38 e 40</b> (uma palavra/abreviação). Os comentários e apoios de estudo foram elaborados pelo Cowork.</div>`;
+main.appendChild(hero);
+
+const progText=$('#progText'),progPill=$('#progPill');
+function updProg(){progPill.textContent=`${readSet.size}/${totalSec}`;progText.textContent='súmulas lidas';
+  $$('.toclink').forEach(a=>{if(a.dataset.n)a.classList.toggle('read',readSet.has(a.dataset.n));});}
+
+let pIndex=0;
+function makeProsa(blocks){const box=el('div','prosa');blocks.forEach(bh=>{
+  const isQ=/^[“"]/.test(bh.replace(/<[^>]+>/g,'').trim());
+  const p=el('p',isQ?'quote':null,bh);p.dataset.p=pIndex++;p.dataset.orig=bh;box.appendChild(p);});return box;}
+function enunBox(s){const susp=s.status==='suspensa';const d=el('div','enun'+(susp?' suspensa':''));
+  let chips='';
+  if(s.meta&&s.meta.length){chips='<div class="mchips">'+s.meta.map(m=>`<span class="mchip">${esc(m)}</span>`).join('')+'</div>';}
+  const tag=susp?'⚠️ Súmula suspensa · sem vigência':'📜 Enunciado · STF';
+  const warn=susp?'<p class="ewarn">Texto aprovado, mas cuja publicação foi suspensa — nunca entrou em vigor:</p>':'';
+  d.innerHTML=`<span class="etag">${esc(tag)}</span>${warn}<p>${esc(s.enunciado)}</p>${chips}`;return d;}
+function aidResumo(t){if(!t)return null;const d=el('div','aid resumo');d.innerHTML=`<span class="tag">✦ Em poucas palavras</span><p>${esc(t)}</p>`;return d;}
+function aidPontos(l){if(!l||!l.length)return null;const d=el('div','aid');d.innerHTML=`<span class="tag">🔑 Pontos-chave</span>`;const ul=el('ul','pontos');l.forEach(x=>ul.appendChild(el('li',null,esc(x))));d.appendChild(ul);return d;}
+function aidTerms(ts){if(!ts||!ts.length)return null;const d=el('div','aid');d.innerHTML=`<span class="tag">🏷️ Termos desta súmula</span>`;const w=el('div','terms');const def=el('div','termdef');
+  ts.forEach(t=>{const c=el('button','chip',esc(t.termo));c.addEventListener('click',()=>{def.innerHTML=`<b>${esc(t.termo)}.</b> ${esc(t.definicao)}`;def.classList.add('show');});w.appendChild(c);});
+  d.appendChild(w);d.appendChild(def);return d;}
+const LET=['a','b','c','d','e'];
+function quizPerguntas(q){if(!q||!q.length)return null;const d=el('div','aid quiz');
+  d.innerHTML=`<span class="tag">✅ Teste-se · ${q.length} ${q.length>1?'questões':'questão'}</span><p class="qhint">Toque numa alternativa para responder e ver a correção na hora.</p>`;
+  q.forEach((it,qi)=>{const item=el('div','qitem');
+    item.innerHTML=`<p class="qq"><span class="qn">${qi+1}.</span> ${esc(it.q)}</p>`;
+    const opts=el('div','qopts');const fb=el('div','qfb');let answered=false;
+    it.options.forEach((opt,oi)=>{const b=el('button','qo');b.type='button';
+      b.innerHTML=`<span class="ql">${LET[oi]}</span><span class="qtext">${esc(opt)}</span><span class="qmk"></span>`;
+      b.addEventListener('click',()=>{
+        if(answered)return;answered=true;const correct=(oi===it.answer);
+        Array.from(opts.children).forEach((bb,idx)=>{bb.classList.add('locked');bb.disabled=true;if(idx===it.answer)bb.classList.add('correct');});
+        if(!correct)b.classList.add('wrong');
+        fb.className='qfb show '+(correct?'ok':'no');
+        fb.innerHTML=`<span class="qfbh">${correct?'✅ Você acertou!':'❌ Não foi dessa vez — resposta certa: '+LET[it.answer]+')'}</span> ${esc(it.explain)}`;
+      });
+      opts.appendChild(b);});
+    item.appendChild(opts);item.appendChild(fb);d.appendChild(item);});
+  return d;}
+function quizGabarito(q){if(!q||!q.length)return null;const d=el('details','gab');
+  d.innerHTML=`<summary><span class="gtag">🔑 Gabarito</span> <span class="ghint">tocar para ver as ${q.length} ${q.length>1?'respostas':'resposta'}</span></summary>`;
+  const ol=el('ol','gablist');
+  q.forEach(it=>{ol.appendChild(el('li',null,`<b>${LET[it.answer]})</b> ${esc(it.explain)}`));});
+  d.appendChild(ol);return d;}
+
+function toggleRead(num){if(readSet.has(num))readSet.delete(num);else readSet.add(num);save();updProg();
+  $$('[data-rolefor="'+num+'"]').forEach(b=>{const on=readSet.has(num);
+    if(b.classList.contains('primary'))b.innerHTML=on?'✓ Lida — desfazer':'✓ Marcar como lida';else b.innerHTML=on?'✓ lida':'marcar lido';});}
+
+function hueVars(h){const h2=(h+24)%360;return `--h:${h};--c1:hsl(${h} 88% 62%);--c2:hsl(${h2} 90% 56%);--sc:hsl(${h} 70% 50%);`;}
+function renderSection(s){
+  const hue=DATA.hues[s.num]||258;
+  const sec=el('section','section');sec.id='sec-'+s.num;sec.dataset.n=s.num;
+  sec.setAttribute('style',hueVars(hue));
+  const head=el('div','shead');
+  const kick=s.status==='suspensa'?`Súmula Vinculante ${esc(s.num)} · suspensa`:`Súmula Vinculante ${esc(s.num)}`;
+  head.innerHTML=`<div class="snum"><small>SV</small><span>${esc(s.num)}</span></div>
+    <div class="stitlewrap"><div class="skicker">${kick}</div><h2 class="stitle">${esc(s.theme)}</h2></div>`;
+  const rb=el('button','iconbtn readbtn');rb.dataset.rolefor=s.num;rb.innerHTML='marcar lido';rb.addEventListener('click',()=>toggleRead(s.num));head.appendChild(rb);
+  sec.appendChild(head);sec.appendChild(el('div','hrule'));
+  const sqp=quizPerguntas(s.quiz);if(sqp)sec.appendChild(sqp);
+  sec.appendChild(enunBox(s));
+  const r=aidResumo(s.resumo);if(r)sec.appendChild(r);
+  const p=aidPontos(s.pontos);if(p)sec.appendChild(p);
+  if(s.blocks.length)sec.appendChild(makeProsa(s.blocks));
+  const st=aidTerms(s.terms);if(st)sec.appendChild(st);
+  const sqg=quizGabarito(s.quiz);if(sqg)sec.appendChild(sqg);
+  const foot=el('div');foot.style.cssText='display:flex;gap:10px;flex-wrap:wrap;margin-top:20px';
+  const ob=el('button','iconbtn');ob.innerHTML='🔊 Ouvir esta súmula';ob.addEventListener('click',()=>speakSection(sec));foot.appendChild(ob);
+  const mb=el('button','iconbtn primary');mb.dataset.rolefor=s.num;mb.innerHTML='✓ Marcar como lida';mb.addEventListener('click',()=>toggleRead(s.num));foot.appendChild(mb);
+  sec.appendChild(foot);
+  main.appendChild(sec);
+  const a=el('a','toclink');a.href='#'+sec.id;a.dataset.n=s.num;a.setAttribute('style',hueVars(hue));
+  a.innerHTML=`<span class="tnum">SV ${esc(s.num)}</span><span class="ttl">${esc(shortTitle(s.theme))}</span><span class="check"></span>`;tocNav.appendChild(a);
+}
+DATA.sections.forEach(renderSection);
+
+function applyState(){document.documentElement.setAttribute('data-theme',state.theme);
+  document.documentElement.style.setProperty('--fs',state.fs+'px');
+  document.documentElement.style.setProperty('--lh',state.lh);
+  document.documentElement.style.setProperty('--measure',state.measure);
+  document.body.classList.toggle('font-amigavel',!!state.font);
+  document.body.classList.toggle('focus',!!state.focus);
+  segSet('#segTheme','theme',state.theme);segSet('#segFs','fs',state.fs);segSet('#segLh','lh',state.lh);segSet('#segMeasure','measure',state.measure);segSet('#segRate','rate',state.rate);
+  $('#swFont').checked=!!state.font;$('#swBionic').checked=!!state.bionic;$('#swFocus').checked=!!state.focus;
+  applyBionic(!!state.bionic);if(state.focus)ensureFocusStart();}
+function segSet(sel,key,val){$$(sel+' button').forEach(b=>b.classList.toggle('on',b.dataset[key]===String(val)));}
+$('#segTheme').addEventListener('click',e=>{const b=e.target.closest('button');if(b){state.theme=b.dataset.theme;save();applyState();}});
+$('#segFs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){state.fs=b.dataset.fs;save();applyState();}});
+$('#segLh').addEventListener('click',e=>{const b=e.target.closest('button');if(b){state.lh=b.dataset.lh;save();applyState();}});
+$('#segMeasure').addEventListener('click',e=>{const b=e.target.closest('button');if(b){state.measure=b.dataset.measure;save();applyState();}});
+$('#segRate').addEventListener('click',e=>{const b=e.target.closest('button');if(b){state.rate=b.dataset.rate;save();}});
+$('#swFont').addEventListener('change',e=>{state.font=e.target.checked;save();applyState();});
+$('#swBionic').addEventListener('change',e=>{state.bionic=e.target.checked;save();applyBionic(state.bionic);});
+$('#swFocus').addEventListener('change',e=>{state.focus=e.target.checked;save();document.body.classList.toggle('focus',state.focus);if(state.focus)ensureFocusStart();});
+$('#btnReset').addEventListener('click',()=>{state=Object.assign({theme:'claro',fs:'19',lh:'1.75',measure:'66ch',font:false,bionic:false,focus:false,rate:'1'},{read:[...readSet]});save();applyState();});
+
+function applyBionic(on){$$('.prosa p').forEach(p=>{if(on){if(p.dataset.bi)return;bionicNode(p);p.dataset.bi='1';}else{if(p.dataset.orig){p.innerHTML=p.dataset.orig;p.removeAttribute('data-bi');}}});}
+function bionicNode(node){const w=document.createTreeWalker(node,NodeFilter.SHOW_TEXT,{acceptNode(n){let e=n.parentElement;while(e&&e!==node){if(e.tagName==='SUP'||e.tagName==='B')return NodeFilter.FILTER_REJECT;e=e.parentElement;}return NodeFilter.FILTER_ACCEPT;}});
+  const ts=[];let t;while(t=w.nextNode())ts.push(t);
+  ts.forEach(tn=>{const frag=document.createDocumentFragment();tn.nodeValue.split(/(\s+)/).forEach(tok=>{
+    if(/^\s+$/.test(tok)||tok===''){frag.appendChild(document.createTextNode(tok));return;}
+    const m=tok.match(/^([^\wÀ-ÿ]*)([\wÀ-ÿ]+)([\s\S]*)$/);if(!m){frag.appendChild(document.createTextNode(tok));return;}
+    const[,pre,word,post]=m;const k=Math.max(1,Math.ceil(word.length*0.42));
+    if(pre)frag.appendChild(document.createTextNode(pre));const b=document.createElement('b');b.className='bi';b.textContent=word.slice(0,k);frag.appendChild(b);
+    frag.appendChild(document.createTextNode(word.slice(k)+post));});tn.parentNode.replaceChild(frag,tn);});}
+
+const drawer=$('#drawer'),scrim=$('#scrim'),toc=$('#toc');
+$('#btnSettings').addEventListener('click',()=>drawer.classList.add('open'));
+$('#btnCloseDrawer').addEventListener('click',()=>drawer.classList.remove('open'));
+$('#btnMenu').addEventListener('click',()=>{toc.classList.add('open');scrim.classList.add('on');});
+scrim.addEventListener('click',()=>{toc.classList.remove('open');scrim.classList.remove('on');});
+tocNav.addEventListener('click',e=>{if(e.target.closest('a')){toc.classList.remove('open');scrim.classList.remove('on');}});
+const modal=$('#modalGloss');
+$('#btnGloss').addEventListener('click',()=>{modal.classList.add('open');$('#gSearch').focus();});
+$$('#modalGloss [data-close]').forEach(x=>x.addEventListener('click',()=>modal.classList.remove('open')));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){modal.classList.remove('open');drawer.classList.remove('open');}});
+const glist=$('#glist');
+function renderGloss(f=''){glist.innerHTML='';f=f.trim().toLowerCase();
+  const items=DATA.glossario.filter(g=>!f||g.termo.toLowerCase().includes(f)||g.definicao.toLowerCase().includes(f));
+  if(!items.length){glist.appendChild(el('div','gitem','<p class="gd">Nenhum termo encontrado.</p>'));return;}
+  items.forEach(g=>{const d=el('div','gitem');d.innerHTML=`<div class="gt">${esc(g.termo)}<span class="gs">SV ${esc(g.secao)}</span></div><p class="gd">${esc(g.definicao)}</p>`;glist.appendChild(d);});}
+$('#gSearch').addEventListener('input',e=>renderGloss(e.target.value));renderGloss();
+
+const pbar=$('#pbar'),backtop=$('#backtop');
+function onScroll(){const h=document.documentElement;const sc=h.scrollTop;const mx=h.scrollHeight-h.clientHeight;pbar.style.width=(mx>0?sc/mx*100:0)+'%';backtop.classList.toggle('show',sc>600);}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+backtop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const n=en.target.dataset.n;$$('.toclink').forEach(a=>a.classList.toggle('active',a.dataset.n===n));}});},{rootMargin:'-30% 0px -60% 0px'});
+$$('.section').forEach(s=>io.observe(s));
+
+let paras=[];function refreshParas(){paras=$$('.prosa p');}refreshParas();let focusIdx=-1;
+function setFocus(i){refreshParas();if(i<0)i=0;if(i>=paras.length)i=paras.length-1;focusIdx=i;paras.forEach((p,k)=>p.classList.toggle('pfocus',k===i));const p=paras[i];if(p)p.scrollIntoView({block:'center',behavior:'smooth'});}
+function ensureFocusStart(){if(focusIdx<0){refreshParas();const vy=window.scrollY+window.innerHeight*0.3;let idx=paras.findIndex(p=>p.getBoundingClientRect().top+window.scrollY>=vy);if(idx<0)idx=0;setFocus(idx);}else setFocus(focusIdx);}
+$('#fnDown').addEventListener('click',()=>setFocus(focusIdx+1));$('#fnUp').addEventListener('click',()=>setFocus(focusIdx-1));
+document.addEventListener('click',e=>{const p=e.target.closest('.prosa p');if(p&&state.focus)setFocus(+p.dataset.p);});
+document.addEventListener('keydown',e=>{if(!state.focus||e.target.matches('input,textarea'))return;
+  if(e.key==='ArrowDown'||e.key==='j'){e.preventDefault();setFocus(focusIdx+1);}if(e.key==='ArrowUp'||e.key==='k'){e.preventDefault();setFocus(focusIdx-1);}});
+
+const synth=window.speechSynthesis;let ttsParas=[],ttsPos=0,ttsPaused=false,ttsOn=false,ptVoice=null;
+const ttsbar=$('#ttsbar'),ttsLab=$('#ttsLab');
+function pickVoice(){const vs=synth?synth.getVoices():[];ptVoice=vs.find(v=>/pt[-_]?BR/i.test(v.lang))||vs.find(v=>/^pt/i.test(v.lang))||null;}
+if(synth){pickVoice();synth.onvoiceschanged=pickVoice;}
+function speakSection(sec){if(!synth){alert('Seu navegador não tem leitura em voz alta.');return;}stopTTS();ttsParas=$$('.enun p, .prosa p',sec);if(!ttsParas.length)return;ttsOn=true;ttsPos=0;ttsPaused=false;ttsbar.classList.add('show');$('#ttsToggle').textContent='⏸';const tt=sec.querySelector('.stitle');ttsLab.textContent='Lendo: '+(tt?tt.textContent:'súmula');speakAt(0);}
+function speakAt(i){if(i>=ttsParas.length){stopTTS();return;}ttsPos=i;const p=ttsParas[i];ttsParas.forEach(x=>x.classList.remove('reading'));p.classList.add('reading');p.scrollIntoView({block:'center',behavior:'smooth'});
+  const u=new SpeechSynthesisUtterance(p.textContent);u.lang='pt-BR';if(ptVoice)u.voice=ptVoice;u.rate=parseFloat(state.rate)||1;u.onend=()=>{if(ttsOn&&!ttsPaused)speakAt(i+1);};synth.speak(u);}
+function stopTTS(){ttsOn=false;ttsPaused=false;if(synth)synth.cancel();$$('.reading').forEach(x=>x.classList.remove('reading'));ttsbar.classList.remove('show');}
+$('#ttsStop').addEventListener('click',stopTTS);
+$('#ttsToggle').addEventListener('click',()=>{if(!ttsOn)return;if(ttsPaused){ttsPaused=false;$('#ttsToggle').textContent='⏸';speakAt(ttsPos);}else{ttsPaused=true;$('#ttsToggle').textContent='▶';synth.cancel();}});
+$('#ttsPrev').addEventListener('click',()=>{if(ttsOn){synth.cancel();speakAt(Math.max(0,ttsPos-1));}});
+
+applyState();updProg();
+$$('[data-rolefor]').forEach(b=>{const on=readSet.has(b.dataset.rolefor);if(b.classList.contains('primary'))b.innerHTML=on?'✓ Lida — desfazer':'✓ Marcar como lida';else b.innerHTML=on?'✓ lida':'marcar lido';});
+</script></body></html>
