@@ -3,145 +3,267 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📚 Minhas Apostilas</title>
+<title>⚡ Nexus · Estudos</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#07080f">
 <style>
   :root{
-    --bg:#f6f4ef; --card:#ffffff; --ink:#1f2430; --muted:#6b7280;
-    --accent:#7c3aed; --accent-soft:#ede9fe; --border:#e5e1d8;
-    --done:#059669; --done-soft:#d1fae5;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --bg:#14151a; --card:#1e2028; --ink:#e8e6f0; --muted:#9ca3af;
-      --accent:#a78bfa; --accent-soft:#2e2547; --border:#2c2e38;
-      --done:#34d399; --done-soft:#123c2e; }
+    --bg0:#07080f; --bg1:#0c0e1a; --card:rgba(255,255,255,.045);
+    --card-border:rgba(255,255,255,.09); --ink:#eef0ff; --muted:#8a90b8;
+    --cyan:#22d3ee; --violet:#a78bfa; --pink:#f472b6; --green:#34d399; --amber:#fbbf24;
+    --glow-c:rgba(34,211,238,.35); --glow-v:rgba(167,139,250,.35);
   }
   *{box-sizing:border-box; margin:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    background:var(--bg); color:var(--ink); min-height:100vh}
-  header{padding:40px 20px 12px; text-align:center}
-  header h1{font-size:1.9rem; letter-spacing:-.02em}
-  header p{color:var(--muted); margin-top:6px}
-  .stats{display:flex; gap:24px; justify-content:center; margin-top:18px; flex-wrap:wrap}
-  .stat{text-align:center}
-  .stat b{font-size:1.4rem; display:block}
-  .stat span{font-size:.78rem; color:var(--muted); text-transform:uppercase; letter-spacing:.06em}
-  .controls{max-width:900px; margin:24px auto 8px; padding:0 20px;
-    display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-  #busca{flex:1; min-width:220px; padding:12px 16px; font-size:1rem; border-radius:12px;
-    border:1.5px solid var(--border); background:var(--card); color:var(--ink); outline:none}
-  #busca:focus{border-color:var(--accent)}
-  .filtros{display:flex; gap:8px; flex-wrap:wrap}
-  .chip{padding:8px 14px; border-radius:999px; border:1.5px solid var(--border);
-    background:var(--card); color:var(--ink); font-size:.85rem; cursor:pointer}
-  .chip.on{background:var(--accent); border-color:var(--accent); color:#fff}
-  main{max-width:900px; margin:16px auto 60px; padding:0 20px;
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px}
-  .card{background:var(--card); border:1.5px solid var(--border); border-radius:16px;
-    padding:18px; display:flex; flex-direction:column; gap:8px; position:relative;
-    transition:transform .15s, box-shadow .15s; text-decoration:none; color:inherit}
-  .card:hover{transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.08)}
-  .card .emoji{font-size:1.6rem}
-  .card h2{font-size:1.02rem; line-height:1.35}
-  .card .cat{font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.07em;
-    color:var(--accent); background:var(--accent-soft); padding:3px 9px; border-radius:999px;
-    align-self:flex-start}
-  .card .desc{font-size:.85rem; color:var(--muted); flex:1}
-  .check{position:absolute; top:12px; right:12px; width:26px; height:26px; border-radius:50%;
-    border:2px solid var(--border); background:transparent; cursor:pointer; font-size:.85rem;
-    line-height:1; color:transparent; transition:all .15s}
-  .check:hover{border-color:var(--done)}
-  .card.done .check{background:var(--done); border-color:var(--done); color:#fff}
-  .card.done{border-color:var(--done)}
-  .card.done h2{opacity:.75}
-  .barra{max-width:860px; margin:10px auto 0; padding:0 20px}
-  .trilho{height:8px; background:var(--border); border-radius:99px; overflow:hidden}
-  .fill{height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--done)); transition:width .4s}
-  .vazio{grid-column:1/-1; text-align:center; color:var(--muted); padding:40px 0}
-  footer{text-align:center; color:var(--muted); font-size:.8rem; padding:0 20px 40px}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:
+      radial-gradient(1000px 500px at 85% -10%, rgba(167,139,250,.16), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(34,211,238,.13), transparent 55%),
+      radial-gradient(700px 600px at 50% 110%, rgba(244,114,182,.09), transparent 60%),
+      linear-gradient(180deg,var(--bg0),var(--bg1));
+    background-attachment:fixed; color:var(--ink); min-height:100vh;
+  }
+  .wrap{max-width:1060px; margin:0 auto; padding:0 22px}
+
+  /* ── header ── */
+  header{padding:44px 0 10px; display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between}
+  .brand h1{
+    font-size:2rem; letter-spacing:-.03em;
+    background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .brand p{color:var(--muted); font-size:.9rem; margin-top:4px}
+
+  /* progress ring */
+  .hud{display:flex; gap:22px; align-items:center}
+  .ring{position:relative; width:92px; height:92px}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .track{stroke:rgba(255,255,255,.08)}
+  .ring .arc{stroke:url(#grad); stroke-linecap:round; transition:stroke-dashoffset .6s}
+  .ring b{position:absolute; inset:0; display:grid; place-items:center; font-size:1.05rem}
+  .hudstats{display:grid; gap:6px; font-size:.83rem; color:var(--muted)}
+  .hudstats b{color:var(--ink)}
+  .dot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px}
+
+  /* ── action bar ── */
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 6px}
+  .btn{
+    padding:10px 16px; border-radius:12px; cursor:pointer; font-size:.88rem; font-weight:600;
+    color:var(--ink); background:var(--card); border:1px solid var(--card-border);
+    backdrop-filter:blur(10px); transition:all .2s;
+  }
+  .btn:hover{border-color:var(--cyan); box-shadow:0 0 18px var(--glow-c)}
+  .btn.primary{background:linear-gradient(90deg,rgba(34,211,238,.18),rgba(167,139,250,.18)); border-color:rgba(34,211,238,.4)}
+  #timer.on{border-color:var(--pink); box-shadow:0 0 18px rgba(244,114,182,.35); color:var(--pink)}
+
+  /* ── search / filters ── */
+  .controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:14px 0 8px}
+  #busca{
+    flex:1; min-width:230px; padding:13px 18px; font-size:.95rem; border-radius:14px;
+    border:1px solid var(--card-border); background:var(--card); color:var(--ink);
+    outline:none; backdrop-filter:blur(10px);
+  }
+  #busca:focus{border-color:var(--violet); box-shadow:0 0 20px var(--glow-v)}
+  .chips{display:flex; gap:8px; flex-wrap:wrap}
+  .chip{
+    padding:8px 14px; border-radius:999px; font-size:.8rem; cursor:pointer;
+    border:1px solid var(--card-border); background:var(--card); color:var(--muted);
+    backdrop-filter:blur(10px); transition:all .15s;
+  }
+  .chip:hover{color:var(--ink)}
+  .chip.on{color:#031018; background:linear-gradient(90deg,var(--cyan),var(--violet)); border-color:transparent; font-weight:700}
+  .tchip.on{background:linear-gradient(90deg,var(--pink),var(--amber))}
+
+  /* ── sections & cards ── */
+  .sec{margin:26px 0 8px; display:flex; align-items:center; gap:12px}
+  .sec h2{font-size:1.05rem; letter-spacing:.02em}
+  .sec .line{flex:1; height:1px; background:linear-gradient(90deg,var(--card-border),transparent)}
+  .sec .count{font-size:.75rem; color:var(--muted)}
+  main{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:14px; padding-bottom:10px}
+  .card{
+    position:relative; border-radius:18px; padding:18px 18px 14px; display:flex; flex-direction:column; gap:9px;
+    background:var(--card); border:1px solid var(--card-border); backdrop-filter:blur(12px);
+    text-decoration:none; color:inherit; overflow:hidden; transition:transform .18s, box-shadow .18s, border-color .18s;
+  }
+  .card::before{content:""; position:absolute; inset:0 0 auto 0; height:2px; background:var(--stripe,linear-gradient(90deg,var(--cyan),var(--violet)))}
+  .card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.22); box-shadow:0 14px 40px rgba(0,0,0,.5), 0 0 24px var(--hover-glow,var(--glow-c))}
+  .card.quiz{--stripe:linear-gradient(90deg,var(--pink),var(--amber)); --hover-glow:rgba(244,114,182,.3)}
+  .card.metodo{--stripe:linear-gradient(90deg,var(--green),var(--cyan)); --hover-glow:rgba(52,211,153,.3)}
+  .top{display:flex; align-items:center; gap:8px}
+  .emoji{font-size:1.5rem; margin-right:auto}
+  .tag{font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; padding:4px 10px; border-radius:999px}
+  .tag.tipo{color:#031018; background:linear-gradient(90deg,var(--cyan),var(--violet))}
+  .quiz .tag.tipo{background:linear-gradient(90deg,var(--pink),var(--amber))}
+  .metodo .tag.tipo{background:linear-gradient(90deg,var(--green),var(--cyan))}
+  .tag.cat{color:var(--muted); border:1px solid var(--card-border)}
+  .card h3{font-size:1rem; line-height:1.35}
+  .card .desc{font-size:.83rem; color:var(--muted); flex:1; line-height:1.45}
+  .foot{display:flex; align-items:center; gap:8px; margin-top:4px}
+  .status{
+    font-size:.75rem; font-weight:700; padding:6px 12px; border-radius:999px; cursor:pointer;
+    border:1px solid var(--card-border); background:transparent; color:var(--muted); transition:all .15s;
+  }
+  .status[data-s="1"]{color:var(--amber); border-color:var(--amber); box-shadow:0 0 12px rgba(251,191,36,.25)}
+  .status[data-s="2"]{color:#031018; background:var(--green); border-color:var(--green); box-shadow:0 0 14px rgba(52,211,153,.4)}
+  .card[data-s="2"]{opacity:.72}
+  .last{font-size:.7rem; color:var(--muted); margin-left:auto}
+  .vazio{grid-column:1/-1; text-align:center; color:var(--muted); padding:50px 0}
+  footer{text-align:center; color:var(--muted); font-size:.78rem; padding:26px 0 44px}
+  footer a{color:var(--cyan); text-decoration:none}
 </style>
 </head>
 <body>
-<header>
-  <h1>📚 Minhas Apostilas</h1>
-  <p>Portal de estudos interativos — clique no ✓ quando concluir uma apostila</p>
-  <div class="stats">
-    <div class="stat"><b id="st-total">0</b><span>apostilas</span></div>
-    <div class="stat"><b id="st-done">0</b><span>concluídas</span></div>
-    <div class="stat"><b id="st-pct">0%</b><span>progresso</span></div>
-  </div>
-</header>
-<div class="barra"><div class="trilho"><div class="fill" id="fill"></div></div></div>
-<div class="controls">
-  <input id="busca" type="search" placeholder="🔍 Buscar apostila… (ex.: LINDB, locação, súmulas)">
-  <div class="filtros" id="filtros"></div>
-</div>
-<main id="grid"></main>
-<footer>Seu progresso fica salvo neste navegador (localStorage).</footer>
-<script>
-const APOSTILAS = [
-  {f:"LINDB-Tartuce-apostila-interativa.html", t:"LINDB — Apostila Interativa (Tartuce)", c:"Civil", e:"⚖️", d:"Lei de Introdução às Normas do Direito Brasileiro, com base na doutrina de Flávio Tartuce."},
-  {f:"LINDB-Questoes-Magistratura-Tartuce.html", t:"LINDB — Questões de Magistratura", c:"Civil", e:"📝", d:"Questões de concursos de magistratura sobre a LINDB."},
-  {f:"CodigoCivil-arts-1-a-120-apostila.html", t:"Código Civil — Arts. 1º a 120", c:"Civil", e:"📖", d:"Parte Geral do Código Civil: pessoas, bens e fatos jurídicos."},
-  {f:"Lei-8245-1991-Locacoes-apostila.html", t:"Lei 8.245/1991 — Locações", c:"Civil", e:"🏠", d:"Lei do Inquilinato: locação de imóveis urbanos."},
-  {f:"Lei-9514-1997-SFI-alienacao-fiduciaria-imovel-apostila.html", t:"Lei 9.514/1997 — SFI e Alienação Fiduciária de Imóvel", c:"Civil", e:"🏦", d:"Sistema de Financiamento Imobiliário e alienação fiduciária de bem imóvel."},
-  {f:"DL-911-1969-alienacao-fiduciaria-apostila.html", t:"DL 911/1969 — Alienação Fiduciária", c:"Civil", e:"🚗", d:"Alienação fiduciária de bens móveis e busca e apreensão."},
-  {f:"CF88-arts-1-a-19-apostila.html", t:"CF/88 — Arts. 1º a 19", c:"Constitucional", e:"🏛️", d:"Princípios fundamentais, direitos e garantias fundamentais."},
-  {f:"Lei-9985-2000-SNUC-apostila.html", t:"Lei 9.985/2000 — SNUC", c:"Ambiental", e:"🌳", d:"Sistema Nacional de Unidades de Conservação da Natureza."},
-  {f:"Lei-6938-1981-PNMA-apostila.html", t:"Lei 6.938/1981 — PNMA", c:"Ambiental", e:"🌎", d:"Política Nacional do Meio Ambiente."},
-  {f:"LINDB-Lei-Esquematizada.html", t:"LINDB — Lei Esquematizada", c:"Civil", e:"🗂️", d:"Texto da LINDB esquematizado para leitura ativa."},
-  {f:"LINDB-Tartuce-material-interativo.html", t:"LINDB — Tartuce (material interativo)", c:"Civil", e:"⚖️", d:"Material interativo de estudo da LINDB pela doutrina de Tartuce."},
-  {f:"Quiz-LINDB-Tartuce.html", t:"Quiz LINDB — Estudo da Lei de Introdução", c:"Civil", e:"❓", d:"Quiz de fixação sobre a LINDB."},
-  {f:"CC-CapII-ParteI-material-interativo.html", t:"CC — Cap. II, Parte I (material interativo)", c:"Civil", e:"📘", d:"Visão filosófica do CC/2002 e da pessoa natural — material interativo."},
-  {f:"Quiz-CapII-Tartuce.html", t:"Quiz Cap. II — CC/2002 e pessoa natural", c:"Civil", e:"❓", d:"Quiz de fixação do Capítulo II (Tartuce)."},
-  {f:"Sumulas-Vinculantes-13-a-24.html", t:"Súmulas Vinculantes 13 a 24 (STF)", c:"Constitucional", e:"📌", d:"Material de estudo das Súmulas Vinculantes 13 a 24."},
-  {f:"Sumulas-Vinculantes-25-a-36.html", t:"Súmulas Vinculantes 25 a 36 (STF)", c:"Constitucional", e:"📌", d:"Material de estudo das Súmulas Vinculantes 25 a 36."},
-  {f:"Sumulas-Vinculantes-37-a-48.html", t:"Súmulas Vinculantes 37 a 48 (STF)", c:"Constitucional", e:"📌", d:"Material de estudo das Súmulas Vinculantes 37 a 48."},
-  {f:"Checklist-por-Disciplina.html", t:"Checklist por Disciplina — Leitura de Leis", c:"Método", e:"✅", d:"Checklist de acompanhamento da leitura de leis por disciplina."},
-  {f:"Codigo-Cores-Leitura-Ativa.html", t:"Código de Cores — Leitura Ativa", c:"Método", e:"🎨", d:"Sistema de cores para marcação e leitura ativa da lei seca."},
-  {f:"Sumulas-Vinculantes-49-a-63.html", t:"Súmulas Vinculantes 49 a 63 (STF)", c:"Constitucional", e:"📌", d:"Material interativo sobre as Súmulas Vinculantes 49 a 63 do STF."},
-  {f:"Sumulas-TSE-estudo-por-questoes.html", t:"Súmulas do TSE — Estudo por Questões", c:"Eleitoral", e:"🗳️", d:"Súmulas do Tribunal Superior Eleitoral em formato de questões."},
-];
-const KEY="apostilas-done";
-let done = new Set(JSON.parse(localStorage.getItem(KEY)||"[]"));
-let filtro = "Todas", termo = "";
-const cats = ["Todas", ...new Set(APOSTILAS.map(a=>a.c))];
+<svg width="0" height="0"><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a78bfa"/>
+</linearGradient></defs></svg>
 
-function norm(s){return s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase()}
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>⚡ Nexus · Estudos</h1>
+      <p>Sua central de preparação para a Magistratura</p>
+    </div>
+    <div class="hud">
+      <div class="ring">
+        <svg width="92" height="92"><circle class="track" cx="46" cy="46" r="40" fill="none" stroke-width="8"/>
+        <circle class="arc" id="arc" cx="46" cy="46" r="40" fill="none" stroke-width="8" stroke-dasharray="251.3" stroke-dashoffset="251.3"/></svg>
+        <b id="pct">0%</b>
+      </div>
+      <div class="hudstats">
+        <span><span class="dot" style="background:var(--green)"></span><b id="n-done">0</b> concluídas</span>
+        <span><span class="dot" style="background:var(--amber)"></span><b id="n-doing">0</b> estudando</span>
+        <span><span class="dot" style="background:var(--muted)"></span><b id="n-todo">0</b> a iniciar</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="actions">
+    <button class="btn primary" id="continuar">▶ Continuar de onde parei</button>
+    <button class="btn" id="sorte">🎲 Estudo aleatório</button>
+    <button class="btn" id="timer" title="Timer de foco 25 min">⏱ Foco 25:00</button>
+  </div>
+
+  <div class="controls">
+    <input id="busca" type="search" placeholder="🔍 Buscar… (ex.: LINDB, súmula, locação)">
+    <div class="chips" id="f-tipo">
+      <button class="chip tchip on" data-t="Todos">Todos</button>
+      <button class="chip tchip" data-t="Conteúdo">📖 Conteúdo</button>
+      <button class="chip tchip" data-t="Quiz">🎯 Quiz</button>
+      <button class="chip tchip" data-t="Método">🛠️ Método</button>
+    </div>
+  </div>
+  <div class="chips" id="f-cat"></div>
+
+  <div id="secoes"></div>
+
+  <footer>Progresso salvo neste navegador · <a href="https://github.com/lanabiatriz2001-ai/apostilas">repositório</a></footer>
+</div>
+
+<script>
+const A = [
+  {f:"LINDB-Tartuce-apostila-interativa.html", t:"LINDB — Apostila Interativa (Tartuce)", c:"Civil", tp:"Conteúdo", e:"⚖️", d:"Lei de Introdução às Normas do Direito Brasileiro, com base na doutrina de Flávio Tartuce."},
+  {f:"LINDB-Tartuce-material-interativo.html", t:"LINDB — Tartuce (material interativo)", c:"Civil", tp:"Conteúdo", e:"⚖️", d:"Material interativo de estudo da LINDB pela doutrina de Tartuce."},
+  {f:"LINDB-Lei-Esquematizada.html", t:"LINDB — Lei Esquematizada", c:"Civil", tp:"Conteúdo", e:"🗂️", d:"Texto da LINDB esquematizado para leitura ativa."},
+  {f:"LINDB-Questoes-Magistratura-Tartuce.html", t:"LINDB — Questões de Magistratura", c:"Civil", tp:"Quiz", e:"📝", d:"Questões de concursos de magistratura sobre a LINDB."},
+  {f:"Quiz-LINDB-Tartuce.html", t:"Quiz LINDB — Lei de Introdução", c:"Civil", tp:"Quiz", e:"🎯", d:"Quiz de fixação sobre a LINDB."},
+  {f:"CodigoCivil-arts-1-a-120-apostila.html", t:"Código Civil — Arts. 1º a 120", c:"Civil", tp:"Conteúdo", e:"📖", d:"Parte Geral do Código Civil: pessoas, bens e fatos jurídicos."},
+  {f:"CC-CapII-ParteI-material-interativo.html", t:"CC — Cap. II, Parte I", c:"Civil", tp:"Conteúdo", e:"📘", d:"Visão filosófica do CC/2002 e da pessoa natural — material interativo."},
+  {f:"Quiz-CapII-Tartuce.html", t:"Quiz Cap. II — CC/2002 e pessoa natural", c:"Civil", tp:"Quiz", e:"🎯", d:"Quiz de fixação do Capítulo II (Tartuce)."},
+  {f:"CPC-2015-arts-1-a-63-apostila.html", t:"CPC/2015 — Arts. 1º a 63", c:"Processo Civil", tp:"Conteúdo", e:"⚙️", d:"Parte Geral do CPC: normas fundamentais, jurisdição e competência."},
+  {f:"Lei-8245-1991-Locacoes-apostila.html", t:"Lei 8.245/1991 — Locações", c:"Civil", tp:"Conteúdo", e:"🏠", d:"Lei do Inquilinato: locação de imóveis urbanos."},
+  {f:"Lei-9514-1997-SFI-alienacao-fiduciaria-imovel-apostila.html", t:"Lei 9.514/1997 — SFI e Alienação Fiduciária de Imóvel", c:"Civil", tp:"Conteúdo", e:"🏦", d:"Sistema de Financiamento Imobiliário e alienação fiduciária de bem imóvel."},
+  {f:"DL-911-1969-alienacao-fiduciaria-apostila.html", t:"DL 911/1969 — Alienação Fiduciária", c:"Civil", tp:"Conteúdo", e:"🚗", d:"Alienação fiduciária de bens móveis e busca e apreensão."},
+  {f:"CF88-arts-1-a-19-apostila.html", t:"CF/88 — Arts. 1º a 19", c:"Constitucional", tp:"Conteúdo", e:"🏛️", d:"Princípios fundamentais, direitos e garantias fundamentais."},
+  {f:"Sumulas-Vinculantes-13-a-24.html", t:"Súmulas Vinculantes 13 a 24 (STF)", c:"Constitucional", tp:"Conteúdo", e:"📌", d:"Material de estudo das Súmulas Vinculantes 13 a 24."},
+  {f:"Sumulas-Vinculantes-25-a-36.html", t:"Súmulas Vinculantes 25 a 36 (STF)", c:"Constitucional", tp:"Conteúdo", e:"📌", d:"Material de estudo das Súmulas Vinculantes 25 a 36."},
+  {f:"Sumulas-Vinculantes-37-a-48.html", t:"Súmulas Vinculantes 37 a 48 (STF)", c:"Constitucional", tp:"Conteúdo", e:"📌", d:"Material de estudo das Súmulas Vinculantes 37 a 48."},
+  {f:"Sumulas-Vinculantes-49-a-63.html", t:"Súmulas Vinculantes 49 a 63 (STF)", c:"Constitucional", tp:"Conteúdo", e:"📌", d:"Material interativo das Súmulas Vinculantes 49 a 63."},
+  {f:"Lei-9985-2000-SNUC-apostila.html", t:"Lei 9.985/2000 — SNUC", c:"Ambiental", tp:"Conteúdo", e:"🌳", d:"Sistema Nacional de Unidades de Conservação da Natureza."},
+  {f:"Lei-6938-1981-PNMA-apostila.html", t:"Lei 6.938/1981 — PNMA", c:"Ambiental", tp:"Conteúdo", e:"🌎", d:"Política Nacional do Meio Ambiente."},
+  {f:"Sumulas-TSE-estudo-por-questoes.html", t:"Súmulas do TSE — Estudo por Questões", c:"Eleitoral", tp:"Quiz", e:"🗳️", d:"Súmulas do Tribunal Superior Eleitoral em formato de questões."},
+  {f:"Checklist-por-Disciplina.html", t:"Checklist por Disciplina — Leitura de Leis", c:"Método", tp:"Método", e:"✅", d:"Checklist de acompanhamento da leitura de leis por disciplina."},
+  {f:"Codigo-Cores-Leitura-Ativa.html", t:"Código de Cores — Leitura Ativa", c:"Método", tp:"Método", e:"🎨", d:"Sistema de cores para marcação e leitura ativa da lei seca."},
+];
+const S_LABEL=["Iniciar","Estudando","Concluída ✓"];
+const KEY="nexus-status", KEY_LAST="nexus-last";
+let status = JSON.parse(localStorage.getItem(KEY)||"{}");
+// migração do formato antigo (lista de concluídas)
+try{(JSON.parse(localStorage.getItem("apostilas-done")||"[]")).forEach(f=>{if(!(f in status))status[f]=2})}catch(e){}
+let fTipo="Todos", fCat="Todas", termo="";
+const CATS=["Todas",...new Set(A.map(a=>a.c))];
+
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const st=f=>status[f]||0;
+
+function save(){localStorage.setItem(KEY,JSON.stringify(status))}
+function abrir(f){localStorage.setItem(KEY_LAST,f); if(st(f)===0){status[f]=1;save()} location.href=f}
+
+function cardHTML(a){
+  const s=st(a.f), cls=a.tp==="Quiz"?"quiz":(a.tp==="Método"?"metodo":"");
+  return `<a class="card ${cls}" data-s="${s}" href="${a.f}" onclick="event.preventDefault();abrir('${a.f}')">
+    <div class="top"><span class="emoji">${a.e}</span>
+      <span class="tag tipo">${a.tp}</span><span class="tag cat">${a.c}</span></div>
+    <h3>${a.t}</h3><p class="desc">${a.d}</p>
+    <div class="foot">
+      <button class="status" data-s="${s}" onclick="cycle(event,'${a.f}')">${S_LABEL[s]}</button>
+      ${localStorage.getItem(KEY_LAST)===a.f?'<span class="last">⏳ último acesso</span>':''}
+    </div></a>`;
+}
 
 function render(){
-  const grid = document.getElementById("grid");
-  const list = APOSTILAS.filter(a =>
-    (filtro==="Todas"||a.c===filtro) &&
-    (!termo || norm(a.t+" "+a.d+" "+a.c).includes(norm(termo))));
-  grid.innerHTML = list.length ? list.map(a=>`
-    <a class="card ${done.has(a.f)?"done":""}" href="${a.f}">
-      <button class="check" title="Marcar como concluída" onclick="toggle(event,'${a.f}')">✓</button>
-      <div class="emoji">${a.e}</div>
-      <span class="cat">${a.c}</span>
-      <h2>${a.t}</h2>
-      <p class="desc">${a.d}</p>
-    </a>`).join("") : `<p class="vazio">Nenhuma apostila encontrada 🤔</p>`;
-  document.getElementById("st-total").textContent = APOSTILAS.length;
-  document.getElementById("st-done").textContent = done.size;
-  const pct = Math.round(done.size/APOSTILAS.length*100);
-  document.getElementById("st-pct").textContent = pct+"%";
-  document.getElementById("fill").style.width = pct+"%";
+  const list=A.filter(a=>
+    (fTipo==="Todos"||a.tp===fTipo)&&(fCat==="Todas"||a.c===fCat)&&
+    (!termo||norm(a.t+a.d+a.c+a.tp).includes(norm(termo))));
+  const grupos=[["📖 Conteúdo","Conteúdo"],["🎯 Quizzes","Quiz"],["🛠️ Método de estudo","Método"]];
+  document.getElementById("secoes").innerHTML = list.length ? grupos.map(([titulo,tp])=>{
+    const g=list.filter(a=>a.tp===tp);
+    if(!g.length) return "";
+    return `<div class="sec"><h2>${titulo}</h2><span class="count">${g.filter(a=>st(a.f)===2).length}/${g.length}</span><span class="line"></span></div>
+      <main>${g.map(cardHTML).join("")}</main>`;
+  }).join("") : `<main><p class="vazio">Nada encontrado 🛸</p></main>`;
+
+  const done=A.filter(a=>st(a.f)===2).length, doing=A.filter(a=>st(a.f)===1).length;
+  const pct=Math.round(done/A.length*100);
+  document.getElementById("pct").textContent=pct+"%";
+  document.getElementById("arc").style.strokeDashoffset=251.3*(1-pct/100);
+  document.getElementById("n-done").textContent=done;
+  document.getElementById("n-doing").textContent=doing;
+  document.getElementById("n-todo").textContent=A.length-done-doing;
 }
-function toggle(ev,f){
-  ev.preventDefault(); ev.stopPropagation();
-  done.has(f) ? done.delete(f) : done.add(f);
-  localStorage.setItem(KEY, JSON.stringify([...done]));
-  render();
-}
-document.getElementById("filtros").innerHTML = cats.map(c=>
-  `<button class="chip ${c==="Todas"?"on":""}" data-c="${c}">${c}</button>`).join("");
-document.getElementById("filtros").addEventListener("click",e=>{
-  const b=e.target.closest(".chip"); if(!b) return;
-  filtro=b.dataset.c;
-  document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x===b));
-  render();
-});
-document.getElementById("busca").addEventListener("input",e=>{termo=e.target.value; render()});
+function cycle(ev,f){ev.preventDefault();ev.stopPropagation();status[f]=(st(f)+1)%3;save();render()}
+
+/* filtros */
+document.getElementById("f-cat").innerHTML=CATS.map(c=>`<button class="chip ${c==="Todas"?"on":""}" data-c="${c}">${c}</button>`).join("");
+document.getElementById("f-cat").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;
+  fCat=b.dataset.c;[...e.currentTarget.children].forEach(x=>x.classList.toggle("on",x===b));render()});
+document.getElementById("f-tipo").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;
+  fTipo=b.dataset.t;[...e.currentTarget.children].forEach(x=>x.classList.toggle("on",x===b));render()});
+document.getElementById("busca").addEventListener("input",e=>{termo=e.target.value;render()});
+
+/* ações */
+document.getElementById("continuar").onclick=()=>{
+  const last=localStorage.getItem(KEY_LAST);
+  const alvo=last&&A.find(a=>a.f===last) ? last : (A.find(a=>st(a.f)===1)||A.find(a=>st(a.f)===0)||A[0]).f;
+  abrir(alvo);
+};
+document.getElementById("sorte").onclick=()=>{
+  const pend=A.filter(a=>st(a.f)!==2); const pool=pend.length?pend:A;
+  abrir(pool[Math.floor(Math.random()*pool.length)].f);
+};
+
+/* timer de foco */
+let tLeft=0, tInt=null; const tBtn=document.getElementById("timer");
+tBtn.onclick=()=>{
+  if(tInt){clearInterval(tInt);tInt=null;tLeft=0;tBtn.classList.remove("on");tBtn.textContent="⏱ Foco 25:00";return}
+  tLeft=25*60;tBtn.classList.add("on");
+  tInt=setInterval(()=>{tLeft--;
+    tBtn.textContent="⏸ "+String(Math.floor(tLeft/60)).padStart(2,"0")+":"+String(tLeft%60).padStart(2,"0");
+    if(tLeft<=0){clearInterval(tInt);tInt=null;tBtn.classList.remove("on");tBtn.textContent="⏱ Foco 25:00";
+      document.title="✅ Sessão concluída!";alert("⏱ Sessão de foco concluída! Faça uma pausa de 5 min. 🎉")}
+  },1000);
+};
 render();
 </script>
 </body>

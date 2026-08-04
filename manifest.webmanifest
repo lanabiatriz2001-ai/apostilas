@@ -1,0 +1,11 @@
+{
+  "name": "Nexus · Estudos",
+  "short_name": "Nexus",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07080f",
+  "theme_color": "#07080f",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
