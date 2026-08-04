@@ -1,0 +1,30 @@
+name: Regenerar decks de flashcards
+
+on:
+  push:
+    branches: [main]
+    paths: ["*.html", "gen_decks.py"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  decks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Gerar seed-decks.js
+        run: python gen_decks.py
+      - name: Commit se houver mudança
+        run: |
+          if ! git diff --quiet seed-decks.js; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add seed-decks.js
+            git commit -m "chore: regenera decks de flashcards [skip ci]"
+            git push
+          fi

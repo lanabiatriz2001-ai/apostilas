@@ -190,6 +190,7 @@
       <button class="btn" id="sorte">🎲 Estudo aleatório</button>
       <button class="btn" id="revisar">🔁 Revisar pendente</button>
       <button class="btn" id="timer" title="Timer de foco 25 min">⏱ Foco 25:00</button>
+      <button class="btn" onclick="restaurar()" title="Restaurar apostilas ocultas">🗑 Ocultas</button>
     </div>
     <div class="controls">
       <input id="busca" type="search" placeholder="🔍 Buscar… (ex.: LINDB, súmula, locação)">
@@ -360,6 +361,43 @@ if(typeof SEED_DECKS!=="undefined"){
   }));
 }
 let plan=JSON.parse(localStorage.getItem("nexus-plan")||"{}");
+let hidden=new Set(JSON.parse(localStorage.getItem("nexus-hidden")||"[]"));
+/* Roteiros oficiais pré-carregados (Semana 1 e 2) — entram só se a semana ainda estiver vazia */
+const SEED_PLAN={
+ "2026-07-13":[
+  {txt:"SEG · Civil — Leis: CF 1–4 · CC 1–21 · CPC 1–12 · CP 1–10 · PNMA 1–21 · DL 911 1–9 · SV 1–12"},
+  {txt:"SEG · Doutrina: Cap. 1 — Estudo da Lei de Introdução (Tartuce) + LINDB seca", mat:"LINDB-Tartuce-apostila-interativa.html"},
+  {txt:"TER · Civil — Leis: CF 5 · CC 22–52 · CPC 13–25 · CP 11–20 · SNUC 1–21 · L9.514 1–20 · SV 13–24 · Dec. 9.830/19", mat:"Sumulas-Vinculantes-13-a-24.html"},
+  {txt:"TER · 30 questões de Direito Civil (FGV/CESPE/FCC/VUNESP) + Doutrina: item 2.1 do Cap. 2 (Tartuce)"},
+  {txt:"QUA · Proc. Civil — Leis: CF 6–11 · CC 53–78 · CPC 26–36 · CP 21–30 · SNUC 22–40 · L9.514 21–42 · SV 25–32", mat:"Sumulas-Vinculantes-25-a-36.html"},
+  {txt:"QUA · Doutrina: Cap. 1 — Jurisdição (Daniel Amorim)"},
+  {txt:"QUI · Proc. Civil — Leis: CF 12–16 · CC 79–97 · CPC 37–53 · CP 31–40 · SNUC 41–60 · Locações 1–30 · SV 33–45", mat:"Sumulas-Vinculantes-37-a-48.html"},
+  {txt:"QUI · Lei seca: 20 primeiros artigos do CPC + Doutrina: Cap. 2 — Ação (Daniel Amorim)", mat:"CPC-2015-arts-1-a-63-apostila.html"},
+  {txt:"SEX · Proc. Civil — Leis: CF 17–19 · CC 98–120 · CPC 54–63 · CP 41–50 · Crimes Amb. 1–28 · Locações 31–60 · SV 46–62", mat:"Sumulas-Vinculantes-49-a-63.html"},
+  {txt:"SEX · Doutrina: Cap. 3 — Processo (Daniel Amorim)"},
+  {txt:"SÁB · 50 questões de Processo Civil (FGV/CESPE/FCC/VUNESP · 2024–2026)"},
+  {txt:"SÁB · Caderno de questões: refazer as erradas da semana e revisar na lei, doutrina e jurisprudência"},
+  {txt:"DOM · Descanso / revisão livre — releitura dos resumos e mapas mentais da semana"}],
+ "2026-08-03":[
+  {txt:"SEG · Revisão & Juris — Leis: CF 20–24 · CC 121–144 · CPC 64–78 · CP 51–60 · Crimes Amb. 29–61 · Locações 61–75 · TSE 73→61", mat:"Sumulas-TSE-estudo-por-questoes.html"},
+  {txt:"SEG · Aula de atualização (vídeo) + Jurisprudência: Direitos e Garantias tópicos 1.1–1.10"},
+  {txt:"SEG · Materiais: Súmulas (STJ/STF) e Juris em Teses — Civil pgs. 07–10 + Repercussão Geral/Repetitivos — Civil"},
+  {txt:"TER · Penal — Leis: CF 25–31 · CC 145–165 · CPC 79–97 · CP 61–70 · Crimes Amb. 62–82 · Protesto 1–43 · TSE 60→49"},
+  {txt:"TER · Doutrina: Caps. I e II — Manual de Direito Penal (Nucci) + texto 'Direito Penal e Constituição' + Informativo STJ Ed. Extra 31/2026"},
+  {txt:"QUA · Proc. Civil rev. — Leis: CF 32–36 · CC 166–188 · CPC 98–107 · CP 71–80 · Cód. Florestal 1–28 · Arbitragem 1–40 · TSE 48→37"},
+  {txt:"QUA · Revisão: reler os 20 primeiros artigos do CPC anotado + Informativo STF 1222", mat:"CPC-2015-arts-1-a-63-apostila.html"},
+  {txt:"QUI · Const. & Proc. Penal — Leis: CF 37–38 · CC 189–204 · CPC 108–120 · CP 81–90 · Florestal 29–58 · L12.846 1–31 · TSE 36→25"},
+  {txt:"QUI · Jurisprudência: Direitos e Garantias tópicos 1.11–1.25 + Doutrina: Caps. 1–3 (até 3.4.2) — Renato Brasileiro"},
+  {txt:"SEX · LINDB & Proc. Penal — Leis: CF 39–41 · CC 205–232 · CPC 121–137 · CP 91–100 · Florestal 59–84 · Bem de Família 1–6 · TSE 24→13"},
+  {txt:"SEX · Leitura dirigida da LINDB: responder às 24 questões (fontes, vigência, revogação, LICC no tempo…)", mat:"LINDB-Questoes-Magistratura-Tartuce.html"},
+  {txt:"SEX · Doutrina: finalizar Cap. 3 (itens 3.5–3.9.3) — Renato Brasileiro + 40 questões de Proc. Penal + refazer erradas"},
+  {txt:"SÁB · SIMULADO 2 — Magistratura, modelo TJMG (obrigatório)"},
+  {txt:"DOM · Descanso / revisão livre — resumos, mapas mentais e pendências da semana"}]
+};
+Object.entries(SEED_PLAN).forEach(([wk,metas])=>{
+  if(!plan[wk]) plan[wk]=metas.map(m=>({txt:m.txt, mat:m.mat||"", ok:false}));
+});
+localStorage.setItem("nexus-plan",JSON.stringify(plan));
 const save=k=>{
   if(k==="st")localStorage.setItem(K.st,JSON.stringify(status));
   if(k==="act")localStorage.setItem(K.act,JSON.stringify(act));
@@ -447,10 +485,22 @@ function cardHTML(a){
     <div class="foot">
       <button class="status" data-s="${s}" onclick="cycle(event,'${a.f}')">${["Iniciar","Estudando","Concluída ✓"][s]}</button>
       ${localStorage.getItem(K.last)===a.f?'<span class="last">⏳ último acesso</span>':''}
+      <button class="status" style="margin-left:auto; border-color:transparent; color:var(--muted)" title="Ocultar apostila" onclick="esconder(event,'${a.f}')">🗑</button>
     </div></a>`;
 }
+function esconder(ev,f){
+  ev.preventDefault();ev.stopPropagation();
+  if(!confirm("Ocultar esta apostila da Biblioteca? (o arquivo continua no site; dá para restaurar no botão 🗑)"))return;
+  hidden.add(f); localStorage.setItem("nexus-hidden",JSON.stringify([...hidden])); renderLib();
+}
+function restaurar(){
+  if(!hidden.size)return alert("Nenhuma apostila oculta.");
+  if(confirm(`Restaurar ${hidden.size} apostila(s) oculta(s)?`)){
+    hidden.clear(); localStorage.setItem("nexus-hidden","[]"); renderLib();
+  }
+}
 function renderLib(){
-  const list=A.filter(a=>
+  const list=A.filter(a=>!hidden.has(a.f)&&
     (fTipo==="Todos"||a.tp===fTipo)&&(fCat==="Todas"||a.c===fCat)&&
     (!termo||norm(a.t+a.d+a.c+a.tp).includes(norm(termo))));
   const grupos=[["📖 Conteúdo","Conteúdo"],["🎯 Quizzes","Quiz"],["📜 Lei Seca (PDF)","Lei"],["🛠️ Método de estudo","Método"]];
@@ -485,7 +535,7 @@ document.getElementById("continuar").onclick=()=>{
   abrir(last&&A.find(a=>a.f===last) ? last : (A.find(a=>st(a.f)===1)||A.find(a=>st(a.f)===0)||A[0]).f);
 };
 document.getElementById("sorte").onclick=()=>{
-  const pend=A.filter(a=>st(a.f)!==2); const pool=pend.length?pend:A;
+  const pend=A.filter(a=>st(a.f)!==2&&!hidden.has(a.f)); const pool=pend.length?pend:A;
   abrir(pool[Math.floor(Math.random()*pool.length)].f);
 };
 document.getElementById("revisar").onclick=()=>{
