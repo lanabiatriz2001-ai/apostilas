@@ -11,11 +11,10 @@
   :root{
     --bg0:#07080f; --bg1:#0c0e1a; --card:rgba(255,255,255,.045);
     --card-border:rgba(255,255,255,.09); --ink:#eef0ff; --muted:#8a90b8;
-    --cyan:#22d3ee; --violet:#a78bfa; --pink:#f472b6; --green:#34d399; --amber:#fbbf24;
+    --cyan:#22d3ee; --violet:#a78bfa; --pink:#f472b6; --green:#34d399; --amber:#fbbf24; --red:#f87171;
     --glow-c:rgba(34,211,238,.35); --glow-v:rgba(167,139,250,.35);
   }
   *{box-sizing:border-box; margin:0}
-  html{scroll-behavior:smooth}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     background:
@@ -26,17 +25,11 @@
     background-attachment:fixed; color:var(--ink); min-height:100vh;
   }
   .wrap{max-width:1060px; margin:0 auto; padding:0 22px}
-
-  /* ── header ── */
-  header{padding:44px 0 10px; display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between}
-  .brand h1{
-    font-size:2rem; letter-spacing:-.03em;
+  header{padding:38px 0 8px; display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between}
+  .brand h1{font-size:2rem; letter-spacing:-.03em;
     background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
+    -webkit-background-clip:text; background-clip:text; color:transparent}
   .brand p{color:var(--muted); font-size:.9rem; margin-top:4px}
-
-  /* progress ring */
   .hud{display:flex; gap:22px; align-items:center}
   .ring{position:relative; width:92px; height:92px}
   .ring svg{transform:rotate(-90deg)}
@@ -46,9 +39,19 @@
   .hudstats{display:grid; gap:6px; font-size:.83rem; color:var(--muted)}
   .hudstats b{color:var(--ink)}
   .dot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px}
+  .streak{font-size:1.05rem; color:var(--amber)}
 
-  /* ── action bar ── */
-  .actions{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 6px}
+  /* nav */
+  nav{display:flex; gap:8px; margin:14px 0 4px; border-bottom:1px solid var(--card-border); padding-bottom:0}
+  nav button{
+    padding:12px 18px; background:none; border:none; color:var(--muted); font-size:.95rem; font-weight:600;
+    cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px;
+  }
+  nav button.on{color:var(--ink); border-bottom-color:var(--cyan)}
+  .view{display:none; padding-top:14px}
+  .view.on{display:block}
+
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin:6px 0}
   .btn{
     padding:10px 16px; border-radius:12px; cursor:pointer; font-size:.88rem; font-weight:600;
     color:var(--ink); background:var(--card); border:1px solid var(--card-border);
@@ -58,30 +61,22 @@
   .btn.primary{background:linear-gradient(90deg,rgba(34,211,238,.18),rgba(167,139,250,.18)); border-color:rgba(34,211,238,.4)}
   #timer.on{border-color:var(--pink); box-shadow:0 0 18px rgba(244,114,182,.35); color:var(--pink)}
 
-  /* ── search / filters ── */
   .controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:14px 0 8px}
-  #busca{
-    flex:1; min-width:230px; padding:13px 18px; font-size:.95rem; border-radius:14px;
-    border:1px solid var(--card-border); background:var(--card); color:var(--ink);
-    outline:none; backdrop-filter:blur(10px);
-  }
+  #busca{flex:1; min-width:230px; padding:13px 18px; font-size:.95rem; border-radius:14px;
+    border:1px solid var(--card-border); background:var(--card); color:var(--ink); outline:none; backdrop-filter:blur(10px)}
   #busca:focus{border-color:var(--violet); box-shadow:0 0 20px var(--glow-v)}
   .chips{display:flex; gap:8px; flex-wrap:wrap}
-  .chip{
-    padding:8px 14px; border-radius:999px; font-size:.8rem; cursor:pointer;
-    border:1px solid var(--card-border); background:var(--card); color:var(--muted);
-    backdrop-filter:blur(10px); transition:all .15s;
-  }
+  .chip{padding:8px 14px; border-radius:999px; font-size:.8rem; cursor:pointer;
+    border:1px solid var(--card-border); background:var(--card); color:var(--muted); backdrop-filter:blur(10px); transition:all .15s}
   .chip:hover{color:var(--ink)}
   .chip.on{color:#031018; background:linear-gradient(90deg,var(--cyan),var(--violet)); border-color:transparent; font-weight:700}
   .tchip.on{background:linear-gradient(90deg,var(--pink),var(--amber))}
 
-  /* ── sections & cards ── */
   .sec{margin:26px 0 8px; display:flex; align-items:center; gap:12px}
-  .sec h2{font-size:1.05rem; letter-spacing:.02em}
+  .sec h2{font-size:1.05rem}
   .sec .line{flex:1; height:1px; background:linear-gradient(90deg,var(--card-border),transparent)}
   .sec .count{font-size:.75rem; color:var(--muted)}
-  main{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:14px; padding-bottom:10px}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:14px; padding-bottom:10px}
   .card{
     position:relative; border-radius:18px; padding:18px 18px 14px; display:flex; flex-direction:column; gap:9px;
     background:var(--card); border:1px solid var(--card-border); backdrop-filter:blur(12px);
@@ -91,6 +86,8 @@
   .card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.22); box-shadow:0 14px 40px rgba(0,0,0,.5), 0 0 24px var(--hover-glow,var(--glow-c))}
   .card.quiz{--stripe:linear-gradient(90deg,var(--pink),var(--amber)); --hover-glow:rgba(244,114,182,.3)}
   .card.metodo{--stripe:linear-gradient(90deg,var(--green),var(--cyan)); --hover-glow:rgba(52,211,153,.3)}
+  .card.lei{--stripe:linear-gradient(90deg,var(--amber),var(--red)); --hover-glow:rgba(251,191,36,.3)}
+  .lei .tag.tipo{background:linear-gradient(90deg,var(--amber),var(--red))}
   .top{display:flex; align-items:center; gap:8px}
   .emoji{font-size:1.5rem; margin-right:auto}
   .tag{font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; padding:4px 10px; border-radius:999px}
@@ -101,15 +98,52 @@
   .card h3{font-size:1rem; line-height:1.35}
   .card .desc{font-size:.83rem; color:var(--muted); flex:1; line-height:1.45}
   .foot{display:flex; align-items:center; gap:8px; margin-top:4px}
-  .status{
-    font-size:.75rem; font-weight:700; padding:6px 12px; border-radius:999px; cursor:pointer;
-    border:1px solid var(--card-border); background:transparent; color:var(--muted); transition:all .15s;
-  }
+  .status{font-size:.75rem; font-weight:700; padding:6px 12px; border-radius:999px; cursor:pointer;
+    border:1px solid var(--card-border); background:transparent; color:var(--muted); transition:all .15s}
   .status[data-s="1"]{color:var(--amber); border-color:var(--amber); box-shadow:0 0 12px rgba(251,191,36,.25)}
   .status[data-s="2"]{color:#031018; background:var(--green); border-color:var(--green); box-shadow:0 0 14px rgba(52,211,153,.4)}
   .card[data-s="2"]{opacity:.72}
   .last{font-size:.7rem; color:var(--muted); margin-left:auto}
-  .vazio{grid-column:1/-1; text-align:center; color:var(--muted); padding:50px 0}
+  .vazio{text-align:center; color:var(--muted); padding:50px 0}
+
+  /* flashcards */
+  .fc-decks{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:10px}
+  .deck{border-radius:18px; padding:18px; background:var(--card); border:1px solid var(--card-border); cursor:pointer; transition:all .18s}
+  .deck:hover{transform:translateY(-3px); border-color:var(--violet); box-shadow:0 0 22px var(--glow-v)}
+  .deck h3{font-size:1rem; margin-bottom:6px}
+  .deck .due{font-size:.8rem; color:var(--muted)}
+  .deck .due b{color:var(--cyan)}
+  .fc-stage{max-width:640px; margin:22px auto; text-align:center}
+  .fc-card{
+    min-height:230px; border-radius:22px; padding:34px 28px; display:grid; place-items:center;
+    background:var(--card); border:1px solid var(--card-border); backdrop-filter:blur(12px);
+    font-size:1.15rem; line-height:1.6; cursor:pointer; box-shadow:0 10px 40px rgba(0,0,0,.4);
+  }
+  .fc-card .hint{font-size:.75rem; color:var(--muted); margin-top:16px}
+  .fc-grades{display:flex; gap:10px; justify-content:center; margin-top:18px}
+  .fc-grades .btn.again{border-color:var(--red); color:var(--red)}
+  .fc-grades .btn.good{border-color:var(--cyan); color:var(--cyan)}
+  .fc-grades .btn.easy{border-color:var(--green); color:var(--green)}
+  .fc-meta{color:var(--muted); font-size:.8rem; margin-top:14px}
+  .fc-form{max-width:640px; margin:16px auto; display:grid; gap:10px}
+  .fc-form input,.fc-form textarea,.fc-form select{
+    padding:12px 14px; border-radius:12px; border:1px solid var(--card-border);
+    background:var(--card); color:var(--ink); font-size:.9rem; outline:none; font-family:inherit;
+  }
+  .fc-form textarea{min-height:70px; resize:vertical}
+
+  /* stats */
+  .statgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin:14px 0 22px}
+  .stat{border-radius:16px; padding:18px; background:var(--card); border:1px solid var(--card-border); text-align:center}
+  .stat b{font-size:1.6rem; display:block;
+    background:linear-gradient(90deg,var(--cyan),var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .stat span{font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.06em}
+  .heat{display:grid; grid-auto-flow:column; grid-template-rows:repeat(7,14px); gap:3px; overflow-x:auto; padding:14px;
+    border-radius:16px; background:var(--card); border:1px solid var(--card-border)}
+  .heat i{width:14px; height:14px; border-radius:3px; background:rgba(255,255,255,.06)}
+  .heat i.l1{background:rgba(34,211,238,.3)} .heat i.l2{background:rgba(34,211,238,.55)}
+  .heat i.l3{background:var(--cyan); box-shadow:0 0 6px var(--glow-c)}
+  .legend{font-size:.72rem; color:var(--muted); margin-top:8px}
   footer{text-align:center; color:var(--muted); font-size:.78rem; padding:26px 0 44px}
   footer a{color:var(--cyan); text-decoration:none}
 </style>
@@ -132,6 +166,7 @@
         <b id="pct">0%</b>
       </div>
       <div class="hudstats">
+        <span class="streak">🔥 <b id="streak">0</b> dias seguidos</span>
         <span><span class="dot" style="background:var(--green)"></span><b id="n-done">0</b> concluídas</span>
         <span><span class="dot" style="background:var(--amber)"></span><b id="n-doing">0</b> estudando</span>
         <span><span class="dot" style="background:var(--muted)"></span><b id="n-todo">0</b> a iniciar</span>
@@ -139,29 +174,83 @@
     </div>
   </header>
 
-  <div class="actions">
-    <button class="btn primary" id="continuar">▶ Continuar de onde parei</button>
-    <button class="btn" id="sorte">🎲 Estudo aleatório</button>
-    <button class="btn" id="timer" title="Timer de foco 25 min">⏱ Foco 25:00</button>
+  <nav>
+    <button class="on" data-v="lib">📚 Biblioteca</button>
+    <button data-v="fc">🃏 Flashcards <span id="fc-badge"></span></button>
+    <button data-v="stats">📊 Estatísticas</button>
+  </nav>
+
+  <!-- ═══ BIBLIOTECA ═══ -->
+  <div class="view on" id="v-lib">
+    <div class="actions">
+      <button class="btn primary" id="continuar">▶ Continuar de onde parei</button>
+      <button class="btn" id="sorte">🎲 Estudo aleatório</button>
+      <button class="btn" id="revisar">🔁 Revisar pendente</button>
+      <button class="btn" id="timer" title="Timer de foco 25 min">⏱ Foco 25:00</button>
+    </div>
+    <div class="controls">
+      <input id="busca" type="search" placeholder="🔍 Buscar… (ex.: LINDB, súmula, locação)">
+      <div class="chips" id="f-tipo">
+        <button class="chip tchip on" data-t="Todos">Todos</button>
+        <button class="chip tchip" data-t="Conteúdo">📖 Conteúdo</button>
+        <button class="chip tchip" data-t="Quiz">🎯 Quiz</button>
+        <button class="chip tchip" data-t="Lei">📜 Lei seca</button>
+        <button class="chip tchip" data-t="Método">🛠️ Método</button>
+      </div>
+    </div>
+    <div class="chips" id="f-cat"></div>
+    <div id="secoes"></div>
   </div>
 
-  <div class="controls">
-    <input id="busca" type="search" placeholder="🔍 Buscar… (ex.: LINDB, súmula, locação)">
-    <div class="chips" id="f-tipo">
-      <button class="chip tchip on" data-t="Todos">Todos</button>
-      <button class="chip tchip" data-t="Conteúdo">📖 Conteúdo</button>
-      <button class="chip tchip" data-t="Quiz">🎯 Quiz</button>
-      <button class="chip tchip" data-t="Método">🛠️ Método</button>
+  <!-- ═══ FLASHCARDS ═══ -->
+  <div class="view" id="v-fc">
+    <div id="fc-home">
+      <div class="actions">
+        <button class="btn primary" id="fc-study-all">▶ Revisar tudo que venceu</button>
+        <button class="btn" id="fc-new-toggle">＋ Novo card</button>
+      </div>
+      <div class="fc-form" id="fc-form" style="display:none">
+        <select id="nf-deck"></select>
+        <input id="nf-deck-new" placeholder="…ou nome de um deck novo">
+        <textarea id="nf-q" placeholder="Frente (pergunta) — ex.: Qual o prazo de vacatio legis, salvo disposição contrária?"></textarea>
+        <textarea id="nf-a" placeholder="Verso (resposta) — ex.: 45 dias após a publicação oficial (LINDB, art. 1º)."></textarea>
+        <button class="btn primary" id="nf-save">Salvar card</button>
+      </div>
+      <div class="fc-decks" id="fc-decks"></div>
+    </div>
+    <div id="fc-stage" class="fc-stage" style="display:none">
+      <div class="fc-card" id="fc-card"></div>
+      <div class="fc-grades" id="fc-grades" style="visibility:hidden">
+        <button class="btn again" data-g="0">✗ Errei</button>
+        <button class="btn good" data-g="1">✓ Acertei</button>
+        <button class="btn easy" data-g="2">⚡ Fácil</button>
+      </div>
+      <div class="fc-meta" id="fc-meta"></div>
+      <div class="actions" style="justify-content:center; margin-top:10px">
+        <button class="btn" id="fc-quit">← Voltar aos decks</button>
+      </div>
     </div>
   </div>
-  <div class="chips" id="f-cat"></div>
 
-  <div id="secoes"></div>
+  <!-- ═══ ESTATÍSTICAS ═══ -->
+  <div class="view" id="v-stats">
+    <div class="statgrid">
+      <div class="stat"><b id="s-streak">0</b><span>dias seguidos 🔥</span></div>
+      <div class="stat"><b id="s-days">0</b><span>dias de estudo</span></div>
+      <div class="stat"><b id="s-focus">0</b><span>min de foco ⏱</span></div>
+      <div class="stat"><b id="s-cards">0</b><span>cards revisados 🃏</span></div>
+      <div class="stat"><b id="s-opens">0</b><span>aberturas de material</span></div>
+    </div>
+    <div class="sec"><h2>🗓️ Constância (últimas 20 semanas)</h2><span class="line"></span></div>
+    <div class="heat" id="heat"></div>
+    <p class="legend">Cada quadrado é um dia — quanto mais brilhante, mais atividade (materiais abertos + sessões de foco + cards revisados).</p>
+  </div>
 
   <footer>Progresso salvo neste navegador · <a href="https://github.com/lanabiatriz2001-ai/apostilas">repositório</a></footer>
 </div>
 
 <script>
+/* ═══════════ DADOS ═══════════ */
 const A = [
   {f:"LINDB-Tartuce-apostila-interativa.html", t:"LINDB — Apostila Interativa (Tartuce)", c:"Civil", tp:"Conteúdo", e:"⚖️", d:"Lei de Introdução às Normas do Direito Brasileiro, com base na doutrina de Flávio Tartuce."},
   {f:"LINDB-Tartuce-material-interativo.html", t:"LINDB — Tartuce (material interativo)", c:"Civil", tp:"Conteúdo", e:"⚖️", d:"Material interativo de estudo da LINDB pela doutrina de Tartuce."},
@@ -183,47 +272,116 @@ const A = [
   {f:"Lei-9985-2000-SNUC-apostila.html", t:"Lei 9.985/2000 — SNUC", c:"Ambiental", tp:"Conteúdo", e:"🌳", d:"Sistema Nacional de Unidades de Conservação da Natureza."},
   {f:"Lei-6938-1981-PNMA-apostila.html", t:"Lei 6.938/1981 — PNMA", c:"Ambiental", tp:"Conteúdo", e:"🌎", d:"Política Nacional do Meio Ambiente."},
   {f:"Sumulas-TSE-estudo-por-questoes.html", t:"Súmulas do TSE — Estudo por Questões", c:"Eleitoral", tp:"Quiz", e:"🗳️", d:"Súmulas do Tribunal Superior Eleitoral em formato de questões."},
+  {f:"leis/CF.pdf", t:"CF/88 — Texto integral", c:"Constitucional", tp:"Lei", e:"📜", d:"Constituição Federal de 1988 — lei seca completa."},
+  {f:"leis/CF-Lacunada-Titulo-I.pdf", t:"CF Lacunada — Título I", c:"Constitucional", tp:"Lei", e:"✍️", d:"CF Título I em formato lacunado para treino de memorização."},
+  {f:"leis/CF-Lacunada-Titulo-II.pdf", t:"CF Lacunada — Título II", c:"Constitucional", tp:"Lei", e:"✍️", d:"CF Título II em formato lacunado para treino de memorização."},
+  {f:"leis/CF-Lacunada-Titulo-III.pdf", t:"CF Lacunada — Título III", c:"Constitucional", tp:"Lei", e:"✍️", d:"CF Título III em formato lacunado para treino de memorização."},
+  {f:"leis/CC.pdf", t:"Código Civil — Texto integral", c:"Civil", tp:"Lei", e:"📜", d:"Código Civil de 2002 — lei seca completa."},
+  {f:"leis/LINDB.pdf", t:"LINDB — Texto integral", c:"Civil", tp:"Lei", e:"📜", d:"Lei de Introdução às Normas do Direito Brasileiro — lei seca."},
+  {f:"leis/CPC.pdf", t:"CPC/2015 — Texto integral", c:"Processo Civil", tp:"Lei", e:"📜", d:"Código de Processo Civil — lei seca completa."},
+  {f:"leis/CP.pdf", t:"Código Penal — Texto integral", c:"Penal", tp:"Lei", e:"📜", d:"Código Penal — lei seca completa."},
+  {f:"leis/CP-Titulo-I-Aplicacao-da-Lei-Penal.pdf", t:"CP — Título I: Aplicação da Lei Penal", c:"Penal", tp:"Lei", e:"📄", d:"Parte Geral do CP, Título I."},
+  {f:"leis/CP-Titulo-II-Do-Crime.pdf", t:"CP — Título II: Do Crime", c:"Penal", tp:"Lei", e:"📄", d:"Parte Geral do CP, Título II."},
+  {f:"leis/CP-Titulo-III-Imputabilidade.pdf", t:"CP — Título III: Imputabilidade Penal", c:"Penal", tp:"Lei", e:"📄", d:"Parte Geral do CP, Título III."},
+  {f:"leis/CP-Titulo-IV-Concurso-de-Pessoas.pdf", t:"CP — Título IV: Concurso de Pessoas", c:"Penal", tp:"Lei", e:"📄", d:"Parte Geral do CP, Título IV."},
+  {f:"leis/CP-Titulo-V-Das-Penas.pdf", t:"CP — Título V: Das Penas", c:"Penal", tp:"Lei", e:"📄", d:"Parte Geral do CP, Título V."},
+  {f:"leis/CP-Titulo-VI-Medidas-de-Seguranca.pdf", t:"CP — Título VI: Medidas de Segurança", c:"Penal", tp:"Lei", e:"📄", d:"Parte Geral do CP, Título VI."},
+  {f:"leis/CP-Titulo-VII-Acao-Penal.pdf", t:"CP — Título VII: Da Ação Penal", c:"Penal", tp:"Lei", e:"📄", d:"Parte Geral do CP, Título VII."},
+  {f:"leis/CP-Titulo-VIII-Extincao-Punibilidade.pdf", t:"CP — Título VIII: Extinção da Punibilidade", c:"Penal", tp:"Lei", e:"📄", d:"Parte Geral do CP, Título VIII."},
+  {f:"leis/CPP.pdf", t:"CPP — Texto integral", c:"Processo Penal", tp:"Lei", e:"📜", d:"Código de Processo Penal — lei seca completa."},
+  {f:"leis/L8245-91-Locacao.pdf", t:"Lei 8.245/1991 — Texto integral", c:"Civil", tp:"Lei", e:"📜", d:"Lei do Inquilinato — lei seca."},
+  {f:"leis/L9514-97.pdf", t:"Lei 9.514/1997 — Texto integral", c:"Civil", tp:"Lei", e:"📜", d:"SFI e alienação fiduciária de imóvel — lei seca."},
+  {f:"leis/DL911-69.pdf", t:"DL 911/1969 — Texto integral", c:"Civil", tp:"Lei", e:"📜", d:"Alienação fiduciária de móveis — lei seca."},
+  {f:"leis/PNMA.pdf", t:"Lei 6.938/1981 (PNMA) — Texto integral", c:"Ambiental", tp:"Lei", e:"📜", d:"Política Nacional do Meio Ambiente — lei seca."},
+  {f:"leis/SNUC.pdf", t:"Lei 9.985/2000 (SNUC) — Texto integral", c:"Ambiental", tp:"Lei", e:"📜", d:"Sistema Nacional de Unidades de Conservação — lei seca."},
+  {f:"leis/Indice-Estrutural-das-Normas.pdf", t:"Índice Estrutural — CF · CC · CPC · CP · CPP", c:"Método", tp:"Lei", e:"🗺️", d:"Mapa estrutural das principais normas para navegação e revisão."},
   {f:"Checklist-por-Disciplina.html", t:"Checklist por Disciplina — Leitura de Leis", c:"Método", tp:"Método", e:"✅", d:"Checklist de acompanhamento da leitura de leis por disciplina."},
   {f:"Codigo-Cores-Leitura-Ativa.html", t:"Código de Cores — Leitura Ativa", c:"Método", tp:"Método", e:"🎨", d:"Sistema de cores para marcação e leitura ativa da lei seca."},
 ];
-const S_LABEL=["Iniciar","Estudando","Concluída ✓"];
-const KEY="nexus-status", KEY_LAST="nexus-last";
-let status = JSON.parse(localStorage.getItem(KEY)||"{}");
-// migração do formato antigo (lista de concluídas)
-try{(JSON.parse(localStorage.getItem("apostilas-done")||"[]")).forEach(f=>{if(!(f in status))status[f]=2})}catch(e){}
-let fTipo="Todos", fCat="Todas", termo="";
-const CATS=["Todas",...new Set(A.map(a=>a.c))];
+const SEED_CARDS = [
+  ["LINDB","Salvo disposição contrária, quando a lei começa a vigorar no Brasil?","45 dias depois de oficialmente publicada (art. 1º)."],
+  ["LINDB","Quando a lei brasileira passa a ser obrigatória nos Estados estrangeiros, quando admitida?","3 meses depois de oficialmente publicada (art. 1º, §1º)."],
+  ["LINDB","Correção a texto de lei já em vigor é considerada o quê?","Lei nova (art. 1º, §4º)."],
+  ["LINDB","Em quais 3 hipóteses a lei posterior revoga a anterior?","Quando expressamente o declare, quando seja com ela incompatível ou quando regule inteiramente a matéria da lei anterior (art. 2º, §1º)."],
+  ["LINDB","A lei nova geral revoga a lei especial anterior?","Não — a lei nova que estabeleça disposições gerais ou especiais a par das já existentes não revoga nem modifica a lei anterior (art. 2º, §2º)."],
+  ["LINDB","O que é o efeito repristinatório e ele é a regra no Brasil?","Restauração da lei revogada quando a lei revogadora perde vigência. NÃO é a regra: salvo disposição em contrário, a lei revogada não se restaura (art. 2º, §3º)."],
+  ["LINDB","Alguém pode se escusar de cumprir a lei alegando que não a conhece?","Não (art. 3º — princípio da obrigatoriedade)."],
+  ["LINDB","Sendo a lei omissa, como o juiz decide? (em ordem)","Analogia, costumes e princípios gerais de direito (art. 4º)."],
+  ["LINDB","Na aplicação da lei, o que o juiz deve atender?","Aos fins sociais a que ela se dirige e às exigências do bem comum (art. 5º)."],
+  ["LINDB","A lei em vigor tem efeito imediato e geral, respeitados quais 3 institutos?","O ato jurídico perfeito, o direito adquirido e a coisa julgada (art. 6º)."],
+  ["LINDB","Qual lei rege o começo e o fim da personalidade, o nome, a capacidade e os direitos de família?","A lei do país em que a pessoa for domiciliada — estatuto pessoal (art. 7º)."],
+  ["LINDB","Qual lei se aplica para qualificar os bens e regular as relações a eles concernentes?","A lei do país em que estiverem situados (art. 8º)."],
+  ["LINDB","Qual lei rege as obrigações?","A lei do país em que se constituírem (art. 9º)."],
+  ["LINDB","Qual lei rege a sucessão por morte ou ausência?","A lei do país de domicílio do defunto ou desaparecido, qualquer que seja a natureza e a situação dos bens (art. 10)."],
+];
 
+/* ═══════════ STORAGE ═══════════ */
+const K={st:"nexus-status", last:"nexus-last", act:"nexus-activity", cards:"nexus-cards"};
+let status=JSON.parse(localStorage.getItem(K.st)||"{}");
+try{(JSON.parse(localStorage.getItem("apostilas-done")||"[]")).forEach(f=>{if(!(f in status))status[f]=2})}catch(e){}
+let act=JSON.parse(localStorage.getItem(K.act)||"{}");
+let cards=JSON.parse(localStorage.getItem(K.cards)||"null");
+if(!cards){cards=SEED_CARDS.map((c,i)=>({id:"seed"+i, deck:c[0], q:c[1], a:c[2], due:null, ivl:0}));}
+const save=k=>{
+  if(k==="st")localStorage.setItem(K.st,JSON.stringify(status));
+  if(k==="act")localStorage.setItem(K.act,JSON.stringify(act));
+  if(k==="cards")localStorage.setItem(K.cards,JSON.stringify(cards));
+};
+const hoje=()=>new Date().toISOString().slice(0,10);
+function bump(tipo,n){
+  const d=hoje(); act[d]=act[d]||{opens:0,focus:0,cards:0};
+  act[d][tipo]=(act[d][tipo]||0)+n; save("act"); renderHUD();
+}
+
+/* ═══════════ HELPERS ═══════════ */
 const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 const st=f=>status[f]||0;
+function streak(){
+  let s=0, d=new Date();
+  const has=x=>{const k=x.toISOString().slice(0,10); const a=act[k]; return a&&(a.opens||a.focus||a.cards)};
+  if(!has(d)) d.setDate(d.getDate()-1); // hoje ainda não estudou → conta a partir de ontem
+  while(has(d)){s++; d.setDate(d.getDate()-1)}
+  return s;
+}
 
-function save(){localStorage.setItem(KEY,JSON.stringify(status))}
-function abrir(f){localStorage.setItem(KEY_LAST,f); if(st(f)===0){status[f]=1;save()} location.href=f}
+/* ═══════════ NAV ═══════════ */
+document.querySelector("nav").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b)return;
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("on"));
+  document.getElementById("v-"+b.dataset.v).classList.add("on");
+  if(b.dataset.v==="stats")renderStats();
+  if(b.dataset.v==="fc")renderDecks();
+});
 
+/* ═══════════ BIBLIOTECA ═══════════ */
+let fTipo="Todos", fCat="Todas", termo="";
+const CATS=["Todas",...new Set(A.map(a=>a.c))];
+function abrir(f){localStorage.setItem(K.last,f); if(st(f)===0){status[f]=1;save("st")} bump("opens",1); location.href=f}
 function cardHTML(a){
-  const s=st(a.f), cls=a.tp==="Quiz"?"quiz":(a.tp==="Método"?"metodo":"");
+  const s=st(a.f), cls={Quiz:"quiz","Método":"metodo",Lei:"lei"}[a.tp]||"";
   return `<a class="card ${cls}" data-s="${s}" href="${a.f}" onclick="event.preventDefault();abrir('${a.f}')">
     <div class="top"><span class="emoji">${a.e}</span>
       <span class="tag tipo">${a.tp}</span><span class="tag cat">${a.c}</span></div>
     <h3>${a.t}</h3><p class="desc">${a.d}</p>
     <div class="foot">
-      <button class="status" data-s="${s}" onclick="cycle(event,'${a.f}')">${S_LABEL[s]}</button>
-      ${localStorage.getItem(KEY_LAST)===a.f?'<span class="last">⏳ último acesso</span>':''}
+      <button class="status" data-s="${s}" onclick="cycle(event,'${a.f}')">${["Iniciar","Estudando","Concluída ✓"][s]}</button>
+      ${localStorage.getItem(K.last)===a.f?'<span class="last">⏳ último acesso</span>':''}
     </div></a>`;
 }
-
-function render(){
+function renderLib(){
   const list=A.filter(a=>
     (fTipo==="Todos"||a.tp===fTipo)&&(fCat==="Todas"||a.c===fCat)&&
     (!termo||norm(a.t+a.d+a.c+a.tp).includes(norm(termo))));
-  const grupos=[["📖 Conteúdo","Conteúdo"],["🎯 Quizzes","Quiz"],["🛠️ Método de estudo","Método"]];
+  const grupos=[["📖 Conteúdo","Conteúdo"],["🎯 Quizzes","Quiz"],["📜 Lei Seca (PDF)","Lei"],["🛠️ Método de estudo","Método"]];
   document.getElementById("secoes").innerHTML = list.length ? grupos.map(([titulo,tp])=>{
-    const g=list.filter(a=>a.tp===tp);
-    if(!g.length) return "";
+    const g=list.filter(a=>a.tp===tp); if(!g.length)return "";
     return `<div class="sec"><h2>${titulo}</h2><span class="count">${g.filter(a=>st(a.f)===2).length}/${g.length}</span><span class="line"></span></div>
-      <main>${g.map(cardHTML).join("")}</main>`;
-  }).join("") : `<main><p class="vazio">Nada encontrado 🛸</p></main>`;
-
+      <div class="grid">${g.map(cardHTML).join("")}</div>`;
+  }).join("") : `<p class="vazio">Nada encontrado 🛸</p>`;
+  renderHUD();
+}
+function renderHUD(){
   const done=A.filter(a=>st(a.f)===2).length, doing=A.filter(a=>st(a.f)===1).length;
   const pct=Math.round(done/A.length*100);
   document.getElementById("pct").textContent=pct+"%";
@@ -231,40 +389,137 @@ function render(){
   document.getElementById("n-done").textContent=done;
   document.getElementById("n-doing").textContent=doing;
   document.getElementById("n-todo").textContent=A.length-done-doing;
+  document.getElementById("streak").textContent=streak();
+  const due=dueCards().length;
+  document.getElementById("fc-badge").textContent=due?`(${due})`:"";
 }
-function cycle(ev,f){ev.preventDefault();ev.stopPropagation();status[f]=(st(f)+1)%3;save();render()}
-
-/* filtros */
+function cycle(ev,f){ev.preventDefault();ev.stopPropagation();status[f]=(st(f)+1)%3;save("st");renderLib()}
 document.getElementById("f-cat").innerHTML=CATS.map(c=>`<button class="chip ${c==="Todas"?"on":""}" data-c="${c}">${c}</button>`).join("");
 document.getElementById("f-cat").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;
-  fCat=b.dataset.c;[...e.currentTarget.children].forEach(x=>x.classList.toggle("on",x===b));render()});
+  fCat=b.dataset.c;[...e.currentTarget.children].forEach(x=>x.classList.toggle("on",x===b));renderLib()});
 document.getElementById("f-tipo").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;
-  fTipo=b.dataset.t;[...e.currentTarget.children].forEach(x=>x.classList.toggle("on",x===b));render()});
-document.getElementById("busca").addEventListener("input",e=>{termo=e.target.value;render()});
-
-/* ações */
+  fTipo=b.dataset.t;[...e.currentTarget.children].forEach(x=>x.classList.toggle("on",x===b));renderLib()});
+document.getElementById("busca").addEventListener("input",e=>{termo=e.target.value;renderLib()});
 document.getElementById("continuar").onclick=()=>{
-  const last=localStorage.getItem(KEY_LAST);
-  const alvo=last&&A.find(a=>a.f===last) ? last : (A.find(a=>st(a.f)===1)||A.find(a=>st(a.f)===0)||A[0]).f;
-  abrir(alvo);
+  const last=localStorage.getItem(K.last);
+  abrir(last&&A.find(a=>a.f===last) ? last : (A.find(a=>st(a.f)===1)||A.find(a=>st(a.f)===0)||A[0]).f);
 };
 document.getElementById("sorte").onclick=()=>{
   const pend=A.filter(a=>st(a.f)!==2); const pool=pend.length?pend:A;
   abrir(pool[Math.floor(Math.random()*pool.length)].f);
 };
+document.getElementById("revisar").onclick=()=>{
+  const doing=A.filter(a=>st(a.f)===1);
+  if(!doing.length){alert("Nenhum material com status Estudando — comece um! 🎲");return}
+  abrir(doing[Math.floor(Math.random()*doing.length)].f);
+};
 
-/* timer de foco */
+/* timer */
 let tLeft=0, tInt=null; const tBtn=document.getElementById("timer");
 tBtn.onclick=()=>{
-  if(tInt){clearInterval(tInt);tInt=null;tLeft=0;tBtn.classList.remove("on");tBtn.textContent="⏱ Foco 25:00";return}
+  if(tInt){clearInterval(tInt);tInt=null;tBtn.classList.remove("on");tBtn.textContent="⏱ Foco 25:00";return}
   tLeft=25*60;tBtn.classList.add("on");
   tInt=setInterval(()=>{tLeft--;
     tBtn.textContent="⏸ "+String(Math.floor(tLeft/60)).padStart(2,"0")+":"+String(tLeft%60).padStart(2,"0");
     if(tLeft<=0){clearInterval(tInt);tInt=null;tBtn.classList.remove("on");tBtn.textContent="⏱ Foco 25:00";
-      document.title="✅ Sessão concluída!";alert("⏱ Sessão de foco concluída! Faça uma pausa de 5 min. 🎉")}
+      bump("focus",25);alert("⏱ Sessão de foco concluída! Pausa de 5 min. 🎉")}
   },1000);
 };
-render();
+
+/* ═══════════ FLASHCARDS (SRS) ═══════════ */
+const dueCards=(deck)=>cards.filter(c=>(!deck||c.deck===deck)&&(!c.due||c.due<=hoje()));
+let fila=[], atual=null, mostrando=false;
+function renderDecks(){
+  const decks=[...new Set(cards.map(c=>c.deck))];
+  document.getElementById("fc-decks").innerHTML=decks.map(d=>{
+    const tot=cards.filter(c=>c.deck===d).length, due=dueCards(d).length;
+    return `<div class="deck" onclick="startStudy('${d.replace(/'/g,"\\'")}')">
+      <h3>🃏 ${d}</h3><p class="due"><b>${due}</b> para revisar · ${tot} cards</p></div>`;
+  }).join("")||`<p class="vazio">Nenhum deck ainda — crie seu primeiro card! ✨</p>`;
+  const sel=document.getElementById("nf-deck");
+  sel.innerHTML=decks.map(d=>`<option>${d}</option>`).join("");
+  renderHUD();
+}
+function startStudy(deck){
+  fila=dueCards(deck==="__all__"?null:deck);
+  if(!fila.length){alert("Nada vencido nesse deck — volte amanhã! 🌙");return}
+  fila.sort(()=>Math.random()-.5);
+  document.getElementById("fc-home").style.display="none";
+  document.getElementById("fc-stage").style.display="block";
+  nextCard();
+}
+function nextCard(){
+  if(!fila.length){
+    document.getElementById("fc-card").innerHTML="🎉 <b>Revisão concluída!</b><div class='hint'>Todos os cards vencidos foram revisados.</div>";
+    document.getElementById("fc-grades").style.visibility="hidden";
+    document.getElementById("fc-meta").textContent="";
+    return;
+  }
+  atual=fila[0]; mostrando=false;
+  document.getElementById("fc-card").innerHTML=`<div>${atual.q}<div class="hint">toque para ver a resposta</div></div>`;
+  document.getElementById("fc-grades").style.visibility="hidden";
+  document.getElementById("fc-meta").textContent=`Deck ${atual.deck} · restam ${fila.length}`;
+}
+document.getElementById("fc-card").onclick=()=>{
+  if(!atual||mostrando)return; mostrando=true;
+  document.getElementById("fc-card").innerHTML=`<div><div style="color:var(--muted);font-size:.85rem;margin-bottom:10px">${atual.q}</div>${atual.a}</div>`;
+  document.getElementById("fc-grades").style.visibility="visible";
+};
+document.getElementById("fc-grades").addEventListener("click",e=>{
+  const b=e.target.closest("[data-g]"); if(!b||!atual)return;
+  const g=+b.dataset.g;
+  if(g===0){atual.ivl=0; atual.due=hoje(); fila.push(fila.shift());} // errou: volta pro fim da fila
+  else{
+    atual.ivl = g===2 ? Math.max(3,(atual.ivl||1)*3) : (atual.ivl?atual.ivl*2:1);
+    const d=new Date(); d.setDate(d.getDate()+atual.ivl); atual.due=d.toISOString().slice(0,10);
+    fila.shift();
+  }
+  save("cards"); bump("cards",1); nextCard();
+});
+document.getElementById("fc-quit").onclick=()=>{
+  document.getElementById("fc-stage").style.display="none";
+  document.getElementById("fc-home").style.display="block"; renderDecks();
+};
+document.getElementById("fc-study-all").onclick=()=>startStudy("__all__");
+document.getElementById("fc-new-toggle").onclick=()=>{
+  const f=document.getElementById("fc-form");
+  f.style.display=f.style.display==="none"?"grid":"none";
+};
+document.getElementById("nf-save").onclick=()=>{
+  const deck=document.getElementById("nf-deck-new").value.trim()||document.getElementById("nf-deck").value;
+  const q=document.getElementById("nf-q").value.trim(), a=document.getElementById("nf-a").value.trim();
+  if(!deck||!q||!a){alert("Preencha deck, frente e verso!");return}
+  cards.push({id:"c"+Math.random().toString(36).slice(2), deck, q, a, due:null, ivl:0});
+  save("cards");
+  document.getElementById("nf-q").value=""; document.getElementById("nf-a").value="";
+  document.getElementById("nf-deck-new").value="";
+  renderDecks();
+};
+
+/* ═══════════ ESTATÍSTICAS ═══════════ */
+function renderStats(){
+  const days=Object.keys(act);
+  const tot=k=>days.reduce((s,d)=>s+(act[d][k]||0),0);
+  document.getElementById("s-streak").textContent=streak();
+  document.getElementById("s-days").textContent=days.filter(d=>{const a=act[d];return a.opens||a.focus||a.cards}).length;
+  document.getElementById("s-focus").textContent=tot("focus");
+  document.getElementById("s-cards").textContent=tot("cards");
+  document.getElementById("s-opens").textContent=tot("opens");
+  /* heatmap: 20 semanas, colunas = semanas, linhas = dom..sáb */
+  const cells=[]; const end=new Date();
+  const start=new Date(); start.setDate(end.getDate()-(139+end.getDay()));
+  for(let i=0;i<140+end.getDay()+1;i++){
+    const d=new Date(start); d.setDate(start.getDate()+i);
+    if(d>end)break;
+    const k=d.toISOString().slice(0,10); const a=act[k];
+    const n=a?(a.opens||0)+(a.focus?1:0)+Math.min(3,Math.floor((a.cards||0)/5)):0;
+    const lvl=n===0?"":n<2?"l1":n<4?"l2":"l3";
+    cells.push(`<i class="${lvl}" title="${d.toLocaleDateString('pt-BR')} — ${a?`${a.opens||0} materiais, ${a.focus||0} min foco, ${a.cards||0} cards`:"sem atividade"}"></i>`);
+  }
+  document.getElementById("heat").innerHTML=cells.join("");
+}
+
+renderLib(); renderHUD();
 </script>
 </body>
 </html>
